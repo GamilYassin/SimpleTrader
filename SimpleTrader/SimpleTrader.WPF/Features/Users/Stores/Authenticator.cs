@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Accounts.Stores;
-using SimpleTrader.WPF.Features.Assets.Services;
 using SimpleTrader.WPF.Features.Users.DTOs;
 using SimpleTrader.WPF.Features.Users.Enums;
 using SimpleTrader.WPF.Features.Users.Services;

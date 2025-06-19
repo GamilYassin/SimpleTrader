@@ -5,7 +5,6 @@
     x:Class="SimpleTrader.WPF.Features.Assets.Views.SellView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:controls="clr-namespace:SimpleTrader.WPF.Resources.Controls"
-    xmlns:controls1="clr-namespace:SimpleTrader.WPF.Resources.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -59,7 +58,7 @@
             Text="{Binding Message}"
             Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-        <controls1:SearchSymbolResultPanel Grid.Row="3" Margin="0,20,0,0">
+        <controls:SearchSymbolResultPanel Grid.Row="3" Margin="0,20,0,0">
             <StackPanel HorizontalAlignment="Center">
                 <WrapPanel Margin="0,10">
                     <TextBlock Text="Shares to sell:" Width="150" />
@@ -81,6 +80,6 @@
                     Margin="0,10"
                     Padding="20,5" />
             </StackPanel>
-        </controls1:SearchSymbolResultPanel>
+        </controls:SearchSymbolResultPanel>
     </Grid>
 </UserControl>

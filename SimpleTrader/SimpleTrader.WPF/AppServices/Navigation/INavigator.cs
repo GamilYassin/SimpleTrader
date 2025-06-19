@@ -1,5 +1,4 @@
 ﻿using System;
-using SimpleTrader.WPF.Features.Home.ViewModels;
 
 namespace SimpleTrader.WPF.AppServices.Navigation;
 
@@ -14,6 +13,6 @@ public enum ViewType
 
 public interface INavigator
 {
-    ViewModelBase CurrentViewModel { get; set; }
+    // ViewModelBase CurrentViewModel { get; set; }
     event Action StateChanged;
 }

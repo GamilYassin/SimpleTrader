@@ -43,8 +43,8 @@ public partial class App : Application
         // Seed Data
         SeedData(_host.Services);
 
-        Window window = _host.Services.GetRequiredService<MainWindow>();
-        window.Show();
+        // Window window = _host.Services.GetRequiredService<MainWindow>();
+        // window.Show();
 
         base.OnStartup(e);
     }

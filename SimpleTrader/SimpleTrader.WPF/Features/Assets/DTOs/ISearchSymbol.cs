@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
+﻿namespace SimpleTrader.WPF.Features.Assets.DTOs;
 
-namespace SimpleTrader.WPF.Features.Assets.ViewModels;
-
-public interface ISearchSymbolViewModel : INotifyPropertyChanged
+public interface ISearchSymbol
 {
     string ErrorMessage { set; }
     string SearchResultSymbol { set; }

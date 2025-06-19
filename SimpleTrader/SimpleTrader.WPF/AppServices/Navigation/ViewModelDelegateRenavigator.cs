@@ -1,20 +1,18 @@
-﻿using SimpleTrader.WPF.Features.Home.ViewModels;
+﻿namespace SimpleTrader.WPF.AppServices.Navigation;
 
-namespace SimpleTrader.WPF.AppServices.Navigation;
+// public class ViewModelDelegateRenavigator<TViewModel> : IRenavigator where TViewModel // : ViewModelBase
+// {
+    // private readonly INavigator _navigator;
+    // private readonly CreateViewModel<TViewModel> _createViewModel;
 
-public class ViewModelDelegateRenavigator<TViewModel> : IRenavigator where TViewModel : ViewModelBase
-{
-    private readonly INavigator _navigator;
-    private readonly CreateViewModel<TViewModel> _createViewModel;
-
-    public ViewModelDelegateRenavigator(INavigator navigator, CreateViewModel<TViewModel> createViewModel)
-    {
-        _navigator = navigator;
-        _createViewModel = createViewModel;
-    }
-
-    public void Renavigate()
-    {
-        _navigator.CurrentViewModel = _createViewModel();
-    }
-}
+    // public ViewModelDelegateRenavigator(INavigator navigator, CreateViewModel<TViewModel> createViewModel)
+    // {
+    //     _navigator = navigator;
+    //     _createViewModel = createViewModel;
+    // }
+    //
+    // public void Renavigate()
+    // {
+    //     _navigator.CurrentViewModel = _createViewModel();
+    // }
+// }

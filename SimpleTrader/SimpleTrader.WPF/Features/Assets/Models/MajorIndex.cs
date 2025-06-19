@@ -1,5 +1,4 @@
 ﻿using FieldOps.Kernel.Entities;
-using SimpleTrader.WPF.Features.Assets.Enums;
 
 namespace SimpleTrader.WPF.Features.Assets.Models;
 

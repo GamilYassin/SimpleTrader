@@ -2,13 +2,9 @@
 using System.Threading.Tasks;
 using FieldOps.Kernel.Functional;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualBasic;
-using SimpleTrader.WPF.AppServices.Exceptions;
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Features.Assets.DataSeed;
 using SimpleTrader.WPF.Features.Assets.Models;
-using SimpleTrader.WPF.Features.Financials.DTOs;
-using SimpleTrader.WPF.Features.Financials.Models;
 
 namespace SimpleTrader.WPF.Features.Financials.Services;
 

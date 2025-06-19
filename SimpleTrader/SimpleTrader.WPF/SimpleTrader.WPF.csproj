@@ -38,7 +38,10 @@
     <Folder Include="AppServices\" />
     <Folder Include="Features\Accounts\ViewModels\" />
     <Folder Include="Features\Accounts\Views\" />
+    <Folder Include="Features\Assets\ViewModels\" />
     <Folder Include="Features\Financials\" />
+    <Folder Include="Features\Home\ViewModels\" />
+    <Folder Include="Features\Users\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\login-background.jpg">
@@ -56,9 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Resources\Controls\MajorIndexListing.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Resources\Controls\NavigationBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Resources\Controls\SearchSymbolResultPanel.xaml">

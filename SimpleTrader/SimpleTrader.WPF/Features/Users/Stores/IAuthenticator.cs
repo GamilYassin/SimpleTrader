@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using SimpleTrader.WPF.AppServices.Exceptions;
 using SimpleTrader.WPF.Features.Accounts.Models;
-using SimpleTrader.WPF.Features.Assets.Services;
 using SimpleTrader.WPF.Features.Users.DTOs;
 using SimpleTrader.WPF.Features.Users.Enums;
-using SimpleTrader.WPF.Features.Users.Services;
 
 namespace SimpleTrader.WPF.Features.Users.Stores;
 
