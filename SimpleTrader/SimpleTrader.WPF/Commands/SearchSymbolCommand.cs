@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using SimpleTrader.WPF.Domain.Exceptions;
 using SimpleTrader.WPF.Domain.Services;
+using SimpleTrader.WPF.Domain.Services.Abstractions;
 
 namespace SimpleTrader.WPF.Commands;
 

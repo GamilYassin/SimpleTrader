@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services;
+using SimpleTrader.WPF.Domain.Services.Abstractions;
 
 namespace SimpleTrader.WPF.Commands;
 

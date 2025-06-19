@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FieldOps.Kernel.Entities;
 using Microsoft.EntityFrameworkCore;
-using SimpleTrader.WPF.Data.Services.Common;
 using Throw;
 
 namespace SimpleTrader.WPF.Data.Repositories;

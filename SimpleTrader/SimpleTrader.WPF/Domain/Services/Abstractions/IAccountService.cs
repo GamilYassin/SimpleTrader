@@ -2,7 +2,7 @@
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Domain.Models;
 
-namespace SimpleTrader.WPF.Domain.Services;
+namespace SimpleTrader.WPF.Domain.Services.Abstractions;
 
 public interface IAccountService : IRepository<Account>
 {

@@ -6,6 +6,7 @@ using SimpleTrader.WPF.ViewModels;
 using SimpleTrader.WPF.ViewModels.Factories;
 using System;
 using SimpleTrader.WPF.Domain.Services;
+using SimpleTrader.WPF.Domain.Services.Abstractions;
 
 namespace SimpleTrader.WPF.HostBuilders;
 

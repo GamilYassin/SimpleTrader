@@ -6,6 +6,7 @@ using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Data.Services;
 using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services;
+using SimpleTrader.WPF.Domain.Services.Abstractions;
 using SimpleTrader.WPF.Domain.Services.AuthenticationServices;
 using SimpleTrader.WPF.Domain.Services.TransactionServices;
 

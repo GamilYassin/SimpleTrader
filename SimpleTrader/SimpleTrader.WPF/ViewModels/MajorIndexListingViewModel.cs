@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services;
+using SimpleTrader.WPF.Domain.Services.Abstractions;
 
 namespace SimpleTrader.WPF.ViewModels;
 

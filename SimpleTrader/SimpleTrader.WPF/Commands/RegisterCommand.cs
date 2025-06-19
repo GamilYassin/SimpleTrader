@@ -4,6 +4,7 @@ using SimpleTrader.WPF.ViewModels;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.Domain.Services.Abstractions;
 using SimpleTrader.WPF.Domain.Services.AuthenticationServices;
 
 namespace SimpleTrader.WPF.Commands;

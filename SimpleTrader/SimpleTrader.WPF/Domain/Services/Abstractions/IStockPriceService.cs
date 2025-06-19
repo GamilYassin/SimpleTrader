@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using SimpleTrader.WPF.Domain.Exceptions;
 
-namespace SimpleTrader.WPF.Domain.Services;
+namespace SimpleTrader.WPF.Domain.Services.Abstractions;
 
 public interface IStockPriceService
 {

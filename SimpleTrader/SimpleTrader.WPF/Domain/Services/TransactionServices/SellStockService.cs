@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Domain.Exceptions;
 using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Domain.Services.Abstractions;
 
 namespace SimpleTrader.WPF.Domain.Services.TransactionServices;
 

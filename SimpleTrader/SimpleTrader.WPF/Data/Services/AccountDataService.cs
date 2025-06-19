@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SimpleTrader.WPF.Data.Services.Common;
 using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services;
+using SimpleTrader.WPF.Domain.Services.Abstractions;
 
 namespace SimpleTrader.WPF.Data.Services;
 

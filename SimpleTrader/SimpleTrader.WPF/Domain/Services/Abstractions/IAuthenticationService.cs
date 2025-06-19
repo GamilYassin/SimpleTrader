@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using SimpleTrader.WPF.Domain.Exceptions;
 using SimpleTrader.WPF.Domain.Models;
 
-namespace SimpleTrader.WPF.Domain.Services.AuthenticationServices;
+namespace SimpleTrader.WPF.Domain.Services.Abstractions;
 
 public enum RegistrationResult
 {
