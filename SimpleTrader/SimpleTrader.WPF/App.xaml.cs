@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleTrader.WPF.HostBuilders;
 using System.Windows;
+using Microsoft.EntityFrameworkCore.Internal;
 using SimpleTrader.WPF.Data;
 
 namespace SimpleTrader.WPF;
@@ -32,8 +33,8 @@ public partial class App : Application
     {
         _host.Start();
 
-        AppDbContextFactory contextFactory = _host.Services.GetRequiredService<AppDbContextFactory>();
-        using(AppDbContext context = contextFactory.CreateDbContext())
+        var contextFactory = _host.Services.GetRequiredService<IDbContextFactory<AppDbContext>>();
+        using(var context = contextFactory.CreateDbContext())
         {
             context.Database.Migrate();
         }
