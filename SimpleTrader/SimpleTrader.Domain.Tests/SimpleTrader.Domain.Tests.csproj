@@ -9,7 +9,4 @@
     <PackageReference Include="NUnit3TestAdapter" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleTrader.Domain\SimpleTrader.Domain.csproj" />
-  </ItemGroup>
 </Project>

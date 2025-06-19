@@ -5,7 +5,4 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleTrader.Domain\SimpleTrader.Domain.csproj" />
-  </ItemGroup>
 </Project>
