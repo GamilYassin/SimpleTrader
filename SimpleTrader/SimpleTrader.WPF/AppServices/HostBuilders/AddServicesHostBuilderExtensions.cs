@@ -1,4 +1,5 @@
 ﻿using FieldOps.Kernel.PasswordService;
+using FieldOps.Kernel.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleTrader.WPF.Data.Repositories;
@@ -16,14 +17,20 @@ public static class AddServicesHostBuilderExtensions
     {
         host.ConfigureServices(services =>
         {
-            services.AddSingleton<IPasswordHasher, PasswordHasher>();
-            services.AddSingleton<IAuthenticationService, AuthenticationService>();
-            services.AddSingleton<IRepository<Account>, AccountService>();
-            services.AddSingleton<IAccountService, AccountService>();
-            services.AddSingleton<IStockPriceService, StockPriceService>();
-            services.AddSingleton<IBuyStockService, BuyStockService>();
-            services.AddSingleton<ISellStockService, SellStockService>();
-            services.AddSingleton<IMajorIndexService, MajorIndexService>();
+            // App Services
+            services.AddSingleton<IPasswordHasher, PasswordHasher>()
+                .AddSingleton<ISettingsService, SettingsService>();
+            
+            // Generic Services
+            services.AddSingleton(typeof(IRepository<>), typeof(GenericRepository<>));
+            
+            // Domain Services
+            services.AddSingleton<IAuthenticationService, AuthenticationService>()
+                .AddSingleton<IAccountService, AccountService>()
+                .AddSingleton<IStockPriceService, StockPriceService>()
+                .AddSingleton<IBuyStockService, BuyStockService>()
+                .AddSingleton<ISellStockService, SellStockService>()
+                .AddSingleton<IMajorIndexService, MajorIndexService>();
         });
 
         return host;
