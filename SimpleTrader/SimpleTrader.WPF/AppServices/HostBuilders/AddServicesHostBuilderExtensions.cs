@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using FieldOps.Kernel.PasswordService;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleTrader.WPF.Data.Repositories;
@@ -17,7 +17,6 @@ public static class AddServicesHostBuilderExtensions
         host.ConfigureServices(services =>
         {
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
-
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IRepository<Account>, AccountService>();
             services.AddSingleton<IAccountService, AccountService>();

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
+using FieldOps.Kernel.PasswordService;
+using FieldOps.Kernel.Utils;
+// using Microsoft.AspNet.Identity;
 using SimpleTrader.WPF.AppServices.Exceptions;
 using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Accounts.Services;
@@ -11,14 +13,15 @@ using Throw;
 
 namespace SimpleTrader.WPF.Features.Users.Services;
 
-public class AuthenticationService(IAccountService accountService, IPasswordHasher passwordHasher)
+public class AuthenticationService(IAccountService accountService,
+    IPasswordHasher passwordHasher)
     : IAuthenticationService
 {
     public async Task<Account?> LoginAsync(string username, string password)
     {
         var storedAccount = await accountService.GetByUserNameAsync(username);
         storedAccount.ThrowIfNull(() => new UserNotFoundException(username));
-        var passwordResult = passwordHasher.VerifyHashedPassword(storedAccount.AccountHolder.PasswordHash, password);
+        var passwordResult = passwordHasher.VerifyHashedPassword( storedAccount.AccountHolder.PasswordHash, password);
         passwordResult.Throw()
             .IfNotEquals(PasswordVerificationResult.Success);
         return storedAccount;
