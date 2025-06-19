@@ -36,7 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppServices\" />
-    <Folder Include="Data\Migrations\" />
     <Folder Include="Features\Accounts\ViewModels\" />
     <Folder Include="Features\Accounts\Views\" />
     <Folder Include="Features\Financials\" />
