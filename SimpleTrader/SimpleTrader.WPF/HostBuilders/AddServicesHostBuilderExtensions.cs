@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimpleTrader.WPF.Data;
 using SimpleTrader.FinancialModelingPrepAPI.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using SimpleTrader.WPF.Data.Services;
 using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services;

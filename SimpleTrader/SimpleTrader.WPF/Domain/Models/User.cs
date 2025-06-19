@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using FieldOps.Kernel.Entities;
 
 namespace SimpleTrader.WPF.Domain.Models;

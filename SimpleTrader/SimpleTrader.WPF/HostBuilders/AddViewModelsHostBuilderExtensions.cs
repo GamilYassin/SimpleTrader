@@ -1,13 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimpleTrader.WPF.State.Assets;
 using SimpleTrader.WPF.State.Authenticators;
 using SimpleTrader.WPF.State.Navigators;
 using SimpleTrader.WPF.ViewModels;
 using SimpleTrader.WPF.ViewModels.Factories;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using SimpleTrader.WPF.Domain.Services;
 
 namespace SimpleTrader.WPF.HostBuilders;

@@ -1,8 +1,5 @@
 ﻿using SimpleTrader.WPF.Commands;
 using SimpleTrader.WPF.State.Accounts;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using SimpleTrader.WPF.Domain.Services;
 using SimpleTrader.WPF.Domain.Services.TransactionServices;

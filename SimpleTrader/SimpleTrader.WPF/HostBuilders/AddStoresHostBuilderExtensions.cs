@@ -4,9 +4,6 @@ using SimpleTrader.WPF.State.Accounts;
 using SimpleTrader.WPF.State.Assets;
 using SimpleTrader.WPF.State.Authenticators;
 using SimpleTrader.WPF.State.Navigators;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SimpleTrader.WPF.HostBuilders;
 

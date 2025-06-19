@@ -2,10 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimpleTrader.EntityFramework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using SimpleTrader.WPF.Data;
 
 namespace SimpleTrader.WPF.HostBuilders;

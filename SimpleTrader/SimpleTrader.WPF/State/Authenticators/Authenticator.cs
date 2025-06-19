@@ -1,7 +1,5 @@
 ﻿using SimpleTrader.WPF.State.Accounts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services.AuthenticationServices;

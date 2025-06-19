@@ -1,6 +1,4 @@
-﻿using FieldOps.Kernel.Entities;
-
-namespace SimpleTrader.WPF.Domain.Models;
+﻿namespace SimpleTrader.WPF.Domain.Models;
 
 public class Asset
 {

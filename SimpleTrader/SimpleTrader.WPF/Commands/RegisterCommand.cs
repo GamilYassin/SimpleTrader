@@ -2,9 +2,7 @@
 using SimpleTrader.WPF.State.Navigators;
 using SimpleTrader.WPF.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Threading.Tasks;
 using SimpleTrader.WPF.Domain.Services.AuthenticationServices;
 

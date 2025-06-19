@@ -4,8 +4,6 @@ using Microsoft.Extensions.Hosting;
 using SimpleTrader.FinancialModelingPrepAPI;
 using SimpleTrader.FinancialModelingPrepAPI.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SimpleTrader.WPF.HostBuilders;
 
