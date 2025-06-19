@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using FieldOps.Kernel.Entities;
 
 namespace SimpleTrader.WPF.Domain.Models;
 
-public class Account : DomainObject
+public class Account : EntityBase
 {
-    public User AccountHolder { get; set; }
     public double Balance { get; set; }
+    public Guid AccountHolderId { get; set; }
+    public User AccountHolder { get; set; }
     public ICollection<AssetTransaction> AssetTransactions { get; set; }
 }
