@@ -1,5 +1,4 @@
-﻿using SimpleTrader.Domain.Models;
-using SimpleTrader.WPF.State.Assets;
+﻿using SimpleTrader.WPF.State.Assets;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

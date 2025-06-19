@@ -1,10 +1,7 @@
-﻿using SimpleTrader.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using SimpleTrader.WPF.Domain.Models;
 
-namespace SimpleTrader.Domain.Services;
+namespace SimpleTrader.WPF.Domain.Services;
 
 public interface IMajorIndexService
 {

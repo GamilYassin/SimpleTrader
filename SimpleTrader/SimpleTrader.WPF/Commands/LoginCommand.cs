@@ -1,5 +1,4 @@
-﻿using SimpleTrader.Domain.Exceptions;
-using SimpleTrader.WPF.State.Authenticators;
+﻿using SimpleTrader.WPF.State.Authenticators;
 using SimpleTrader.WPF.State.Navigators;
 using SimpleTrader.WPF.ViewModels;
 using SimpleTrader.WPF.ViewModels.Factories;
@@ -9,6 +8,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using SimpleTrader.WPF.Domain.Exceptions;
 
 namespace SimpleTrader.WPF.Commands;
 

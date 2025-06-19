@@ -1,13 +1,13 @@
-﻿using SimpleTrader.Domain.Exceptions;
-using SimpleTrader.Domain.Models;
-using SimpleTrader.Domain.Services.TransactionServices;
-using SimpleTrader.WPF.State.Accounts;
+﻿using SimpleTrader.WPF.State.Accounts;
 using SimpleTrader.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.Domain.Exceptions;
+using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Domain.Services.TransactionServices;
 
 namespace SimpleTrader.WPF.Commands;
 

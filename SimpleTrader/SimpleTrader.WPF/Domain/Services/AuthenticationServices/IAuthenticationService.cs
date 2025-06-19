@@ -1,11 +1,9 @@
-﻿using SimpleTrader.Domain.Models;
-using SimpleTrader.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.Domain.Exceptions;
+using SimpleTrader.WPF.Domain.Models;
 
-namespace SimpleTrader.Domain.Services.AuthenticationServices;
+namespace SimpleTrader.WPF.Domain.Services.AuthenticationServices;
 
 public enum RegistrationResult
 {

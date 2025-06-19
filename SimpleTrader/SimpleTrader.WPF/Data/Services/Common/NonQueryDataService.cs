@@ -1,12 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using SimpleTrader.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SimpleTrader.WPF.Data;
+namespace SimpleTrader.WPF.Data.Services.Common;
 
 public class NonQueryDataService<T> where T : DomainObject
 {

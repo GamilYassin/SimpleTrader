@@ -1,14 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using SimpleTrader.Domain.Models;
-using SimpleTrader.Domain.Services;
-using SimpleTrader.EntityFramework.Services.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using SimpleTrader.WPF.Data.Services.Common;
+using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Domain.Services;
 
-namespace SimpleTrader.WPF.Data;
+namespace SimpleTrader.WPF.Data.Services;
 
 public class AccountDataService : IAccountService
 {

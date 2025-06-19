@@ -1,11 +1,11 @@
-﻿using SimpleTrader.Domain.Models;
-using SimpleTrader.Domain.Services;
-using SimpleTrader.WPF.Commands;
+﻿using SimpleTrader.WPF.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Domain.Services;
 
 namespace SimpleTrader.WPF.ViewModels;
 

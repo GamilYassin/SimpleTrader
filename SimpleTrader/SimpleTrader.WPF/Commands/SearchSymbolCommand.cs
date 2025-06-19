@@ -1,6 +1,4 @@
-﻿using SimpleTrader.Domain.Exceptions;
-using SimpleTrader.Domain.Services;
-using SimpleTrader.WPF.ViewModels;
+﻿using SimpleTrader.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using SimpleTrader.WPF.Domain.Exceptions;
+using SimpleTrader.WPF.Domain.Services;
 
 namespace SimpleTrader.WPF.Commands;
 

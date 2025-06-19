@@ -1,12 +1,12 @@
-﻿using SimpleTrader.Domain.Services;
-using SimpleTrader.Domain.Services.TransactionServices;
-using SimpleTrader.WPF.Commands;
+﻿using SimpleTrader.WPF.Commands;
 using SimpleTrader.WPF.State.Accounts;
 using SimpleTrader.WPF.State.Assets;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using SimpleTrader.WPF.Domain.Services;
+using SimpleTrader.WPF.Domain.Services.TransactionServices;
 
 namespace SimpleTrader.WPF.ViewModels;
 

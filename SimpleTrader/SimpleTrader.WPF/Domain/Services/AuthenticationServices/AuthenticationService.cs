@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
-using SimpleTrader.Domain.Exceptions;
-using SimpleTrader.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using SimpleTrader.WPF.Domain.Exceptions;
+using SimpleTrader.WPF.Domain.Models;
 
-namespace SimpleTrader.Domain.Services.AuthenticationServices;
+namespace SimpleTrader.WPF.Domain.Services.AuthenticationServices;
 
 public class AuthenticationService : IAuthenticationService
 {

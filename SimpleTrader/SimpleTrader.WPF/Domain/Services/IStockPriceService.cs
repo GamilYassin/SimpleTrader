@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SimpleTrader.Domain.Exceptions;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.Domain.Exceptions;
 
-namespace SimpleTrader.Domain.Services;
+namespace SimpleTrader.WPF.Domain.Services;
 
 public interface IStockPriceService
 {

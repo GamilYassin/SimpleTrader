@@ -1,10 +1,10 @@
-﻿using SimpleTrader.Domain.Models;
-using SimpleTrader.Domain.Exceptions;
-using SimpleTrader.Domain.Services.AuthenticationServices;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.Domain.Exceptions;
+using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Domain.Services.AuthenticationServices;
 
 namespace SimpleTrader.WPF.State.Authenticators;
 

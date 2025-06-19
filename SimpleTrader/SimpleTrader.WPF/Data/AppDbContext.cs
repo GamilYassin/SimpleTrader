@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleTrader.Domain.Models;
+using SimpleTrader.WPF.Domain.Models;
 
 namespace SimpleTrader.WPF.Data;
 

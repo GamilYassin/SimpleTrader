@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace SimpleTrader.Domain.Models;
+namespace SimpleTrader.WPF.Domain.Models;
 
 public class Account : DomainObject
 {

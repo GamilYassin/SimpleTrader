@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SimpleTrader.Domain.Models;
+﻿namespace SimpleTrader.WPF.Domain.Models;
 
 public class Asset
 {

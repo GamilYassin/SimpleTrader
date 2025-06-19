@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
 
-namespace SimpleTrader.Domain.Exceptions;
+namespace SimpleTrader.WPF.Domain.Exceptions;
 
 public class InvalidSymbolException : Exception
 {

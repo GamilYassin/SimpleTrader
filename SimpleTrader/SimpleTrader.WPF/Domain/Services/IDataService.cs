@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SimpleTrader.Domain.Services;
+namespace SimpleTrader.WPF.Domain.Services;
 
 public interface IDataService<T>
 {
