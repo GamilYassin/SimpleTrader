@@ -39,7 +39,6 @@
     <Folder Include="Features\Accounts\ViewModels\" />
     <Folder Include="Features\Accounts\Views\" />
     <Folder Include="Features\Financials\" />
-    <Folder Include="Features\Users\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\login-background.jpg">

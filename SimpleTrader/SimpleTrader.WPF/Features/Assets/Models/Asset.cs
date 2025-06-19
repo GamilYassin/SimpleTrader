@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using FieldOps.Kernel.Entities;
+﻿using FieldOps.Kernel.Entities;
 
 namespace SimpleTrader.WPF.Features.Assets.Models;
 

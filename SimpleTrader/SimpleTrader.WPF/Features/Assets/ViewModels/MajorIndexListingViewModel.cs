@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using SimpleTrader.WPF.Features.Assets.Models;
 using SimpleTrader.WPF.Features.Assets.Services;
+using SimpleTrader.WPF.Features.Financials.Services;
 using SimpleTrader.WPF.Features.Home.ViewModels;
 using SimpleTrader.WPF.Resources.Commands;
 
@@ -8,8 +9,8 @@ namespace SimpleTrader.WPF.Features.Assets.ViewModels;
 
 public class MajorIndexListingViewModel : ViewModelBase
 {
-    private MajorIndex _dowJones;
-    public MajorIndex DowJones
+    private MajorIndex? _dowJones;
+    public MajorIndex? DowJones
     {
         get
         {
@@ -22,8 +23,8 @@ public class MajorIndexListingViewModel : ViewModelBase
         }
     }
 
-    private MajorIndex _nasdaq;
-    public MajorIndex Nasdaq
+    private MajorIndex? _nasdaq;
+    public MajorIndex? Nasdaq
     {
         get
         {
@@ -36,8 +37,8 @@ public class MajorIndexListingViewModel : ViewModelBase
         }
     }
 
-    private MajorIndex _sp500;
-    public MajorIndex SP500
+    private MajorIndex? _sp500;
+    public MajorIndex? SP500
     {
         get
         {

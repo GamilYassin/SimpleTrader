@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SimpleTrader.WPF.Features.Assets.Models;
+﻿using SimpleTrader.WPF.Features.Assets.Models;
 
 namespace SimpleTrader.WPF.Features.Assets.ModelBuilder;
 

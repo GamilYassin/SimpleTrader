@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using SimpleTrader.WPF.AppServices.Exceptions;
-using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Accounts.Stores;
 using SimpleTrader.WPF.Features.Assets.Services;
 using SimpleTrader.WPF.Features.Assets.ViewModels;
@@ -38,7 +37,7 @@ public class BuyStockCommand : AsyncCommandBase
         {
             var symbol = _buyViewModel.Symbol;
             var shares = _buyViewModel.SharesToBuy;
-            var account = await _buyStockService.BuyStock(_accountStore.CurrentAccount, symbol, shares);
+            var account = await _buyStockService.BuyStockAsync(_accountStore.CurrentAccount, symbol, shares);
 
             _accountStore.CurrentAccount = account;
 

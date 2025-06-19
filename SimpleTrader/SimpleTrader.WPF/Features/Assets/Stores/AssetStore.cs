@@ -9,8 +9,9 @@ public class AssetStore
 {
     private readonly IAccountStore _accountStore;
 
-    public double AccountBalance => _accountStore.CurrentAccount?.Balance ?? 0;
-    public IEnumerable<AssetTransaction> AssetTransactions => _accountStore.CurrentAccount?.AssetTransactions ?? new List<AssetTransaction>();
+    public decimal AccountBalance => _accountStore.CurrentAccount?.Balance ?? 0;
+    public IEnumerable<AssetTransaction> AssetTransactions => 
+        _accountStore.CurrentAccount?.AssetTransactions ?? new List<AssetTransaction>();
 
     public event Action StateChanged;
 

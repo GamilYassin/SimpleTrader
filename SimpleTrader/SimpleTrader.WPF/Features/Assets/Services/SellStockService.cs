@@ -1,61 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using SimpleTrader.WPF.AppServices.Exceptions;
+using FieldOps.Kernel.Functional;
+using Microsoft.Extensions.DependencyInjection;
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Features.Accounts.Models;
+using SimpleTrader.WPF.Features.Accounts.Services;
 using SimpleTrader.WPF.Features.Assets.Models;
 using SimpleTrader.WPF.Features.Financials.Services;
 
 namespace SimpleTrader.WPF.Features.Assets.Services;
 
-public class SellStockService : ISellStockService
+public class SellStockService(IServiceProvider service) : ISellStockService
 {
-    private readonly IStockPriceService _stockPriceService;
-    private readonly IRepository<Account?> _accountService;
+    private readonly IStockPriceService _stockPriceService = service.GetRequiredService<IStockPriceService>();
+    private readonly IAccountService _accountService = service.GetRequiredService<IAccountService>();
+    private readonly IRepository<AssetTransaction> _transactionRepo = service.GetRequiredService<IRepository<AssetTransaction>>();
 
-    public SellStockService(IStockPriceService stockPriceService, IRepository<Account?> accountService)
+    public async Task<Validation<Account>> SellStockAsync(Account? seller, Asset asset, int shares)
     {
-        _stockPriceService = stockPriceService;
-        _accountService = accountService;
-    }
+        var getResult = GuardAgainstNull(seller)
+            .Bind(_ => GuardAgainstNull(asset))
+            .Bind(_ => GuardAgainstZeroOrNegative(shares));
 
-    public async Task<Account?> SellStock(Account? seller, string symbol, int shares)
-    {
+        if (getResult.IsFail)
+            return Invalid<Account>(getResult.Error!);
+        
+        
         // Validate seller has sufficient shares.
-        var accountShares = GetAccountSharesForSymbol(seller, symbol);
+        var accountShares = await _accountService.GetSharesCountAsync(seller!, asset);
         if(accountShares < shares)
-        {
-            throw new InsufficientSharesException(symbol, accountShares, shares);
-        }
+            return Invalid<Account>($"Account has shares count {accountShares} which are less than Sell request of {shares} shares!");
 
-        var stockPrice = await _stockPriceService.GetPrice(symbol);
-
-        seller.AssetTransactions.Add(new AssetTransaction()
+        var stockPrice = await _stockPriceService.UpdateAssetPriceAsync(asset);
+        if(stockPrice.IsFail)
+            return Invalid<Account>(stockPrice.Error!);
+        
+        var transaction = new AssetTransaction()
         {
-            Account = seller,
-            Asset = new Asset()
-            {
-                PricePerShare = stockPrice,
-                Symbol = symbol
-            },
+            AccountId = seller!.Id,
+            PricePerShare = stockPrice.Value!.PricePerShare,
+            Symbol = stockPrice.Value!.Symbol,
             DateProcessed = DateTime.Now,
             IsPurchase = false,
             Shares = shares
-        });
+        };
 
-        seller.Balance += stockPrice * shares;
+        var createResult = await _transactionRepo.CreateAsync(transaction);
+        if (createResult.IsFail)
+            return Invalid<Account>(createResult.Error!);
+        
+        seller.Balance += stockPrice.Value.PricePerShare * shares;
+        
+        var updateResult = await _accountService.UpdateAsync(seller.Id, seller);
+        if (updateResult.IsValid)
+            return updateResult;
 
-        await _accountService.UpdateAsync(seller.Id, seller);
-
-        return seller;
-    }
-
-    private int GetAccountSharesForSymbol(Account? seller, string symbol)
-    {
-        var accountTransactionsForSymbol = seller.AssetTransactions.Where(a => a.Asset.Symbol == symbol);
-            
-        return accountTransactionsForSymbol.Sum(a => a.IsPurchase ? a.Shares : -a.Shares);
+        await _transactionRepo.DeleteAsync(updateResult.Value!.Id);
+        return updateResult;
     }
 }

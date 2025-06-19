@@ -29,7 +29,7 @@ public class SearchSymbolCommand : AsyncCommandBase
     {
         try
         {
-            var stockPrice = await _stockPriceService.GetPrice(_viewModel.Symbol);
+            var stockPrice = await _stockPriceService.UpdateAssetPriceAsync(_viewModel.Symbol);
 
             _viewModel.SearchResultSymbol = _viewModel.Symbol.ToUpper();
             _viewModel.StockPrice = stockPrice;

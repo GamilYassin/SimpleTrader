@@ -5,6 +5,7 @@ using SimpleTrader.WPF.AppServices.Navigation;
 using SimpleTrader.WPF.AppServices.ViewModelFactories;
 using SimpleTrader.WPF.Features.Assets.Services;
 using SimpleTrader.WPF.Features.Assets.ViewModels;
+using SimpleTrader.WPF.Features.Financials.Services;
 using SimpleTrader.WPF.Features.Home.ViewModels;
 using SimpleTrader.WPF.Features.Users.Stores;
 using SimpleTrader.WPF.Features.Users.ViewModels;

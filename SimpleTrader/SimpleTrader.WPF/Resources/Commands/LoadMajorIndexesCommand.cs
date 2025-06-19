@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using SimpleTrader.WPF.Features.Assets.Enums;
-using SimpleTrader.WPF.Features.Assets.Models;
 using SimpleTrader.WPF.Features.Assets.Services;
 using SimpleTrader.WPF.Features.Assets.ViewModels;
+using SimpleTrader.WPF.Features.Financials.Services;
 
 namespace SimpleTrader.WPF.Resources.Commands;
 

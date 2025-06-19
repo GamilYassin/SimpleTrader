@@ -1,30 +1,37 @@
 ﻿using System;
 using System.Threading.Tasks;
+using FieldOps.Kernel.Functional;
 using FieldOps.Kernel.PasswordService;
-using FieldOps.Kernel.Utils;
+using Microsoft.Extensions.DependencyInjection;
 // using Microsoft.AspNet.Identity;
 using SimpleTrader.WPF.AppServices.Exceptions;
 using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Accounts.Services;
 using SimpleTrader.WPF.Features.Assets.Services;
 using SimpleTrader.WPF.Features.Users.DTOs;
+using SimpleTrader.WPF.Features.Users.Enums;
 using SimpleTrader.WPF.Features.Users.Models;
 using Throw;
 
 namespace SimpleTrader.WPF.Features.Users.Services;
 
-public class AuthenticationService(IAccountService accountService,
-    IPasswordHasher passwordHasher)
-    : IAuthenticationService
+public class AuthenticationService(IServiceProvider service) : IAuthenticationService
 {
-    public async Task<Account?> LoginAsync(string username, string password)
+    private readonly IAccountService _accountService = service.GetRequiredService<IAccountService>();
+    private readonly IPasswordHasher _passwordHasher = service.GetRequiredService<IPasswordHasher>();
+    
+    public async Task<Validation<Account>> LoginAsync(string username, string password)
     {
-        var storedAccount = await accountService.GetByUserNameAsync(username);
-        storedAccount.ThrowIfNull(() => new UserNotFoundException(username));
-        var passwordResult = passwordHasher.VerifyHashedPassword( storedAccount.AccountHolder.PasswordHash, password);
+        var storedAccount = await _accountService.GetByUserNameAsync(username);
+        if (storedAccount.IsFail)
+            return storedAccount;
+        
+        var passwordResult = _passwordHasher.VerifyHashedPassword( storedAccount.Value!.AccountHolder!.PasswordHash, password);
         passwordResult.Throw()
             .IfNotEquals(PasswordVerificationResult.Success);
-        return storedAccount;
+        return passwordResult ==  PasswordVerificationResult.Success
+            ? storedAccount
+            : Invalid<Account>("Either Username or password is incorrect");
     }
 
     public async Task<RegistrationResult> RegisterAsync(LoginDto loginDto)
@@ -34,17 +41,17 @@ public class AuthenticationService(IAccountService accountService,
             return RegistrationResult.PasswordsDoNotMatch;
         }
 
-        if(await accountService.IsEmailExistsAsync(loginDto.Email))
+        if(await _accountService.IsEmailExistsAsync(loginDto.Email))
         {
             return RegistrationResult.EmailAlreadyExists;
         }
 
-        if (await accountService.IsUserNameExistsAsync(loginDto.UserName))
+        if (await _accountService.IsUserNameExistsAsync(loginDto.UserName))
         {
             return RegistrationResult.UsernameAlreadyExists;
         }
 
-        var hashedPassword = passwordHasher.HashPassword(loginDto.Password);
+        var hashedPassword = _passwordHasher.HashPassword(loginDto.Password);
 
         var user = new User()
         {
@@ -60,7 +67,7 @@ public class AuthenticationService(IAccountService accountService,
             Balance = 500
         };
 
-        await accountService.CreateAsync(account);
+        await _accountService.CreateAsync(account);
         return RegistrationResult.Success;
     }
 }

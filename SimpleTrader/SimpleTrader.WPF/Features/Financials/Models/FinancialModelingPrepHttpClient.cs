@@ -4,20 +4,13 @@ using Newtonsoft.Json;
 
 namespace SimpleTrader.WPF.Features.Financials.Models;
 
-public class FinancialModelingPrepHttpClient
+public class FinancialModelingPrepHttpClient(HttpClient client, FinancialModelingPrepApiKey apiKey)
 {
-    private readonly HttpClient _client;
-    private readonly string _apiKey;
+    private readonly string _apiKey = apiKey.Key;
 
-    public FinancialModelingPrepHttpClient(HttpClient client, FinancialModelingPrepAPIKey apiKey)
+    public async Task<T?> GetAsync<T>(string uri)
     {
-        _client = client;
-        _apiKey = apiKey.Key;
-    }
-
-    public async Task<T> GetAsync<T>(string uri)
-    {
-        var response = await _client.GetAsync($"{uri}?apikey={_apiKey}");
+        var response = await client.GetAsync($"{uri}?apikey={_apiKey}");
         var jsonResponse = await response.Content.ReadAsStringAsync();
 
         return JsonConvert.DeserializeObject<T>(jsonResponse);

@@ -3,7 +3,6 @@ using FieldOps.Kernel.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleTrader.WPF.Data.Repositories;
-using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Accounts.Services;
 using SimpleTrader.WPF.Features.Assets.Services;
 using SimpleTrader.WPF.Features.Financials.Services;
@@ -29,8 +28,8 @@ public static class AddServicesHostBuilderExtensions
                 .AddSingleton<IAccountService, AccountService>()
                 .AddSingleton<IStockPriceService, StockPriceService>()
                 .AddSingleton<IBuyStockService, BuyStockService>()
-                .AddSingleton<ISellStockService, SellStockService>()
-                .AddSingleton<IMajorIndexService, MajorIndexService>();
+                .AddSingleton<ISellStockService, SellStockService>();
+            // .AddSingleton<IMajorIndexService, MajorIndexService>();
         });
 
         return host;

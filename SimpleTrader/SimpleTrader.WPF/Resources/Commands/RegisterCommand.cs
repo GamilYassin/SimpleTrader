@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using SimpleTrader.WPF.AppServices.Navigation;
 using SimpleTrader.WPF.Features.Assets.Services;
+using SimpleTrader.WPF.Features.Users.Enums;
+using SimpleTrader.WPF.Features.Users.Services;
 using SimpleTrader.WPF.Features.Users.Stores;
 using SimpleTrader.WPF.Features.Users.ViewModels;
 

@@ -12,8 +12,9 @@ public static partial class ModelBuilderExtensions
                 .IsRequired()
                 .HasMaxLength(20);
             
-            entity.Property(c => c.Type)
-                .HasConversion<string>();
+            entity.Property(c => c.UriSuffix)
+                .IsRequired()
+                .HasMaxLength(10);
             
             entity.Property(c => c.CreatedAt)
                 .ValueGeneratedOnAdd();

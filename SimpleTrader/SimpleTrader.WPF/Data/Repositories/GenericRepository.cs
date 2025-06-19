@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FieldOps.Kernel.Entities;
+using FieldOps.Kernel.Functional;
 using Microsoft.EntityFrameworkCore;
 using Throw;
 
@@ -18,49 +19,64 @@ public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory
             .ToListAsync();
     }
     
-    public virtual async Task<T?> GetByIdAsync(Guid id)
+    public virtual async Task<Validation<T>> GetByIdAsync(Guid id)
     {
         await using var context = await contextFactory.CreateDbContextAsync();
         var entity = await context.Set<T>()
             .AsNoTracking()
             .FirstOrDefaultAsync((e) => e.Id == id);
-        return entity;
+        return entity != null 
+            ? Valid(entity) 
+            : Invalid<T>("Entity with passed Id is not found");
     }
 
-    public virtual async Task<T> CreateAsync(T entity)
+    public virtual async Task<Validation<T>> CreateAsync(T entity)
     {
-        await using var context = await contextFactory.CreateDbContextAsync();
-        var createdResult = await context.Set<T>().AddAsync(entity);
-        await context.SaveChangesAsync();
-
-        return createdResult.Entity;
-    }
-
-    public virtual async Task<T> UpdateAsync(Guid id, T? entity)
-    {
-        entity.ThrowIfNull();
-        
         try
         {
             await using var context = await contextFactory.CreateDbContextAsync();
-            var query = context.Set<T>().AsQueryable();
-            var existingEntity = await query.FirstOrDefaultAsync(x => x.Id == entity.Id);
+            var createdResult = await context.Set<T>().AddAsync(entity);
+            var count = await context.SaveChangesAsync();
 
-            existingEntity.ThrowIfNull("Entity Has not been found");
-
-            context.Entry(existingEntity).CurrentValues.SetValues(entity);
-
-            await context.SaveChangesAsync();
-        
-            return existingEntity;
+            return count > 0
+                ? Valid(entity)
+                : Invalid<T>("Entity Create Operation is not Successful");
         }
         catch (Exception e)
         {
-            throw new InvalidOperationException($"Entity Update operation failed with Exception:\n{e}");
+            return Invalid<T>("Entity Create Operation is not Successful with Exception:\n" + e);
         }
     }
 
-    public virtual async Task<bool> DeleteAsync(Guid id)
+    public virtual async Task<Validation<T>> UpdateAsync(Guid id, T? entity)
+    {
+        try
+        {
+            if (entity == null)
+                return Invalid<T>("Entity is null, can not update");
+            
+            await using var context = await contextFactory.CreateDbContextAsync();
+            var query = context.Set<T>().AsQueryable();
+            var existingEntity = await query.FirstOrDefaultAsync(x => x.Id == entity.Id);
+            
+            if (existingEntity == null)
+                return Invalid<T>("Entity with passed Id is not found");
+
+            context.Entry(existingEntity).CurrentValues.SetValues(entity);
+
+            var count = await context.SaveChangesAsync();
+        
+            return count > 0
+                ? Valid(entity)
+                : Invalid<T>("Entity Update Operation is not Successful");;
+        }
+        catch (Exception e)
+        {
+            return Invalid<T>("Entity Update Operation is not Successful with Exception:\n" + e);
+        }
+    }
+
+    public virtual async Task<Validation<bool>> DeleteAsync(Guid id)
     {
         try
         {
@@ -73,12 +89,12 @@ public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory
             dbContext.Set<T>().Remove(entity);
             var count = await dbContext.SaveChangesAsync().ConfigureAwait(false);
             return count > 0
-                ? true
-                : false;
+                ? Valid(true)
+                : Valid(false);
         }
         catch (Exception e)
         {
-            throw new InvalidOperationException($"Entity Delete operation failed with Exception:\n{e}");
+            return Invalid<bool>($"Entity Delete operation failed with Exception:\n{e}");
         }
     }
 }

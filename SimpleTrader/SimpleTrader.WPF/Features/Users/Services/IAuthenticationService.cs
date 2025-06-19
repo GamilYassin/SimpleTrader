@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using FieldOps.Kernel.Functional;
 using SimpleTrader.WPF.AppServices.Exceptions;
 using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Users.DTOs;
+using SimpleTrader.WPF.Features.Users.Enums;
 
-namespace SimpleTrader.WPF.Features.Assets.Services;
-
-public enum RegistrationResult
-{
-    Success,
-    PasswordsDoNotMatch,
-    EmailAlreadyExists,
-    UsernameAlreadyExists
-}
+namespace SimpleTrader.WPF.Features.Users.Services;
 
 public interface IAuthenticationService
 {
@@ -33,5 +27,5 @@ public interface IAuthenticationService
     /// <exception cref="UserNotFoundException">Thrown if the user does not exist.</exception>
     /// <exception cref="InvalidPasswordException">Thrown if the password is invalid.</exception>
     /// <exception cref="Exception">Thrown if the login fails.</exception>
-    Task<Account?> LoginAsync(string username, string password);
+    Task<Validation<Account>> LoginAsync(string username, string password);
 }

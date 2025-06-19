@@ -1,11 +1,6 @@
 ﻿namespace SimpleTrader.WPF.Features.Financials.Models;
 
-public class FinancialModelingPrepAPIKey
+public class FinancialModelingPrepApiKey(string key)
 {
-    public string Key { get; }
-
-    public FinancialModelingPrepAPIKey(string key)
-    {
-        Key = key;
-    }
+    public string Key { get; } = key;
 }
