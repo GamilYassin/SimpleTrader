@@ -31,17 +31,96 @@
     <ProjectReference Include="..\SimpleTrader.EntityFramework\SimpleTrader.EntityFramework.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\login-background.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AppServices\" />
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Features\Accounts\ViewModels\" />
+    <Folder Include="Features\Accounts\Views\" />
     <Folder Include="Features\Financials\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\login-background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Resources\Controls\AssetListing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Resources\Controls\AssetSummary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Resources\Controls\MajorIndexCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Resources\Controls\MajorIndexListing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Resources\Controls\NavigationBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Resources\Controls\SearchSymbolResultPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Resources\Styles\Common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Resources\Styles\NavigationBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Features\Assets\Views\BuyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Features\Assets\Views\SellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Features\Users\Views\LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Features\Users\Views\RegisterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Features\Home\Views\HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Features\Assets\Views\PortfolioView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Features\Assets\Views\BuyView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Features\Assets\Views\SellView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Features\Users\Views\LoginView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Features\Users\Views\RegisterView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Features\Home\Views\HomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Features\Assets\Views\PortfolioView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

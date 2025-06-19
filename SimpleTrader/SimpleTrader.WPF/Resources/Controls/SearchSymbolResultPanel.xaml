@@ -1,0 +1,55 @@
+﻿<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="SimpleTrader.WPF.Resources.Controls.SearchSymbolResultPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SimpleTrader.WPF.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
+            <Grid MaxWidth="500">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SearchResultSymbol}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Border
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    CornerRadius="3 0 0 3"
+                    Grid.Column="0"
+                    Padding="20">
+                    <StackPanel>
+                        <TextBlock
+                            FontSize="32"
+                            HorizontalAlignment="Center"
+                            Text="{Binding SearchResultSymbol}" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Margin="0,10,0,0"
+                            Text="{Binding StockPrice, StringFormat={}{0:C}}" />
+                    </StackPanel>
+                </Border>
+                <Border
+                    BorderBrush="Gray"
+                    BorderThickness="0,1,1,1"
+                    CornerRadius="0 3 3 0"
+                    Grid.Column="1"
+                    Padding="20">
+                    <ContentControl Content="{TemplateBinding Content}" />
+                </Border>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

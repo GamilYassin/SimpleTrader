@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using SimpleTrader.WPF.Domain.Exceptions;
-using SimpleTrader.WPF.Domain.Services.Abstractions;
+using SimpleTrader.WPF.AppServices.Exceptions;
 using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Accounts.Services;
 using SimpleTrader.WPF.Features.Assets.Services;

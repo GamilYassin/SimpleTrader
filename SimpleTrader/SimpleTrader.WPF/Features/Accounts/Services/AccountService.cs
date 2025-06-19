@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SimpleTrader.WPF.Data;
 using SimpleTrader.WPF.Data.Repositories;
-using SimpleTrader.WPF.Domain.Services.Abstractions;
 using SimpleTrader.WPF.Features.Accounts.Models;
 
 namespace SimpleTrader.WPF.Features.Accounts.Services;

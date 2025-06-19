@@ -1,13 +1,10 @@
-﻿using Newtonsoft.Json;
-using SimpleTrader.Domain.Models;
-using SimpleTrader.Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.Features.Assets.Models;
+using SimpleTrader.WPF.Features.Assets.Services;
+using SimpleTrader.WPF.Features.Financials.Models;
 
-namespace SimpleTrader.FinancialModelingPrepAPI.Services;
+namespace SimpleTrader.WPF.Features.Financials.Services;
 
 public class MajorIndexService : IMajorIndexService
 {

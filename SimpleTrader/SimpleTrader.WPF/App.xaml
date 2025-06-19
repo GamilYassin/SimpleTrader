@@ -1,10 +1,14 @@
 ﻿<Application
     x:Class="SimpleTrader.WPF.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:SimpleTrader.WPF"
-    xmlns:viewmodels="clr-namespace:SimpleTrader.WPF.ViewModels"
-    xmlns:views="clr-namespace:SimpleTrader.WPF.Views">
+    xmlns:viewModels="clr-namespace:SimpleTrader.WPF.Features.Assets.ViewModels"
+    xmlns:viewmodels="clr-namespace:SimpleTrader.WPF.Features.Home.ViewModels"
+    xmlns:viewmodels1="clr-namespace:SimpleTrader.WPF.Features.Users.ViewModels"
+    xmlns:views="clr-namespace:SimpleTrader.WPF.Features.Home.Views"
+    xmlns:views1="clr-namespace:SimpleTrader.WPF.Features.Assets.Views"
+    xmlns:views2="clr-namespace:SimpleTrader.WPF.Features.Users.Views"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
 
         <ResourceDictionary>
@@ -17,24 +21,24 @@
                 <views:HomeView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:PortfolioViewModel}">
-                <views:PortfolioView />
+            <DataTemplate DataType="{x:Type viewModels:PortfolioViewModel}">
+                <views1:PortfolioView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:BuyViewModel}">
-                <views:BuyView />
+            <DataTemplate DataType="{x:Type viewModels:BuyViewModel}">
+                <views1:BuyView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:SellViewModel}">
-                <views:SellView SelectedAssetChangedCommand="{Binding SearchSymbolCommand}" />
+            <DataTemplate DataType="{x:Type viewModels:SellViewModel}">
+                <views1:SellView SelectedAssetChangedCommand="{Binding SearchSymbolCommand}" />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
-                <views:LoginView />
+            <DataTemplate DataType="{x:Type viewmodels1:LoginViewModel}">
+                <views2:LoginView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:RegisterViewModel}">
-                <views:RegisterView />
+            <DataTemplate DataType="{x:Type viewmodels1:RegisterViewModel}">
+                <views2:RegisterView />
             </DataTemplate>
         </ResourceDictionary>
 

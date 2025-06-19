@@ -1,14 +1,9 @@
-﻿using Newtonsoft.Json;
-using SimpleTrader.Domain.Exceptions;
-using SimpleTrader.Domain.Services;
-using SimpleTrader.FinancialModelingPrepAPI.Results;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using SimpleTrader.WPF.AppServices.Exceptions;
+using SimpleTrader.WPF.Features.Financials.DTOs;
+using SimpleTrader.WPF.Features.Financials.Models;
 
-namespace SimpleTrader.FinancialModelingPrepAPI.Services;
+namespace SimpleTrader.WPF.Features.Financials.Services;
 
 public class StockPriceService : IStockPriceService
 {

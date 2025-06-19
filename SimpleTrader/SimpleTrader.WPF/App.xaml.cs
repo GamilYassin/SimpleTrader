@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimpleTrader.WPF.HostBuilders;
 using System.Windows;
 using Microsoft.EntityFrameworkCore.Internal;
+using SimpleTrader.WPF.AppServices.HostBuilders;
 using SimpleTrader.WPF.Data;
 
 namespace SimpleTrader.WPF;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SimpleTrader.FinancialModelingPrepAPI.Results;
+﻿namespace SimpleTrader.WPF.Features.Financials.DTOs;
 
 public class StockPriceResult
 {

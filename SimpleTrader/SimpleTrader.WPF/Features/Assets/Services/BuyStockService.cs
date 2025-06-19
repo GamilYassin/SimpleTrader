@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.AppServices.Exceptions;
 using SimpleTrader.WPF.Data.Repositories;
-using SimpleTrader.WPF.Domain.Exceptions;
-using SimpleTrader.WPF.Domain.Services.Abstractions;
 using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Assets.Models;
+using SimpleTrader.WPF.Features.Financials.Services;
 
 namespace SimpleTrader.WPF.Features.Assets.Services;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SimpleTrader.FinancialModelingPrepAPI.Models;
+﻿namespace SimpleTrader.WPF.Features.Financials.Models;
 
 public class FinancialModelingPrepAPIKey
 {
