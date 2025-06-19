@@ -9,6 +9,16 @@ using SimpleTrader.WPF.AppServices.HostBuilders;
 using SimpleTrader.WPF.Data;
 using SimpleTrader.WPF.Features.Assets.DataSeed;
 
+using CommunityToolkit.Mvvm.Messaging;
+using MaterialDesignThemes.Wpf;
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+using Serilog;
+
 #endregion
 
 namespace SimpleTrader.WPF;
