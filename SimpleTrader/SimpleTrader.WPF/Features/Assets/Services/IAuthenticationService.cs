@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SimpleTrader.WPF.Domain.DTOs;
 using SimpleTrader.WPF.Domain.Exceptions;
-using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Features.Accounts.Models;
+using SimpleTrader.WPF.Features.Users.DTOs;
 
-namespace SimpleTrader.WPF.Domain.Services.Abstractions;
+namespace SimpleTrader.WPF.Features.Assets.Services;
 
 public enum RegistrationResult
 {

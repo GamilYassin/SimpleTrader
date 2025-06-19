@@ -3,9 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleTrader.FinancialModelingPrepAPI.Services;
 using SimpleTrader.WPF.Data.Repositories;
-using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services;
 using SimpleTrader.WPF.Domain.Services.Abstractions;
+using SimpleTrader.WPF.Features.Accounts.Models;
+using SimpleTrader.WPF.Features.Accounts.Services;
+using SimpleTrader.WPF.Features.Assets.Services;
+using SimpleTrader.WPF.Features.Users.Services;
 
 namespace SimpleTrader.WPF.HostBuilders;
 

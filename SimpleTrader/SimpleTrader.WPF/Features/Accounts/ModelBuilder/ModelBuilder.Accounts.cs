@@ -1,7 +1,7 @@
-﻿using SimpleTrader.WPF.Domain.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using SimpleTrader.WPF.Features.Accounts.Models;
 
-namespace SimpleTrader.WPF.Domain.ModelBuilder;
+namespace SimpleTrader.WPF.Features.Accounts.ModelBuilder;
 
 public static partial class ModelBuilderExtensions
 {

@@ -1,9 +1,14 @@
 ﻿using System;
 using FieldOps.Kernel.AppService;
 using Microsoft.EntityFrameworkCore;
-using SimpleTrader.WPF.Domain.Models;
 using Microsoft.Extensions.Logging;
-using SimpleTrader.WPF.Domain.ModelBuilder;
+using SimpleTrader.WPF.Features.Accounts.ModelBuilder;
+using SimpleTrader.WPF.Features.Accounts.Models;
+using SimpleTrader.WPF.Features.Assets;
+using SimpleTrader.WPF.Features.Assets.ModelBuilder;
+using SimpleTrader.WPF.Features.Assets.Models;
+using SimpleTrader.WPF.Features.Users.ModelBuilder;
+using SimpleTrader.WPF.Features.Users.Models;
 
 namespace SimpleTrader.WPF.Data;
 

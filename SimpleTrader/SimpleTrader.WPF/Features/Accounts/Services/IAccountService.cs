@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using SimpleTrader.WPF.Data.Repositories;
-using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Features.Accounts.Models;
 
-namespace SimpleTrader.WPF.Domain.Services.Abstractions;
+namespace SimpleTrader.WPF.Features.Accounts.Services;
 
 public interface IAccountService : IRepository<Account>
 {

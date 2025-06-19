@@ -43,5 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Features\Financials\" />
   </ItemGroup>
 </Project>

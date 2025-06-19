@@ -1,8 +1,10 @@
 ﻿using SimpleTrader.WPF.ViewModels;
 using System.Threading.Tasks;
-using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services;
 using SimpleTrader.WPF.Domain.Services.Abstractions;
+using SimpleTrader.WPF.Features.Assets;
+using SimpleTrader.WPF.Features.Assets.Models;
+using SimpleTrader.WPF.Features.Assets.Services;
 
 namespace SimpleTrader.WPF.Commands;
 

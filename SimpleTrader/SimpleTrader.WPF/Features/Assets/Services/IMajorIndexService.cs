@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Features.Assets.Models;
 
-namespace SimpleTrader.WPF.Domain.Services.Abstractions;
+namespace SimpleTrader.WPF.Features.Assets.Services;
 
 public interface IMajorIndexService
 {

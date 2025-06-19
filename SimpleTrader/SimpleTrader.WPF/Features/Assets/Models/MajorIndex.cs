@@ -1,6 +1,6 @@
 ﻿using FieldOps.Kernel.Entities;
 
-namespace SimpleTrader.WPF.Domain.Models;
+namespace SimpleTrader.WPF.Features.Assets.Models;
 
 public class MajorIndex : EntityBase
 {

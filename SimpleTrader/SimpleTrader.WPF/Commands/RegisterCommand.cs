@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using SimpleTrader.WPF.Domain.Services.Abstractions;
+using SimpleTrader.WPF.Features.Assets.Services;
 
 namespace SimpleTrader.WPF.Commands;
 

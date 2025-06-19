@@ -1,6 +1,6 @@
-﻿using SimpleTrader.WPF.Domain.Models;
+﻿using SimpleTrader.WPF.Features.Assets.Models;
 
-namespace SimpleTrader.WPF.Domain.ModelBuilder;
+namespace SimpleTrader.WPF.Features.Assets.ModelBuilder;
 
 public static partial class ModelBuilderExtensions
 {
@@ -10,7 +10,7 @@ public static partial class ModelBuilderExtensions
         {
             entity.Property(c => c.IndexName)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(20);
             
             entity.Property(c => c.Type)
                 .HasConversion<string>();

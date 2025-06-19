@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Domain.Exceptions;
-using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services.Abstractions;
+using SimpleTrader.WPF.Features.Accounts.Models;
+using SimpleTrader.WPF.Features.Assets.Models;
 
-namespace SimpleTrader.WPF.Domain.Services;
+namespace SimpleTrader.WPF.Features.Assets.Services;
 
 public class SellStockService : ISellStockService
 {

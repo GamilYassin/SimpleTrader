@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimpleTrader.FinancialModelingPrepAPI;
 using SimpleTrader.FinancialModelingPrepAPI.Models;
 using System;
+using SimpleTrader.WPF.Features.Financials.Models;
 
 namespace SimpleTrader.WPF.HostBuilders;
 

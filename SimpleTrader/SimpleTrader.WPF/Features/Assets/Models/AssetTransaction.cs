@@ -1,7 +1,8 @@
 ﻿using System;
 using FieldOps.Kernel.Entities;
+using SimpleTrader.WPF.Features.Accounts.Models;
 
-namespace SimpleTrader.WPF.Domain.Models;
+namespace SimpleTrader.WPF.Features.Assets.Models;
 
 public class AssetTransaction : EntityBase
 {
@@ -11,6 +12,6 @@ public class AssetTransaction : EntityBase
     
     // relations
     public Guid AccountId { get; set; }
-    public Account? Account { get; set; }
+    public virtual Account? Account { get; set; }
     public Asset Asset { get; set; }
 }

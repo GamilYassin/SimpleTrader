@@ -1,6 +1,6 @@
-﻿using SimpleTrader.WPF.Domain.Models;
+﻿using SimpleTrader.WPF.Features.Users.Models;
 
-namespace SimpleTrader.WPF.Domain.ModelBuilder;
+namespace SimpleTrader.WPF.Features.Users.ModelBuilder;
 
 public static partial class ModelBuilderExtensions
 {

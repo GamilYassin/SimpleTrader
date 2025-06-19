@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using FieldOps.Kernel.Entities;
+using SimpleTrader.WPF.Features.Accounts.Models;
 
-namespace SimpleTrader.WPF.Domain.Models;
+namespace SimpleTrader.WPF.Features.Users.Models;
 
 public class User : EntityBase
 {

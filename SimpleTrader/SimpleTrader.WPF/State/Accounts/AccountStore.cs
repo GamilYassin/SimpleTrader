@@ -1,5 +1,5 @@
 ﻿using System;
-using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Features.Accounts.Models;
 
 namespace SimpleTrader.WPF.State.Accounts;
 

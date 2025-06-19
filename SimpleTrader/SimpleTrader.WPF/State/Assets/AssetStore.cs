@@ -1,7 +1,8 @@
 ﻿using SimpleTrader.WPF.State.Accounts;
 using System;
 using System.Collections.Generic;
-using SimpleTrader.WPF.Domain.Models;
+using SimpleTrader.WPF.Features.Assets;
+using SimpleTrader.WPF.Features.Assets.Models;
 
 namespace SimpleTrader.WPF.State.Assets;
 

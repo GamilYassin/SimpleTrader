@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using SimpleTrader.WPF.Domain.DTOs;
 using SimpleTrader.WPF.Domain.Exceptions;
-using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services.Abstractions;
+using SimpleTrader.WPF.Features.Accounts.Models;
+using SimpleTrader.WPF.Features.Accounts.Services;
+using SimpleTrader.WPF.Features.Assets.Services;
+using SimpleTrader.WPF.Features.Users.DTOs;
+using SimpleTrader.WPF.Features.Users.Models;
 using Throw;
 
-namespace SimpleTrader.WPF.Domain.Services;
+namespace SimpleTrader.WPF.Features.Users.Services;
 
 public class AuthenticationService(IAccountService accountService, IPasswordHasher passwordHasher)
     : IAuthenticationService

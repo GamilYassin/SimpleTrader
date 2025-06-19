@@ -1,12 +1,8 @@
-﻿using Newtonsoft.Json;
-using SimpleTrader.FinancialModelingPrepAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace SimpleTrader.FinancialModelingPrepAPI;
+namespace SimpleTrader.WPF.Features.Financials.Models;
 
 public class FinancialModelingPrepHttpClient
 {
