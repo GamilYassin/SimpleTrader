@@ -12,10 +12,10 @@ namespace SimpleTrader.EntityFramework.Services
 {
     public class AccountDataService : IAccountService
     {
-        private readonly SimpleTraderDbContextFactory _contextFactory;
+        private readonly AppDbContextFactory _contextFactory;
         private readonly NonQueryDataService<Account> _nonQueryDataService;
 
-        public AccountDataService(SimpleTraderDbContextFactory contextFactory)
+        public AccountDataService(AppDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
             _nonQueryDataService = new NonQueryDataService<Account>(contextFactory);
@@ -33,7 +33,7 @@ namespace SimpleTrader.EntityFramework.Services
 
         public async Task<Account> Get(int id)
         {
-            using (SimpleTraderDbContext context = _contextFactory.CreateDbContext())
+            using (AppDbContext context = _contextFactory.CreateDbContext())
             {
                 Account entity = await context.Accounts
                     .Include(a => a.AccountHolder)
@@ -45,7 +45,7 @@ namespace SimpleTrader.EntityFramework.Services
 
         public async Task<IEnumerable<Account>> GetAll()
         {
-            using (SimpleTraderDbContext context = _contextFactory.CreateDbContext())
+            using (AppDbContext context = _contextFactory.CreateDbContext())
             {
                 IEnumerable<Account> entities = await context.Accounts
                     .Include(a => a.AccountHolder)
@@ -57,7 +57,7 @@ namespace SimpleTrader.EntityFramework.Services
 
         public async Task<Account> GetByEmail(string email)
         {
-            using (SimpleTraderDbContext context = _contextFactory.CreateDbContext())
+            using (AppDbContext context = _contextFactory.CreateDbContext())
             {
                 return await context.Accounts
                     .Include(a => a.AccountHolder)
@@ -68,7 +68,7 @@ namespace SimpleTrader.EntityFramework.Services
 
         public async Task<Account> GetByUsername(string username)
         {
-            using (SimpleTraderDbContext context = _contextFactory.CreateDbContext())
+            using (AppDbContext context = _contextFactory.CreateDbContext())
             {
                 return await context.Accounts
                     .Include(a => a.AccountHolder)

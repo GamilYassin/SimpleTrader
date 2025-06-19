@@ -6,22 +6,22 @@ using System.Text;
 
 namespace SimpleTrader.EntityFramework
 {
-    public class SimpleTraderDbContextFactory
+    public class AppDbContextFactory
     {
         private readonly Action<DbContextOptionsBuilder> _configureDbContext;
 
-        public SimpleTraderDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
+        public AppDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
         {
             _configureDbContext = configureDbContext;
         }
 
-        public SimpleTraderDbContext CreateDbContext()
+        public AppDbContext CreateDbContext()
         {
-            DbContextOptionsBuilder<SimpleTraderDbContext> options = new DbContextOptionsBuilder<SimpleTraderDbContext>();
+            DbContextOptionsBuilder<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>();
 
             _configureDbContext(options);
 
-            return new SimpleTraderDbContext(options.Options);
+            return new AppDbContext(options.Options);
         }
     }
 }

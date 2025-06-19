@@ -33,8 +33,8 @@ namespace SimpleTrader.WPF
         {
             _host.Start();
 
-            SimpleTraderDbContextFactory contextFactory = _host.Services.GetRequiredService<SimpleTraderDbContextFactory>();
-            using(SimpleTraderDbContext context = contextFactory.CreateDbContext())
+            AppDbContextFactory contextFactory = _host.Services.GetRequiredService<AppDbContextFactory>();
+            using(AppDbContext context = contextFactory.CreateDbContext())
             {
                 context.Database.Migrate();
             }

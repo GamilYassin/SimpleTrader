@@ -18,8 +18,8 @@ namespace SimpleTrader.WPF.HostBuilders
                 string connectionString = context.Configuration.GetConnectionString("sqlite");
                 Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlite(connectionString);
 
-                services.AddDbContext<SimpleTraderDbContext>(configureDbContext);
-                services.AddSingleton<SimpleTraderDbContextFactory>(new SimpleTraderDbContextFactory(configureDbContext));
+                services.AddDbContext<AppDbContext>(configureDbContext);
+                services.AddSingleton<AppDbContextFactory>(new AppDbContextFactory(configureDbContext));
             });
 
             return host;
