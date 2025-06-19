@@ -4,14 +4,13 @@ using System.Threading.Tasks;
 using FieldOps.Kernel.Entities;
 using Microsoft.EntityFrameworkCore;
 using SimpleTrader.WPF.Data.Services.Common;
+using Throw;
 
 namespace SimpleTrader.WPF.Data.Repositories;
 
 public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory) 
     : IRepository<T> where T : EntityBase
 {
-    private readonly NonQueryDataService<T> _nonQueryDataService = new NonQueryDataService<T>(contextFactory);
-
     public async Task<IEnumerable<T>> GetAllAsync()
     {
         await using var context = await contextFactory.CreateDbContextAsync();
@@ -38,50 +37,49 @@ public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory
         return createdResult.Entity;
     }
 
-    public async Task<T?> UpdateAsync(Guid id, T? entity)
+    public async Task<T> UpdateAsync(Guid id, T? entity)
     {
-        if (entity == null)
-            return Invalid<T>("Entity is null");
+        entity.ThrowIfNull();
         
         try
         {
-            await using AppDbContext context = await ContextFactory.CreateDbContextAsync(cancellationToken);
+            await using var context = await contextFactory.CreateDbContextAsync();
             var query = context.Set<T>().AsQueryable();
-            var existingEntity = await query.FirstOrDefaultAsync(x => x.Id == entity.Id, cancellationToken: cancellationToken);
+            var existingEntity = await query.FirstOrDefaultAsync(x => x.Id == entity.Id);
 
-            if (existingEntity is null)
-            {
-                return Invalid<T>("Entity Has not been found");
-            }
+            existingEntity.ThrowIfNull("Entity Has not been found");
 
             context.Entry(existingEntity).CurrentValues.SetValues(entity);
 
-            var result = await context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            await context.SaveChangesAsync();
         
-            return result > 0
-                ? Valid(existingEntity)
-                : Invalid<T>("Entity  is found, however Update operation failed");
+            return existingEntity;
         }
         catch (Exception e)
         {
-            return Invalid<T>($"Entity Update operation failed with Exception:\n{e}");
+            throw new InvalidOperationException($"Entity Update operation failed with Exception:\n{e}");
         }
-        
-        
-        await using var context = await contextFactory.CreateDbContextAsync();
-        entity.Id = id;
-
-        context.Set<T>().Update(entity);
-        await context.SaveChangesAsync();
-
-        return entity;
     }
 
-    public Task<bool> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(Guid id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await using AppDbContext dbContext = await contextFactory.CreateDbContextAsync();
+            var entity = await dbContext.Set<T>()
+                .FirstOrDefaultAsync(x => x.Id == id);
+            
+            entity.ThrowIfNull("Entity Has not been found");
+                
+            dbContext.Set<T>().Remove(entity);
+            var count = await dbContext.SaveChangesAsync().ConfigureAwait(false);
+            return count > 0
+                ? true
+                : false;
+        }
+        catch (Exception e)
+        {
+            throw new InvalidOperationException($"Entity Delete operation failed with Exception:\n{e}");
+        }
     }
-
-
-
 }

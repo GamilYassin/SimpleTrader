@@ -13,7 +13,7 @@ public interface IRepository<T> where T : EntityBase
 
     Task<T> CreateAsync(T entity);
 
-    Task<T?> UpdateAsync(Guid id, T? entity);
+    Task<T> UpdateAsync(Guid id, T? entity);
 
     Task<bool> DeleteAsync(Guid id);
 }
