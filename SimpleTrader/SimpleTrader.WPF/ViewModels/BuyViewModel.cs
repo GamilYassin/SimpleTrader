@@ -3,7 +3,6 @@ using SimpleTrader.WPF.State.Accounts;
 using System.Windows.Input;
 using SimpleTrader.WPF.Domain.Services;
 using SimpleTrader.WPF.Domain.Services.Abstractions;
-using SimpleTrader.WPF.Domain.Services.TransactionServices;
 
 namespace SimpleTrader.WPF.ViewModels;
 

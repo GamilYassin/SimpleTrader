@@ -10,7 +10,7 @@ namespace SimpleTrader.WPF.Data.Repositories;
 public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory) 
     : IRepository<T> where T : EntityBase
 {
-    public async Task<IEnumerable<T>> GetAllAsync()
+    public virtual async Task<IEnumerable<T>> GetAllAsync()
     {
         await using var context = await contextFactory.CreateDbContextAsync();
         return await context.Set<T>()
@@ -18,7 +18,7 @@ public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory
             .ToListAsync();
     }
     
-    public async Task<T?> GetByIdAsync(Guid id)
+    public virtual async Task<T?> GetByIdAsync(Guid id)
     {
         await using var context = await contextFactory.CreateDbContextAsync();
         var entity = await context.Set<T>()
@@ -27,7 +27,7 @@ public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory
         return entity;
     }
 
-    public async Task<T> CreateAsync(T entity)
+    public virtual async Task<T> CreateAsync(T entity)
     {
         await using var context = await contextFactory.CreateDbContextAsync();
         var createdResult = await context.Set<T>().AddAsync(entity);
@@ -36,7 +36,7 @@ public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory
         return createdResult.Entity;
     }
 
-    public async Task<T> UpdateAsync(Guid id, T? entity)
+    public virtual async Task<T> UpdateAsync(Guid id, T? entity)
     {
         entity.ThrowIfNull();
         
@@ -60,7 +60,7 @@ public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory
         }
     }
 
-    public async Task<bool> DeleteAsync(Guid id)
+    public virtual async Task<bool> DeleteAsync(Guid id)
     {
         try
         {

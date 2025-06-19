@@ -3,7 +3,6 @@ using System;
 using System.Threading.Tasks;
 using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services.Abstractions;
-using SimpleTrader.WPF.Domain.Services.AuthenticationServices;
 
 namespace SimpleTrader.WPF.State.Authenticators;
 
@@ -37,7 +36,7 @@ public class Authenticator : IAuthenticator
 
     public async Task Login(string username, string password)
     {
-        CurrentAccount = await _authenticationService.Login(username, password);
+        CurrentAccount = await _authenticationService.LoginAsync(username, password);
     }
 
     public void Logout()
@@ -47,6 +46,6 @@ public class Authenticator : IAuthenticator
 
     public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword)
     {
-        return await _authenticationService.Register(email, username, password, confirmPassword);
+        return await _authenticationService.RegisterAsync(email, username, password, confirmPassword);
     }
 }
