@@ -17,5 +17,5 @@ public interface ISellStockService
     /// <exception cref="InsufficientSharesException">Thrown if the seller has insufficient shares for the symbol.</exception>
     /// <exception cref="InvalidSymbolException">Thrown if the purchased symbol is invalid.</exception>
     /// <exception cref="Exception">Thrown if the transaction fails.</exception>
-    Task<Account> SellStock(Account seller, string symbol, int shares);
+    Task<Account?> SellStock(Account? seller, string symbol, int shares);
 }

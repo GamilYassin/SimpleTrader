@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Domain.Exceptions;
 using SimpleTrader.WPF.Domain.Models;
 
@@ -10,15 +11,15 @@ namespace SimpleTrader.WPF.Domain.Services.TransactionServices;
 public class SellStockService : ISellStockService
 {
     private readonly IStockPriceService _stockPriceService;
-    private readonly IDataService<Account> _accountService;
+    private readonly IRepository<Account?> _accountService;
 
-    public SellStockService(IStockPriceService stockPriceService, IDataService<Account> accountService)
+    public SellStockService(IStockPriceService stockPriceService, IRepository<Account?> accountService)
     {
         _stockPriceService = stockPriceService;
         _accountService = accountService;
     }
 
-    public async Task<Account> SellStock(Account seller, string symbol, int shares)
+    public async Task<Account?> SellStock(Account? seller, string symbol, int shares)
     {
         // Validate seller has sufficient shares.
         int accountShares = GetAccountSharesForSymbol(seller, symbol);
@@ -44,12 +45,12 @@ public class SellStockService : ISellStockService
 
         seller.Balance += stockPrice * shares;
 
-        await _accountService.Update(seller.Id, seller);
+        await _accountService.UpdateAsync(seller.Id, seller);
 
         return seller;
     }
 
-    private int GetAccountSharesForSymbol(Account seller, string symbol)
+    private int GetAccountSharesForSymbol(Account? seller, string symbol)
     {
         IEnumerable<AssetTransaction> accountTransactionsForSymbol = seller.AssetTransactions.Where(a => a.Asset.Symbol == symbol);
             

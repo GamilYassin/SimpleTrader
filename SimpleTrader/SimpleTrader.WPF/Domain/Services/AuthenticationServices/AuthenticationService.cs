@@ -17,9 +17,9 @@ public class AuthenticationService : IAuthenticationService
         _passwordHasher = passwordHasher;
     }
 
-    public async Task<Account> Login(string username, string password)
+    public async Task<Account?> Login(string username, string password)
     {
-        Account storedAccount = await _accountService.GetByUsername(username);
+        Account? storedAccount = await _accountService.GetByUsername(username);
 
         if(storedAccount == null)
         {
@@ -51,7 +51,7 @@ public class AuthenticationService : IAuthenticationService
             result = RegistrationResult.EmailAlreadyExists;
         }
 
-        Account usernameAccount = await _accountService.GetByUsername(username);
+        Account? usernameAccount = await _accountService.GetByUsername(username);
         if (usernameAccount != null)
         {
             result = RegistrationResult.UsernameAlreadyExists;
@@ -75,7 +75,7 @@ public class AuthenticationService : IAuthenticationService
                 Balance = 500
             };
 
-            await _accountService.Create(account);
+            await _accountService.CreateAsync(account);
         }
 
         return result;

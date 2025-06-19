@@ -18,7 +18,7 @@ public class AccountDataService : IAccountService
         _nonQueryDataService = new NonQueryDataService<Account>(contextFactory);
     }
 
-    public async Task<Account> Create(Account entity)
+    public async Task<Account> CreateAsync(Account entity)
     {
         return await _nonQueryDataService.Create(entity);
     }
@@ -28,9 +28,9 @@ public class AccountDataService : IAccountService
         return await _nonQueryDataService.Delete(id);
     }
 
-    public async Task<Account> Get(int id)
+    public async Task<Account> GetById(int id)
     {
-        using (AppDbContext context = _contextFactory.CreateDbContext())
+        await using (AppDbContext context = _contextFactory.CreateDbContext())
         {
             Account entity = await context.Accounts
                 .Include(a => a.AccountHolder)
@@ -40,9 +40,9 @@ public class AccountDataService : IAccountService
         }
     }
 
-    public async Task<IEnumerable<Account>> GetAll()
+    public async Task<IEnumerable<Account>> GetAllAsync()
     {
-        using (AppDbContext context = _contextFactory.CreateDbContext())
+        await using (AppDbContext context = _contextFactory.CreateDbContext())
         {
             IEnumerable<Account> entities = await context.Accounts
                 .Include(a => a.AccountHolder)
@@ -54,7 +54,7 @@ public class AccountDataService : IAccountService
 
     public async Task<Account> GetByEmail(string email)
     {
-        using (AppDbContext context = _contextFactory.CreateDbContext())
+        await using (AppDbContext context = _contextFactory.CreateDbContext())
         {
             return await context.Accounts
                 .Include(a => a.AccountHolder)
@@ -63,9 +63,9 @@ public class AccountDataService : IAccountService
         }
     }
 
-    public async Task<Account> GetByUsername(string username)
+    public async Task<Account?> GetByUsername(string username)
     {
-        using (AppDbContext context = _contextFactory.CreateDbContext())
+        await using (AppDbContext context = _contextFactory.CreateDbContext())
         {
             return await context.Accounts
                 .Include(a => a.AccountHolder)

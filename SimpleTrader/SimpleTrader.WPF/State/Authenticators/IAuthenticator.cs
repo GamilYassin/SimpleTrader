@@ -8,7 +8,7 @@ namespace SimpleTrader.WPF.State.Authenticators;
 
 public interface IAuthenticator
 {
-    Account CurrentAccount { get; }
+    Account? CurrentAccount { get; }
     bool IsLoggedIn { get; }
 
     event Action StateChanged;

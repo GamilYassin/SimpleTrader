@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleTrader.FinancialModelingPrepAPI.Services;
+using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Data.Services;
 using SimpleTrader.WPF.Domain.Models;
 using SimpleTrader.WPF.Domain.Services;
@@ -19,7 +20,7 @@ public static class AddServicesHostBuilderExtensions
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
-            services.AddSingleton<IDataService<Account>, AccountDataService>();
+            services.AddSingleton<IRepository<Account>, AccountDataService>();
             services.AddSingleton<IAccountService, AccountDataService>();
             services.AddSingleton<IStockPriceService, StockPriceService>();
             services.AddSingleton<IBuyStockService, BuyStockService>();

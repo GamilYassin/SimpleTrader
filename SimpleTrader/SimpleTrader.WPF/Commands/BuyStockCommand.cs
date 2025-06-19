@@ -38,7 +38,7 @@ public class BuyStockCommand : AsyncCommandBase
         {
             string symbol = _buyViewModel.Symbol;
             int shares = _buyViewModel.SharesToBuy;
-            Account account = await _buyStockService.BuyStock(_accountStore.CurrentAccount, symbol, shares);
+            Account? account = await _buyStockService.BuyStock(_accountStore.CurrentAccount, symbol, shares);
 
             _accountStore.CurrentAccount = account;
 

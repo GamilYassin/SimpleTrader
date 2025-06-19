@@ -17,5 +17,5 @@ public interface IBuyStockService
     /// <exception cref="InsufficientFundsException">Thrown if the acccount has an insufficient balance.</exception>
     /// <exception cref="InvalidSymbolException">Thrown if the purchased symbol is invalid.</exception>
     /// <exception cref="Exception">Thrown if the transaction fails.</exception>
-    Task<Account> BuyStock(Account buyer, string symbol, int shares);
+    Task<Account?> BuyStock(Account? buyer, string symbol, int shares);
 }

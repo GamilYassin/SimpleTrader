@@ -22,5 +22,6 @@
     <PackageVersion Include="nunit" Version="4.3.2" />
     <PackageVersion Include="NUnit3TestAdapter" Version="5.0.0" />
     <PackageVersion Include="PasswordBoxMVVM" Version="1.0.5" />
+    <PackageVersion Include="Throw" Version="1.4.0" />
   </ItemGroup>
 </Project>

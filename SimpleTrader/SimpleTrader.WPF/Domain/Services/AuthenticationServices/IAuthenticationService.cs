@@ -35,5 +35,5 @@ public interface IAuthenticationService
     /// <exception cref="UserNotFoundException">Thrown if the user does not exist.</exception>
     /// <exception cref="InvalidPasswordException">Thrown if the password is invalid.</exception>
     /// <exception cref="Exception">Thrown if the login fails.</exception>
-    Task<Account> Login(string username, string password);
+    Task<Account?> Login(string username, string password);
 }

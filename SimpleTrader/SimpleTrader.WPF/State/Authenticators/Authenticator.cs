@@ -17,7 +17,7 @@ public class Authenticator : IAuthenticator
         _accountStore = accountStore;
     }
 
-    public Account CurrentAccount
+    public Account? CurrentAccount
     {
         get
         {

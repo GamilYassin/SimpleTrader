@@ -11,6 +11,6 @@ public class AssetTransaction : EntityBase
     
     // relations
     public Guid AccountId { get; set; }
-    public Account Account { get; set; }
+    public Account? Account { get; set; }
     public Asset Asset { get; set; }
 }

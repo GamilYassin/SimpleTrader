@@ -3,6 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\login-background.jpg" />
@@ -23,6 +24,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" />
     <PackageReference Include="Microsoft.Extensions.Http" />
     <PackageReference Include="PasswordBoxMVVM" />
+    <PackageReference Include="Throw" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\FieldOps\FieldOps.Kernel\FieldOps.Kernel.csproj" />

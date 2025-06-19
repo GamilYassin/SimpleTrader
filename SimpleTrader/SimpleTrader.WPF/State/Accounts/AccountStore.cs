@@ -5,8 +5,8 @@ namespace SimpleTrader.WPF.State.Accounts;
 
 public class AccountStore : IAccountStore
 {
-    private Account _currentAccount;
-    public Account CurrentAccount
+    private Account? _currentAccount;
+    public Account? CurrentAccount
     {
         get
         {

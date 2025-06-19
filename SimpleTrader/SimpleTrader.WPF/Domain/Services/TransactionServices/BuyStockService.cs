@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Domain.Exceptions;
 using SimpleTrader.WPF.Domain.Models;
 
@@ -8,15 +9,15 @@ namespace SimpleTrader.WPF.Domain.Services.TransactionServices;
 public class BuyStockService : IBuyStockService
 {
     private readonly IStockPriceService _stockPriceService;
-    private readonly IDataService<Account> _accountService;
+    private readonly IRepository<Account?> _accountService;
 
-    public BuyStockService(IStockPriceService stockPriceService, IDataService<Account> accountService)
+    public BuyStockService(IStockPriceService stockPriceService, IRepository<Account?> accountService)
     {
         _stockPriceService = stockPriceService;
         _accountService = accountService;
     }
 
-    public async Task<Account> BuyStock(Account buyer, string symbol, int shares)
+    public async Task<Account?> BuyStock(Account? buyer, string symbol, int shares)
     {
         double stockPrice = await _stockPriceService.GetPrice(symbol);
 
@@ -43,7 +44,7 @@ public class BuyStockService : IBuyStockService
         buyer.AssetTransactions.Add(transaction);
         buyer.Balance -= transactionPrice;
 
-        await _accountService.Update(buyer.Id, buyer);
+        await _accountService.UpdateAsync(buyer.Id, buyer);
 
         return buyer;
     }
