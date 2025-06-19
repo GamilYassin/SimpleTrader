@@ -11,16 +11,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleTrader.WPF.Controls
+namespace SimpleTrader.WPF.Controls;
+
+/// <summary>
+/// Interaction logic for AssetSummary.xaml
+/// </summary>
+public partial class AssetSummary : UserControl
 {
-    /// <summary>
-    /// Interaction logic for AssetSummary.xaml
-    /// </summary>
-    public partial class AssetSummary : UserControl
+    public AssetSummary()
     {
-        public AssetSummary()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

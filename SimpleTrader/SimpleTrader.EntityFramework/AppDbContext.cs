@@ -5,21 +5,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.EntityFramework
+namespace SimpleTrader.EntityFramework;
+
+public class AppDbContext : DbContext
 {
-    public class AppDbContext : DbContext
+    public DbSet<User> Users { get; set; }
+    public DbSet<Account> Accounts { get; set; }
+    public DbSet<AssetTransaction> AssetTransactions { get; set; }
+    public AppDbContext(DbContextOptions options) : base(options) { }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<AssetTransaction> AssetTransactions { get; set; }
-        public AppDbContext(DbContextOptions options) : base(options) { }
+        modelBuilder.Entity<AssetTransaction>().OwnsOne(a => a.Asset);
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<AssetTransaction>().OwnsOne(a => a.Asset);
-
-            base.OnModelCreating(modelBuilder);
-        }
+        base.OnModelCreating(modelBuilder);
     }
 }
-

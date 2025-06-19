@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTrader.Domain.Services
+namespace SimpleTrader.Domain.Services;
+
+public interface IMajorIndexService
 {
-    public interface IMajorIndexService
-    {
-        Task<MajorIndex> GetMajorIndex(MajorIndexType indexType);
-    }
+    Task<MajorIndex> GetMajorIndex(MajorIndexType indexType);
 }

@@ -7,114 +7,113 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 
-namespace SimpleTrader.WPF.ViewModels
+namespace SimpleTrader.WPF.ViewModels;
+
+public class BuyViewModel : ViewModelBase, ISearchSymbolViewModel
 {
-    public class BuyViewModel : ViewModelBase, ISearchSymbolViewModel
+    private string _symbol;
+    public string Symbol
     {
-        private string _symbol;
-        public string Symbol
+        get
         {
-            get
-            {
-                return _symbol;
-            }
-            set
-            {
-                _symbol = value;
-                OnPropertyChanged(nameof(Symbol));
-                OnPropertyChanged(nameof(CanSearchSymbol));
-            }
+            return _symbol;
         }
-
-        public bool CanSearchSymbol => !string.IsNullOrEmpty(Symbol);
-
-        private string _searchResultSymbol = string.Empty;
-        public string SearchResultSymbol
+        set
         {
-            get
-            {
-                return _searchResultSymbol;
-            }
-            set
-            {
-                _searchResultSymbol = value;
-                OnPropertyChanged(nameof(SearchResultSymbol));
-            }
+            _symbol = value;
+            OnPropertyChanged(nameof(Symbol));
+            OnPropertyChanged(nameof(CanSearchSymbol));
         }
+    }
 
-        private double _stockPrice;
-        public double StockPrice
+    public bool CanSearchSymbol => !string.IsNullOrEmpty(Symbol);
+
+    private string _searchResultSymbol = string.Empty;
+    public string SearchResultSymbol
+    {
+        get
         {
-            get
-            {
-                return _stockPrice;
-            }
-            set
-            {
-                _stockPrice = value;
-                OnPropertyChanged(nameof(StockPrice));
-                OnPropertyChanged(nameof(TotalPrice));
-            }
+            return _searchResultSymbol;
         }
-
-        private int _sharesToBuy;
-        public int SharesToBuy
+        set
         {
-            get
-            {
-                return _sharesToBuy;
-            }
-            set
-            {
-                _sharesToBuy = value;
-                OnPropertyChanged(nameof(SharesToBuy));
-                OnPropertyChanged(nameof(TotalPrice));
-                OnPropertyChanged(nameof(CanBuyStock));
-            }
+            _searchResultSymbol = value;
+            OnPropertyChanged(nameof(SearchResultSymbol));
         }
+    }
 
-        public bool CanBuyStock => SharesToBuy > 0;
-
-        public double TotalPrice
+    private double _stockPrice;
+    public double StockPrice
+    {
+        get
         {
-            get
-            {
-                return SharesToBuy * StockPrice;
-            }
+            return _stockPrice;
         }
-
-        public MessageViewModel ErrorMessageViewModel { get; }
-
-        public string ErrorMessage
+        set
         {
-            set => ErrorMessageViewModel.Message = value;
+            _stockPrice = value;
+            OnPropertyChanged(nameof(StockPrice));
+            OnPropertyChanged(nameof(TotalPrice));
         }
+    }
 
-        public MessageViewModel StatusMessageViewModel { get; }
-
-        public string StatusMessage
+    private int _sharesToBuy;
+    public int SharesToBuy
+    {
+        get
         {
-            set => StatusMessageViewModel.Message = value;
+            return _sharesToBuy;
         }
-
-        public ICommand SearchSymbolCommand { get; set; }
-        public ICommand BuyStockCommand { get; set; }
-
-        public BuyViewModel(IStockPriceService stockPriceService, IBuyStockService buyStockService, IAccountStore accountStore)
+        set
         {
-            ErrorMessageViewModel = new MessageViewModel();
-            StatusMessageViewModel = new MessageViewModel();
-
-            SearchSymbolCommand = new SearchSymbolCommand(this, stockPriceService);
-            BuyStockCommand = new BuyStockCommand(this, buyStockService, accountStore);
+            _sharesToBuy = value;
+            OnPropertyChanged(nameof(SharesToBuy));
+            OnPropertyChanged(nameof(TotalPrice));
+            OnPropertyChanged(nameof(CanBuyStock));
         }
+    }
 
-        public override void Dispose()
+    public bool CanBuyStock => SharesToBuy > 0;
+
+    public double TotalPrice
+    {
+        get
         {
-            ErrorMessageViewModel.Dispose();
-            StatusMessageViewModel.Dispose();
-
-            base.Dispose();
+            return SharesToBuy * StockPrice;
         }
+    }
+
+    public MessageViewModel ErrorMessageViewModel { get; }
+
+    public string ErrorMessage
+    {
+        set => ErrorMessageViewModel.Message = value;
+    }
+
+    public MessageViewModel StatusMessageViewModel { get; }
+
+    public string StatusMessage
+    {
+        set => StatusMessageViewModel.Message = value;
+    }
+
+    public ICommand SearchSymbolCommand { get; set; }
+    public ICommand BuyStockCommand { get; set; }
+
+    public BuyViewModel(IStockPriceService stockPriceService, IBuyStockService buyStockService, IAccountStore accountStore)
+    {
+        ErrorMessageViewModel = new MessageViewModel();
+        StatusMessageViewModel = new MessageViewModel();
+
+        SearchSymbolCommand = new SearchSymbolCommand(this, stockPriceService);
+        BuyStockCommand = new BuyStockCommand(this, buyStockService, accountStore);
+    }
+
+    public override void Dispose()
+    {
+        ErrorMessageViewModel.Dispose();
+        StatusMessageViewModel.Dispose();
+
+        base.Dispose();
     }
 }

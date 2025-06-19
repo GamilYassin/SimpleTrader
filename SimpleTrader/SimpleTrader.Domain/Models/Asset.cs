@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.Domain.Models
+namespace SimpleTrader.Domain.Models;
+
+public class Asset
 {
-    public class Asset
-    {
-        public string Symbol { get; set; }
-        public double PricePerShare { get; set; }
-    }
+    public string Symbol { get; set; }
+    public double PricePerShare { get; set; }
 }

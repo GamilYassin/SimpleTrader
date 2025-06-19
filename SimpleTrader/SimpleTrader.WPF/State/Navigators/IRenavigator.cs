@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.WPF.State.Navigators
+namespace SimpleTrader.WPF.State.Navigators;
+
+public interface IRenavigator
 {
-    public interface IRenavigator
-    {
-        void Renavigate();
-    }
+    void Renavigate();
 }

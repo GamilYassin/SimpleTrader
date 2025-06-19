@@ -6,55 +6,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTrader.Domain.Services.TransactionServices
+namespace SimpleTrader.Domain.Services.TransactionServices;
+
+public class SellStockService : ISellStockService
 {
-    public class SellStockService : ISellStockService
+    private readonly IStockPriceService _stockPriceService;
+    private readonly IDataService<Account> _accountService;
+
+    public SellStockService(IStockPriceService stockPriceService, IDataService<Account> accountService)
     {
-        private readonly IStockPriceService _stockPriceService;
-        private readonly IDataService<Account> _accountService;
+        _stockPriceService = stockPriceService;
+        _accountService = accountService;
+    }
 
-        public SellStockService(IStockPriceService stockPriceService, IDataService<Account> accountService)
+    public async Task<Account> SellStock(Account seller, string symbol, int shares)
+    {
+        // Validate seller has sufficient shares.
+        int accountShares = GetAccountSharesForSymbol(seller, symbol);
+        if(accountShares < shares)
         {
-            _stockPriceService = stockPriceService;
-            _accountService = accountService;
+            throw new InsufficientSharesException(symbol, accountShares, shares);
         }
 
-        public async Task<Account> SellStock(Account seller, string symbol, int shares)
+        double stockPrice = await _stockPriceService.GetPrice(symbol);
+
+        seller.AssetTransactions.Add(new AssetTransaction()
         {
-            // Validate seller has sufficient shares.
-            int accountShares = GetAccountSharesForSymbol(seller, symbol);
-            if(accountShares < shares)
+            Account = seller,
+            Asset = new Asset()
             {
-                throw new InsufficientSharesException(symbol, accountShares, shares);
-            }
+                PricePerShare = stockPrice,
+                Symbol = symbol
+            },
+            DateProcessed = DateTime.Now,
+            IsPurchase = false,
+            Shares = shares
+        });
 
-            double stockPrice = await _stockPriceService.GetPrice(symbol);
+        seller.Balance += stockPrice * shares;
 
-            seller.AssetTransactions.Add(new AssetTransaction()
-            {
-                Account = seller,
-                Asset = new Asset()
-                {
-                    PricePerShare = stockPrice,
-                    Symbol = symbol
-                },
-                DateProcessed = DateTime.Now,
-                IsPurchase = false,
-                Shares = shares
-            });
+        await _accountService.Update(seller.Id, seller);
 
-            seller.Balance += stockPrice * shares;
+        return seller;
+    }
 
-            await _accountService.Update(seller.Id, seller);
-
-            return seller;
-        }
-
-        private int GetAccountSharesForSymbol(Account seller, string symbol)
-        {
-            IEnumerable<AssetTransaction> accountTransactionsForSymbol = seller.AssetTransactions.Where(a => a.Asset.Symbol == symbol);
+    private int GetAccountSharesForSymbol(Account seller, string symbol)
+    {
+        IEnumerable<AssetTransaction> accountTransactionsForSymbol = seller.AssetTransactions.Where(a => a.Asset.Symbol == symbol);
             
-            return accountTransactionsForSymbol.Sum(a => a.IsPurchase ? a.Shares : -a.Shares);
-        }
+        return accountTransactionsForSymbol.Sum(a => a.IsPurchase ? a.Shares : -a.Shares);
     }
 }

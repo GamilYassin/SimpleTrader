@@ -5,49 +5,48 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTrader.Domain.Services.TransactionServices
+namespace SimpleTrader.Domain.Services.TransactionServices;
+
+public class BuyStockService : IBuyStockService
 {
-    public class BuyStockService : IBuyStockService
+    private readonly IStockPriceService _stockPriceService;
+    private readonly IDataService<Account> _accountService;
+
+    public BuyStockService(IStockPriceService stockPriceService, IDataService<Account> accountService)
     {
-        private readonly IStockPriceService _stockPriceService;
-        private readonly IDataService<Account> _accountService;
+        _stockPriceService = stockPriceService;
+        _accountService = accountService;
+    }
 
-        public BuyStockService(IStockPriceService stockPriceService, IDataService<Account> accountService)
+    public async Task<Account> BuyStock(Account buyer, string symbol, int shares)
+    {
+        double stockPrice = await _stockPriceService.GetPrice(symbol);
+
+        double transactionPrice = stockPrice * shares;
+
+        if (transactionPrice > buyer.Balance)
         {
-            _stockPriceService = stockPriceService;
-            _accountService = accountService;
+            throw new InsufficientFundsException(buyer.Balance, transactionPrice);
         }
 
-        public async Task<Account> BuyStock(Account buyer, string symbol, int shares)
+        AssetTransaction transaction = new AssetTransaction()
         {
-            double stockPrice = await _stockPriceService.GetPrice(symbol);
-
-            double transactionPrice = stockPrice * shares;
-
-            if (transactionPrice > buyer.Balance)
+            Account = buyer,
+            Asset = new Asset()
             {
-                throw new InsufficientFundsException(buyer.Balance, transactionPrice);
-            }
+                PricePerShare = stockPrice,
+                Symbol = symbol
+            },
+            DateProcessed = DateTime.Now,
+            Shares = shares,
+            IsPurchase = true
+        };
 
-            AssetTransaction transaction = new AssetTransaction()
-            {
-                Account = buyer,
-                Asset = new Asset()
-                {
-                    PricePerShare = stockPrice,
-                    Symbol = symbol
-                },
-                DateProcessed = DateTime.Now,
-                Shares = shares,
-                IsPurchase = true
-            };
+        buyer.AssetTransactions.Add(transaction);
+        buyer.Balance -= transactionPrice;
 
-            buyer.AssetTransactions.Add(transaction);
-            buyer.Balance -= transactionPrice;
+        await _accountService.Update(buyer.Id, buyer);
 
-            await _accountService.Update(buyer.Id, buyer);
-
-            return buyer;
-        }
+        return buyer;
     }
 }

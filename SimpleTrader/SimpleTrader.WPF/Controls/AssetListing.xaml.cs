@@ -12,16 +12,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleTrader.WPF.Controls
+namespace SimpleTrader.WPF.Controls;
+
+/// <summary>
+/// Interaction logic for AssetListing.xaml
+/// </summary>
+public partial class AssetListing : UserControl
 {
-    /// <summary>
-    /// Interaction logic for AssetListing.xaml
-    /// </summary>
-    public partial class AssetListing : UserControl
+    public AssetListing()
     {
-        public AssetListing()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

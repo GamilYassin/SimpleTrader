@@ -7,27 +7,26 @@ using SimpleTrader.WPF.Commands;
 using SimpleTrader.WPF.ViewModels;
 using SimpleTrader.WPF.ViewModels.Factories;
 
-namespace SimpleTrader.WPF.State.Navigators
+namespace SimpleTrader.WPF.State.Navigators;
+
+public class Navigator : INavigator
 {
-    public class Navigator : INavigator
+    private ViewModelBase _currentViewModel;
+    public ViewModelBase CurrentViewModel
     {
-        private ViewModelBase _currentViewModel;
-        public ViewModelBase CurrentViewModel
+        get
         {
-            get
-            {
-                return _currentViewModel;
-            }
-            set
-            {
-                _currentViewModel?.Dispose();
-
-                _currentViewModel = value;
-                StateChanged?.Invoke();
-            }
+            return _currentViewModel;
         }
+        set
+        {
+            _currentViewModel?.Dispose();
 
-        public event Action StateChanged;
-
+            _currentViewModel = value;
+            StateChanged?.Invoke();
+        }
     }
+
+    public event Action StateChanged;
+
 }

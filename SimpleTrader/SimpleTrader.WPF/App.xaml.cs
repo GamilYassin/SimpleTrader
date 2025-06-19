@@ -6,51 +6,50 @@ using SimpleTrader.EntityFramework;
 using SimpleTrader.WPF.HostBuilders;
 using System.Windows;
 
-namespace SimpleTrader.WPF
+namespace SimpleTrader.WPF;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    private readonly IHost _host;
+
+    public App()
     {
-        private readonly IHost _host;
+        _host = CreateHostBuilder().Build();
+    }
 
-        public App()
+    public static IHostBuilder CreateHostBuilder(string[] args = null)
+    {
+        return Host.CreateDefaultBuilder(args)
+            .AddConfiguration()
+            .AddFinanceAPI()
+            .AddDbContext()
+            .AddServices()
+            .AddStores()
+            .AddViewModels()
+            .AddViews();
+    }
+
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        _host.Start();
+
+        AppDbContextFactory contextFactory = _host.Services.GetRequiredService<AppDbContextFactory>();
+        using(AppDbContext context = contextFactory.CreateDbContext())
         {
-            _host = CreateHostBuilder().Build();
+            context.Database.Migrate();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args = null)
-        {
-            return Host.CreateDefaultBuilder(args)
-                .AddConfiguration()
-                .AddFinanceAPI()
-                .AddDbContext()
-                .AddServices()
-                .AddStores()
-                .AddViewModels()
-                .AddViews();
-        }
+        Window window = _host.Services.GetRequiredService<MainWindow>();
+        window.Show();
 
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            _host.Start();
+        base.OnStartup(e);
+    }
 
-            AppDbContextFactory contextFactory = _host.Services.GetRequiredService<AppDbContextFactory>();
-            using(AppDbContext context = contextFactory.CreateDbContext())
-            {
-                context.Database.Migrate();
-            }
+    protected override async void OnExit(ExitEventArgs e)
+    {
+        await _host.StopAsync();
+        _host.Dispose();
 
-            Window window = _host.Services.GetRequiredService<MainWindow>();
-            window.Show();
-
-            base.OnStartup(e);
-        }
-
-        protected override async void OnExit(ExitEventArgs e)
-        {
-            await _host.StopAsync();
-            _host.Dispose();
-
-            base.OnExit(e);
-        }
+        base.OnExit(e);
     }
 }

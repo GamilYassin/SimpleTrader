@@ -8,29 +8,28 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTrader.FinancialModelingPrepAPI.Services
+namespace SimpleTrader.FinancialModelingPrepAPI.Services;
+
+public class StockPriceService : IStockPriceService
 {
-    public class StockPriceService : IStockPriceService
+    private readonly FinancialModelingPrepHttpClient _client;
+
+    public StockPriceService(FinancialModelingPrepHttpClient client)
     {
-        private readonly FinancialModelingPrepHttpClient _client;
+        _client = client;
+    }
 
-        public StockPriceService(FinancialModelingPrepHttpClient client)
+    public async Task<double> GetPrice(string symbol)
+    {
+        string uri = "stock/real-time-price/" + symbol;
+
+        StockPriceResult stockPriceResult = await _client.GetAsync<StockPriceResult>(uri);
+
+        if(stockPriceResult.Price == 0)
         {
-            _client = client;
+            throw new InvalidSymbolException(symbol);
         }
 
-        public async Task<double> GetPrice(string symbol)
-        {
-            string uri = "stock/real-time-price/" + symbol;
-
-            StockPriceResult stockPriceResult = await _client.GetAsync<StockPriceResult>(uri);
-
-            if(stockPriceResult.Price == 0)
-            {
-                throw new InvalidSymbolException(symbol);
-            }
-
-            return stockPriceResult.Price;
-        }
+        return stockPriceResult.Price;
     }
 }

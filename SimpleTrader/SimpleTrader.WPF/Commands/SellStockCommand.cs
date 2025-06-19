@@ -9,64 +9,63 @@ using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTrader.WPF.Commands
+namespace SimpleTrader.WPF.Commands;
+
+public class SellStockCommand : AsyncCommandBase
 {
-    public class SellStockCommand : AsyncCommandBase
+    private readonly SellViewModel _viewModel;
+    private readonly ISellStockService _sellStockService;
+    private readonly IAccountStore _accountStore;
+
+    public SellStockCommand(SellViewModel viewModel, ISellStockService sellStockService, IAccountStore accountStore)
     {
-        private readonly SellViewModel _viewModel;
-        private readonly ISellStockService _sellStockService;
-        private readonly IAccountStore _accountStore;
+        _viewModel = viewModel;
+        _sellStockService = sellStockService;
+        _accountStore = accountStore;
 
-        public SellStockCommand(SellViewModel viewModel, ISellStockService sellStockService, IAccountStore accountStore)
+        _viewModel.PropertyChanged += ViewModel_PropertyChanged;
+    }
+
+    public override bool CanExecute(object parameter)
+    {
+        return _viewModel.CanSellStock && base.CanExecute(parameter);
+    }
+
+    public override async Task ExecuteAsync(object parameter)
+    {
+        _viewModel.StatusMessage = string.Empty;
+        _viewModel.ErrorMessage = string.Empty;
+
+        try
         {
-            _viewModel = viewModel;
-            _sellStockService = sellStockService;
-            _accountStore = accountStore;
+            string symbol = _viewModel.Symbol;
+            int shares = _viewModel.SharesToSell;
+            Account account = await _sellStockService.SellStock(_accountStore.CurrentAccount, symbol, shares);
 
-            _viewModel.PropertyChanged += ViewModel_PropertyChanged;
+            _accountStore.CurrentAccount = account;
+
+            _viewModel.SearchResultSymbol = string.Empty;
+            _viewModel.StatusMessage = $"Successfully sold {shares} shares of {symbol}.";
         }
-
-        public override bool CanExecute(object parameter)
+        catch (InsufficientSharesException ex)
         {
-            return _viewModel.CanSellStock && base.CanExecute(parameter);
+            _viewModel.ErrorMessage = $"Account has insufficient shares. You only have {ex.AccountShares} shares.";
         }
-
-        public override async Task ExecuteAsync(object parameter)
+        catch (InvalidSymbolException)
         {
-            _viewModel.StatusMessage = string.Empty;
-            _viewModel.ErrorMessage = string.Empty;
-
-            try
-            {
-                string symbol = _viewModel.Symbol;
-                int shares = _viewModel.SharesToSell;
-                Account account = await _sellStockService.SellStock(_accountStore.CurrentAccount, symbol, shares);
-
-                _accountStore.CurrentAccount = account;
-
-                _viewModel.SearchResultSymbol = string.Empty;
-                _viewModel.StatusMessage = $"Successfully sold {shares} shares of {symbol}.";
-            }
-            catch (InsufficientSharesException ex)
-            {
-                _viewModel.ErrorMessage = $"Account has insufficient shares. You only have {ex.AccountShares} shares.";
-            }
-            catch (InvalidSymbolException)
-            {
-                _viewModel.ErrorMessage = "Symbol does not exist.";
-            }
-            catch (Exception)
-            {
-                _viewModel.ErrorMessage = "Transaction failed.";
-            }
+            _viewModel.ErrorMessage = "Symbol does not exist.";
         }
-
-        private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        catch (Exception)
         {
-            if (e.PropertyName == nameof(SellViewModel.CanSellStock))
-            {
-                OnCanExecuteChanged();
-            }
+            _viewModel.ErrorMessage = "Transaction failed.";
+        }
+    }
+
+    private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(SellViewModel.CanSellStock))
+        {
+            OnCanExecuteChanged();
         }
     }
 }

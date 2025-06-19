@@ -11,16 +11,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleTrader.WPF.Controls
+namespace SimpleTrader.WPF.Controls;
+
+/// <summary>
+/// Interaction logic for SearchSymbolResultPanel.xaml
+/// </summary>
+public partial class SearchSymbolResultPanel : UserControl
 {
-    /// <summary>
-    /// Interaction logic for SearchSymbolResultPanel.xaml
-    /// </summary>
-    public partial class SearchSymbolResultPanel : UserControl
+    public SearchSymbolResultPanel()
     {
-        public SearchSymbolResultPanel()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

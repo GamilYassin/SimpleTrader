@@ -13,18 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleTrader.WPF
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow(object dataContext)
-        {
-            InitializeComponent();
+namespace SimpleTrader.WPF;
 
-            DataContext = dataContext;
-        }
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
+{
+    public MainWindow(object dataContext)
+    {
+        InitializeComponent();
+
+        DataContext = dataContext;
     }
 }

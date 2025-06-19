@@ -11,16 +11,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleTrader.WPF.Views
+namespace SimpleTrader.WPF.Views;
+
+/// <summary>
+/// Interaction logic for RegisterView.xaml
+/// </summary>
+public partial class RegisterView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for RegisterView.xaml
-    /// </summary>
-    public partial class RegisterView : UserControl
+    public RegisterView()
     {
-        public RegisterView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

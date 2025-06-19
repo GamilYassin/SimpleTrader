@@ -11,36 +11,35 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleTrader.WPF.Views
+namespace SimpleTrader.WPF.Views;
+
+/// <summary>
+/// Interaction logic for SellView.xaml
+/// </summary>
+public partial class SellView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for SellView.xaml
-    /// </summary>
-    public partial class SellView : UserControl
+    public static readonly DependencyProperty SelectedAssetChangedCommandProperty =
+        DependencyProperty.Register("SelectedAssetChangedCommand", typeof(ICommand), typeof(SellView),
+            new PropertyMetadata(null));
+
+    public ICommand SelectedAssetChangedCommand
     {
-        public static readonly DependencyProperty SelectedAssetChangedCommandProperty =
-            DependencyProperty.Register("SelectedAssetChangedCommand", typeof(ICommand), typeof(SellView),
-                new PropertyMetadata(null));
+        get { return (ICommand)GetValue(SelectedAssetChangedCommandProperty); }
+        set { SetValue(SelectedAssetChangedCommandProperty, value); }
+    }
 
-        public ICommand SelectedAssetChangedCommand
-        {
-            get { return (ICommand)GetValue(SelectedAssetChangedCommandProperty); }
-            set { SetValue(SelectedAssetChangedCommandProperty, value); }
-        }
+    public SellView()
+    {
+        InitializeComponent();
+    }
 
-        public SellView()
+    private void cbAssets_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if(cbAssets.SelectedItem != null)
         {
-            InitializeComponent();
-        }
-
-        private void cbAssets_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(cbAssets.SelectedItem != null)
+            if(SelectedAssetChangedCommand.CanExecute(null))
             {
-                if(SelectedAssetChangedCommand.CanExecute(null))
-                {
-                    SelectedAssetChangedCommand?.Execute(null);
-                }
+                SelectedAssetChangedCommand?.Execute(null);
             }
         }
     }

@@ -6,65 +6,64 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 
-namespace SimpleTrader.WPF.ViewModels
+namespace SimpleTrader.WPF.ViewModels;
+
+public class LoginViewModel : ViewModelBase
 {
-    public class LoginViewModel : ViewModelBase
-    {
-		private string _username = "SingletonSean";
-		public string Username
+	private string _username = "SingletonSean";
+	public string Username
+	{
+		get
 		{
-			get
-			{
-				return _username;
-			}
-			set
-			{
-				_username = value;
-				OnPropertyChanged(nameof(Username));
-                OnPropertyChanged(nameof(CanLogin));
-			}
+			return _username;
 		}
-
-        private string _password;
-        public string Password
-        {
-            get
-            {
-                return _password;
-            }
-            set
-            {
-                _password = value;
-                OnPropertyChanged(nameof(Password));
-                OnPropertyChanged(nameof(CanLogin));
-			}
-        }
-
-		public bool CanLogin => !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
-
-        public MessageViewModel ErrorMessageViewModel { get; }
-
-		public string ErrorMessage
+		set
 		{
-			set => ErrorMessageViewModel.Message = value;
+			_username = value;
+			OnPropertyChanged(nameof(Username));
+			OnPropertyChanged(nameof(CanLogin));
 		}
+	}
 
-		public ICommand LoginCommand { get; }
-		public ICommand ViewRegisterCommand { get; }
-
-		public LoginViewModel(IAuthenticator authenticator, IRenavigator loginRenavigator, IRenavigator registerRenavigator)
+	private string _password;
+	public string Password
+	{
+		get
 		{
-			ErrorMessageViewModel = new MessageViewModel();
-
-			LoginCommand = new LoginCommand(this, authenticator, loginRenavigator);
-			ViewRegisterCommand = new RenavigateCommand(registerRenavigator);
+			return _password;
 		}
+		set
+		{
+			_password = value;
+			OnPropertyChanged(nameof(Password));
+			OnPropertyChanged(nameof(CanLogin));
+		}
+	}
 
-        public override void Dispose()
-        {
-			ErrorMessageViewModel.Dispose();
+	public bool CanLogin => !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
 
-            base.Dispose();
-        }
-    }
+	public MessageViewModel ErrorMessageViewModel { get; }
+
+	public string ErrorMessage
+	{
+		set => ErrorMessageViewModel.Message = value;
+	}
+
+	public ICommand LoginCommand { get; }
+	public ICommand ViewRegisterCommand { get; }
+
+	public LoginViewModel(IAuthenticator authenticator, IRenavigator loginRenavigator, IRenavigator registerRenavigator)
+	{
+		ErrorMessageViewModel = new MessageViewModel();
+
+		LoginCommand = new LoginCommand(this, authenticator, loginRenavigator);
+		ViewRegisterCommand = new RenavigateCommand(registerRenavigator);
+	}
+
+	public override void Dispose()
+	{
+		ErrorMessageViewModel.Dispose();
+
+		base.Dispose();
+	}
 }

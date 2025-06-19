@@ -11,16 +11,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleTrader.WPF.Controls
+namespace SimpleTrader.WPF.Controls;
+
+/// <summary>
+/// Interaction logic for MajorIndexListing.xaml
+/// </summary>
+public partial class MajorIndexListing : UserControl
 {
-    /// <summary>
-    /// Interaction logic for MajorIndexListing.xaml
-    /// </summary>
-    public partial class MajorIndexListing : UserControl
+    public MajorIndexListing()
     {
-        public MajorIndexListing()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

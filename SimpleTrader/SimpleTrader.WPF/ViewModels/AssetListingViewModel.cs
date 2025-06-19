@@ -5,66 +5,65 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
-namespace SimpleTrader.WPF.ViewModels
+namespace SimpleTrader.WPF.ViewModels;
+
+public class AssetListingViewModel : ViewModelBase
 {
-    public class AssetListingViewModel : ViewModelBase
+    private readonly AssetStore _assetStore;
+    private readonly Func<IEnumerable<AssetViewModel>, IEnumerable<AssetViewModel>> _filterAssets;
+    private readonly ObservableCollection<AssetViewModel> _assets;
+
+    public IEnumerable<AssetViewModel> Assets => _assets;
+
+    public AssetListingViewModel(AssetStore assetStore) : this(assetStore, assets => assets) { }
+
+    public AssetListingViewModel(AssetStore assetStore, Func<IEnumerable<AssetViewModel>, IEnumerable<AssetViewModel>> filterAssets)
     {
-        private readonly AssetStore _assetStore;
-        private readonly Func<IEnumerable<AssetViewModel>, IEnumerable<AssetViewModel>> _filterAssets;
-        private readonly ObservableCollection<AssetViewModel> _assets;
+        _assetStore = assetStore;
+        _filterAssets = filterAssets;
+        _assets = new ObservableCollection<AssetViewModel>();
 
-        public IEnumerable<AssetViewModel> Assets => _assets;
+        _assetStore.StateChanged += AssetStore_StateChanged;
 
-        public AssetListingViewModel(AssetStore assetStore) : this(assetStore, assets => assets) { }
+        ResetAssets();
+    }
 
-        public AssetListingViewModel(AssetStore assetStore, Func<IEnumerable<AssetViewModel>, IEnumerable<AssetViewModel>> filterAssets)
+    private void ResetAssets()
+    {
+        IEnumerable<AssetViewModel> assetViewModels = _assetStore.AssetTransactions
+            .GroupBy(t => t.Asset.Symbol)
+            .Select(g => new AssetViewModel(g.Key, g.Sum(a => a.IsPurchase ? a.Shares : -a.Shares)))
+            .Where(a => a.Shares > 0)
+            .OrderByDescending(a => a.Shares);
+
+        assetViewModels = _filterAssets(assetViewModels);
+
+        DisposeAssets();
+        _assets.Clear();
+        foreach (AssetViewModel viewModel in assetViewModels)
         {
-            _assetStore = assetStore;
-            _filterAssets = filterAssets;
-            _assets = new ObservableCollection<AssetViewModel>();
-
-            _assetStore.StateChanged += AssetStore_StateChanged;
-
-            ResetAssets();
+            _assets.Add(viewModel);
         }
+    }
 
-        private void ResetAssets()
+    private void DisposeAssets()
+    {
+        foreach (AssetViewModel asset in _assets)
         {
-            IEnumerable<AssetViewModel> assetViewModels = _assetStore.AssetTransactions
-                .GroupBy(t => t.Asset.Symbol)
-                .Select(g => new AssetViewModel(g.Key, g.Sum(a => a.IsPurchase ? a.Shares : -a.Shares)))
-                .Where(a => a.Shares > 0)
-                .OrderByDescending(a => a.Shares);
-
-            assetViewModels = _filterAssets(assetViewModels);
-
-            DisposeAssets();
-            _assets.Clear();
-            foreach (AssetViewModel viewModel in assetViewModels)
-            {
-                _assets.Add(viewModel);
-            }
+            asset.Dispose();
         }
+    }
 
-        private void DisposeAssets()
-        {
-            foreach (AssetViewModel asset in _assets)
-            {
-                asset.Dispose();
-            }
-        }
+    private void AssetStore_StateChanged()
+    {
+        ResetAssets();
+    }
 
-        private void AssetStore_StateChanged()
-        {
-            ResetAssets();
-        }
+    public override void Dispose()
+    {
+        _assetStore.StateChanged -= AssetStore_StateChanged;
+        DisposeAssets();
 
-        public override void Dispose()
-        {
-            _assetStore.StateChanged -= AssetStore_StateChanged;
-            DisposeAssets();
-
-            base.Dispose();
-        }
+        base.Dispose();
     }
 }

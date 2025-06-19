@@ -3,25 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.WPF.State.Accounts
+namespace SimpleTrader.WPF.State.Accounts;
+
+public class AccountStore : IAccountStore
 {
-    public class AccountStore : IAccountStore
+    private Account _currentAccount;
+    public Account CurrentAccount
     {
-        private Account _currentAccount;
-        public Account CurrentAccount
+        get
         {
-            get
-            {
-                return _currentAccount;
-            }
-            set
-            {
-                _currentAccount = value;
-                StateChanged?.Invoke();
-            }
+            return _currentAccount;
         }
-
-        public event Action StateChanged;
-
+        set
+        {
+            _currentAccount = value;
+            StateChanged?.Invoke();
+        }
     }
+
+    public event Action StateChanged;
+
 }

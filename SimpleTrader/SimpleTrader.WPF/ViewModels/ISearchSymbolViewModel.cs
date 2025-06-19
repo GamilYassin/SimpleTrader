@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel;
 
-namespace SimpleTrader.WPF.ViewModels
+namespace SimpleTrader.WPF.ViewModels;
+
+public interface ISearchSymbolViewModel : INotifyPropertyChanged
 {
-    public interface ISearchSymbolViewModel : INotifyPropertyChanged
-    {
-        string ErrorMessage { set; }
-        string SearchResultSymbol { set; }
-        double StockPrice { set; }
-        string Symbol { get; }
-        bool CanSearchSymbol { get; }
-    }
+    string ErrorMessage { set; }
+    string SearchResultSymbol { set; }
+    double StockPrice { set; }
+    string Symbol { get; }
+    bool CanSearchSymbol { get; }
 }

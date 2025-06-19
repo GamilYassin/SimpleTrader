@@ -11,16 +11,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleTrader.WPF.Views
+namespace SimpleTrader.WPF.Views;
+
+/// <summary>
+/// Interaction logic for BuyView.xaml
+/// </summary>
+public partial class BuyView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for BuyView.xaml
-    /// </summary>
-    public partial class BuyView : UserControl
+    public BuyView()
     {
-        public BuyView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

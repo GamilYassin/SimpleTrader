@@ -7,48 +7,47 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 
-namespace SimpleTrader.WPF.ViewModels
+namespace SimpleTrader.WPF.ViewModels;
+
+public class MainViewModel : ViewModelBase
 {
-    public class MainViewModel : ViewModelBase
+    private readonly ISimpleTraderViewModelFactory _viewModelFactory;
+    private readonly INavigator _navigator;
+    private readonly IAuthenticator _authenticator;
+
+    public bool IsLoggedIn => _authenticator.IsLoggedIn;
+    public ViewModelBase CurrentViewModel => _navigator.CurrentViewModel;
+
+    public ICommand UpdateCurrentViewModelCommand { get; }
+
+    public MainViewModel(INavigator navigator, ISimpleTraderViewModelFactory viewModelFactory, IAuthenticator authenticator)
     {
-        private readonly ISimpleTraderViewModelFactory _viewModelFactory;
-        private readonly INavigator _navigator;
-        private readonly IAuthenticator _authenticator;
+        _navigator = navigator;
+        _viewModelFactory = viewModelFactory;
+        _authenticator = authenticator;
 
-        public bool IsLoggedIn => _authenticator.IsLoggedIn;
-        public ViewModelBase CurrentViewModel => _navigator.CurrentViewModel;
+        _navigator.StateChanged += Navigator_StateChanged;
+        _authenticator.StateChanged += Authenticator_StateChanged;
 
-        public ICommand UpdateCurrentViewModelCommand { get; }
+        UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
+        UpdateCurrentViewModelCommand.Execute(ViewType.Login);
+    }
 
-        public MainViewModel(INavigator navigator, ISimpleTraderViewModelFactory viewModelFactory, IAuthenticator authenticator)
-        {
-            _navigator = navigator;
-            _viewModelFactory = viewModelFactory;
-            _authenticator = authenticator;
+    private void Authenticator_StateChanged()
+    {
+        OnPropertyChanged(nameof(IsLoggedIn));
+    }
 
-            _navigator.StateChanged += Navigator_StateChanged;
-            _authenticator.StateChanged += Authenticator_StateChanged;
+    private void Navigator_StateChanged()
+    {
+        OnPropertyChanged(nameof(CurrentViewModel));
+    }
 
-            UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
-            UpdateCurrentViewModelCommand.Execute(ViewType.Login);
-        }
+    public override void Dispose()
+    {
+        _navigator.StateChanged -= Navigator_StateChanged;
+        _authenticator.StateChanged -= Authenticator_StateChanged;
 
-        private void Authenticator_StateChanged()
-        {
-            OnPropertyChanged(nameof(IsLoggedIn));
-        }
-
-        private void Navigator_StateChanged()
-        {
-            OnPropertyChanged(nameof(CurrentViewModel));
-        }
-
-        public override void Dispose()
-        {
-            _navigator.StateChanged -= Navigator_StateChanged;
-            _authenticator.StateChanged -= Authenticator_StateChanged;
-
-            base.Dispose();
-        }
+        base.Dispose();
     }
 }

@@ -8,21 +8,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.WPF.HostBuilders
-{
-    public static class AddStoresHostBuilderExtensions
-    {
-        public static IHostBuilder AddStores(this IHostBuilder host)
-        {
-            host.ConfigureServices(services =>
-            {
-                services.AddSingleton<INavigator, Navigator>();
-                services.AddSingleton<IAuthenticator, Authenticator>();
-                services.AddSingleton<IAccountStore, AccountStore>();
-                services.AddSingleton<AssetStore>();
-            });
+namespace SimpleTrader.WPF.HostBuilders;
 
-            return host;
-        }
+public static class AddStoresHostBuilderExtensions
+{
+    public static IHostBuilder AddStores(this IHostBuilder host)
+    {
+        host.ConfigureServices(services =>
+        {
+            services.AddSingleton<INavigator, Navigator>();
+            services.AddSingleton<IAuthenticator, Authenticator>();
+            services.AddSingleton<IAccountStore, AccountStore>();
+            services.AddSingleton<AssetStore>();
+        });
+
+        return host;
     }
 }

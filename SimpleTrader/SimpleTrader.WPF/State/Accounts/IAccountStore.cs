@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.WPF.State.Accounts
+namespace SimpleTrader.WPF.State.Accounts;
+
+public interface IAccountStore
 {
-    public interface IAccountStore
-    {
-        Account CurrentAccount { get; set; }
-        event Action StateChanged;
-    }
+    Account CurrentAccount { get; set; }
+    event Action StateChanged;
 }

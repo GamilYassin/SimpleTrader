@@ -4,24 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.EntityFramework
+namespace SimpleTrader.EntityFramework;
+
+public class AppDbContextFactory
 {
-    public class AppDbContextFactory
+    private readonly Action<DbContextOptionsBuilder> _configureDbContext;
+
+    public AppDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
     {
-        private readonly Action<DbContextOptionsBuilder> _configureDbContext;
+        _configureDbContext = configureDbContext;
+    }
 
-        public AppDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
-        {
-            _configureDbContext = configureDbContext;
-        }
+    public AppDbContext CreateDbContext()
+    {
+        DbContextOptionsBuilder<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>();
 
-        public AppDbContext CreateDbContext()
-        {
-            DbContextOptionsBuilder<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>();
+        _configureDbContext(options);
 
-            _configureDbContext(options);
-
-            return new AppDbContext(options.Options);
-        }
+        return new AppDbContext(options.Options);
     }
 }

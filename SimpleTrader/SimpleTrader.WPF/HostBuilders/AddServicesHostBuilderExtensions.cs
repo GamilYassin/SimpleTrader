@@ -11,26 +11,25 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.WPF.HostBuilders
+namespace SimpleTrader.WPF.HostBuilders;
+
+public static class AddServicesHostBuilderExtensions
 {
-    public static class AddServicesHostBuilderExtensions
+    public static IHostBuilder AddServices(this IHostBuilder host)
     {
-        public static IHostBuilder AddServices(this IHostBuilder host)
+        host.ConfigureServices(services =>
         {
-            host.ConfigureServices(services =>
-            {
-                services.AddSingleton<IPasswordHasher, PasswordHasher>();
+            services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
-                services.AddSingleton<IAuthenticationService, AuthenticationService>();
-                services.AddSingleton<IDataService<Account>, AccountDataService>();
-                services.AddSingleton<IAccountService, AccountDataService>();
-                services.AddSingleton<IStockPriceService, StockPriceService>();
-                services.AddSingleton<IBuyStockService, BuyStockService>();
-                services.AddSingleton<ISellStockService, SellStockService>();
-                services.AddSingleton<IMajorIndexService, MajorIndexService>();
-            });
+            services.AddSingleton<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<IDataService<Account>, AccountDataService>();
+            services.AddSingleton<IAccountService, AccountDataService>();
+            services.AddSingleton<IStockPriceService, StockPriceService>();
+            services.AddSingleton<IBuyStockService, BuyStockService>();
+            services.AddSingleton<ISellStockService, SellStockService>();
+            services.AddSingleton<IMajorIndexService, MajorIndexService>();
+        });
 
-            return host;
-        }
+        return host;
     }
 }

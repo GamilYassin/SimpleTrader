@@ -8,119 +8,118 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 
-namespace SimpleTrader.WPF.ViewModels
+namespace SimpleTrader.WPF.ViewModels;
+
+public class SellViewModel : ViewModelBase, ISearchSymbolViewModel
 {
-    public class SellViewModel : ViewModelBase, ISearchSymbolViewModel
+    public AssetListingViewModel AssetListingViewModel { get; }
+
+    private AssetViewModel _selectedAsset;
+    public AssetViewModel SelectedAsset
     {
-        public AssetListingViewModel AssetListingViewModel { get; }
-
-        private AssetViewModel _selectedAsset;
-        public AssetViewModel SelectedAsset
+        get
         {
-            get
-            {
-                return _selectedAsset;
-            }
-            set
-            {
-                _selectedAsset = value;
-                OnPropertyChanged(nameof(SelectedAsset));
-                OnPropertyChanged(nameof(Symbol));
-                OnPropertyChanged(nameof(CanSearchSymbol));
-            }
+            return _selectedAsset;
         }
-
-        public string Symbol => SelectedAsset?.Symbol;
-
-        public bool CanSearchSymbol => !string.IsNullOrEmpty(Symbol);
-
-        private string _searchResultSymbol = string.Empty;
-        public string SearchResultSymbol
+        set
         {
-            get
-            {
-                return _searchResultSymbol;
-            }
-            set
-            {
-                _searchResultSymbol = value;
-                OnPropertyChanged(nameof(SearchResultSymbol));
-            }
+            _selectedAsset = value;
+            OnPropertyChanged(nameof(SelectedAsset));
+            OnPropertyChanged(nameof(Symbol));
+            OnPropertyChanged(nameof(CanSearchSymbol));
         }
+    }
 
-        private double _stockPrice;
-        public double StockPrice
+    public string Symbol => SelectedAsset?.Symbol;
+
+    public bool CanSearchSymbol => !string.IsNullOrEmpty(Symbol);
+
+    private string _searchResultSymbol = string.Empty;
+    public string SearchResultSymbol
+    {
+        get
         {
-            get
-            {
-                return _stockPrice;
-            }
-            set
-            {
-                _stockPrice = value;
-                OnPropertyChanged(nameof(StockPrice));
-                OnPropertyChanged(nameof(TotalPrice));
-            }
+            return _searchResultSymbol;
         }
-
-        private int _sharesToSell;
-        public int SharesToSell
+        set
         {
-            get
-            {
-                return _sharesToSell;
-            }
-            set
-            {
-                _sharesToSell = value;
-                OnPropertyChanged(nameof(SharesToSell));
-                OnPropertyChanged(nameof(TotalPrice));
-                OnPropertyChanged(nameof(CanSellStock));
-            }
+            _searchResultSymbol = value;
+            OnPropertyChanged(nameof(SearchResultSymbol));
         }
+    }
 
-        public bool CanSellStock => SharesToSell > 0;
-
-        public double TotalPrice => SharesToSell * StockPrice;
-
-        public MessageViewModel ErrorMessageViewModel { get; }
-
-        public string ErrorMessage
+    private double _stockPrice;
+    public double StockPrice
+    {
+        get
         {
-            set => ErrorMessageViewModel.Message = value;
+            return _stockPrice;
         }
-
-        public MessageViewModel StatusMessageViewModel { get; }
-
-        public string StatusMessage
+        set
         {
-            set => StatusMessageViewModel.Message = value;
+            _stockPrice = value;
+            OnPropertyChanged(nameof(StockPrice));
+            OnPropertyChanged(nameof(TotalPrice));
         }
+    }
 
-        public ICommand SearchSymbolCommand { get; }
-        public ICommand SellStockCommand { get; }
-
-        public SellViewModel(AssetStore assetStore, 
-            IStockPriceService stockPriceService, 
-            IAccountStore accountStore, 
-            ISellStockService sellStockService)
+    private int _sharesToSell;
+    public int SharesToSell
+    {
+        get
         {
-            AssetListingViewModel = new AssetListingViewModel(assetStore);
-
-            SearchSymbolCommand = new SearchSymbolCommand(this, stockPriceService);
-            SellStockCommand = new SellStockCommand(this, sellStockService, accountStore);
-
-            ErrorMessageViewModel = new MessageViewModel();
-            StatusMessageViewModel = new MessageViewModel();
+            return _sharesToSell;
         }
-
-        public override void Dispose()
+        set
         {
-            AssetListingViewModel.Dispose();
-            ErrorMessageViewModel.Dispose();
-            StatusMessageViewModel.Dispose();
-
-            base.Dispose();
+            _sharesToSell = value;
+            OnPropertyChanged(nameof(SharesToSell));
+            OnPropertyChanged(nameof(TotalPrice));
+            OnPropertyChanged(nameof(CanSellStock));
         }
+    }
+
+    public bool CanSellStock => SharesToSell > 0;
+
+    public double TotalPrice => SharesToSell * StockPrice;
+
+    public MessageViewModel ErrorMessageViewModel { get; }
+
+    public string ErrorMessage
+    {
+        set => ErrorMessageViewModel.Message = value;
+    }
+
+    public MessageViewModel StatusMessageViewModel { get; }
+
+    public string StatusMessage
+    {
+        set => StatusMessageViewModel.Message = value;
+    }
+
+    public ICommand SearchSymbolCommand { get; }
+    public ICommand SellStockCommand { get; }
+
+    public SellViewModel(AssetStore assetStore, 
+        IStockPriceService stockPriceService, 
+        IAccountStore accountStore, 
+        ISellStockService sellStockService)
+    {
+        AssetListingViewModel = new AssetListingViewModel(assetStore);
+
+        SearchSymbolCommand = new SearchSymbolCommand(this, stockPriceService);
+        SellStockCommand = new SellStockCommand(this, sellStockService, accountStore);
+
+        ErrorMessageViewModel = new MessageViewModel();
+        StatusMessageViewModel = new MessageViewModel();
+    }
+
+    public override void Dispose()
+    {
+        AssetListingViewModel.Dispose();
+        ErrorMessageViewModel.Dispose();
+        StatusMessageViewModel.Dispose();
+
+        base.Dispose();
     }
 }

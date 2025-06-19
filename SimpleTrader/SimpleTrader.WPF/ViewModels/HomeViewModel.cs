@@ -3,25 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.WPF.ViewModels
+namespace SimpleTrader.WPF.ViewModels;
+
+public class HomeViewModel : ViewModelBase
 {
-    public class HomeViewModel : ViewModelBase
+    public AssetSummaryViewModel AssetSummaryViewModel { get; }
+    public MajorIndexListingViewModel MajorIndexListingViewModel { get; }
+
+    public HomeViewModel(AssetSummaryViewModel assetSummaryViewModel, MajorIndexListingViewModel majorIndexListingViewModel)
     {
-        public AssetSummaryViewModel AssetSummaryViewModel { get; }
-        public MajorIndexListingViewModel MajorIndexListingViewModel { get; }
+        AssetSummaryViewModel = assetSummaryViewModel;
+        MajorIndexListingViewModel = majorIndexListingViewModel;
+    }
 
-        public HomeViewModel(AssetSummaryViewModel assetSummaryViewModel, MajorIndexListingViewModel majorIndexListingViewModel)
-        {
-            AssetSummaryViewModel = assetSummaryViewModel;
-            MajorIndexListingViewModel = majorIndexListingViewModel;
-        }
+    public override void Dispose()
+    {
+        AssetSummaryViewModel.Dispose();
+        MajorIndexListingViewModel.Dispose();
 
-        public override void Dispose()
-        {
-            AssetSummaryViewModel.Dispose();
-            MajorIndexListingViewModel.Dispose();
-
-            base.Dispose();
-        }
+        base.Dispose();
     }
 }

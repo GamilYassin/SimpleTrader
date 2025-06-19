@@ -4,45 +4,44 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace SimpleTrader.WPF.Commands
+namespace SimpleTrader.WPF.Commands;
+
+public abstract class AsyncCommandBase : ICommand
 {
-    public abstract class AsyncCommandBase : ICommand
+    private bool _isExecuting;
+    public bool IsExecuting
     {
-        private bool _isExecuting;
-        public bool IsExecuting
+        get
         {
-            get
-            {
-                return _isExecuting;
-            }
-            set
-            {
-                _isExecuting = value;
-                OnCanExecuteChanged();
-            }
+            return _isExecuting;
         }
-
-        public event EventHandler CanExecuteChanged;
-
-        public virtual bool CanExecute(object parameter)
+        set
         {
-            return !IsExecuting;
+            _isExecuting = value;
+            OnCanExecuteChanged();
         }
+    }
 
-        public async void Execute(object parameter)
-        {
-            IsExecuting = true;
+    public event EventHandler CanExecuteChanged;
 
-            await ExecuteAsync(parameter);
+    public virtual bool CanExecute(object parameter)
+    {
+        return !IsExecuting;
+    }
 
-            IsExecuting = false;
-        }
+    public async void Execute(object parameter)
+    {
+        IsExecuting = true;
 
-        public abstract Task ExecuteAsync(object parameter);
+        await ExecuteAsync(parameter);
 
-        protected void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, new EventArgs());
-        }
+        IsExecuting = false;
+    }
+
+    public abstract Task ExecuteAsync(object parameter);
+
+    protected void OnCanExecuteChanged()
+    {
+        CanExecuteChanged?.Invoke(this, new EventArgs());
     }
 }

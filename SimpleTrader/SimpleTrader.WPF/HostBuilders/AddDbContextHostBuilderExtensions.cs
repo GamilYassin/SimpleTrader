@@ -7,22 +7,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleTrader.WPF.HostBuilders
+namespace SimpleTrader.WPF.HostBuilders;
+
+public static class AddDbContextHostBuilderExtensions
 {
-    public static class AddDbContextHostBuilderExtensions
+    public static IHostBuilder AddDbContext(this IHostBuilder host)
     {
-        public static IHostBuilder AddDbContext(this IHostBuilder host)
+        host.ConfigureServices((context, services) =>
         {
-            host.ConfigureServices((context, services) =>
-            {
-                string connectionString = context.Configuration.GetConnectionString("sqlite");
-                Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlite(connectionString);
+            string connectionString = context.Configuration.GetConnectionString("sqlite");
+            Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlite(connectionString);
 
-                services.AddDbContext<AppDbContext>(configureDbContext);
-                services.AddSingleton<AppDbContextFactory>(new AppDbContextFactory(configureDbContext));
-            });
+            services.AddDbContext<AppDbContext>(configureDbContext);
+            services.AddSingleton<AppDbContextFactory>(new AppDbContextFactory(configureDbContext));
+        });
 
-            return host;
-        }
+        return host;
     }
 }

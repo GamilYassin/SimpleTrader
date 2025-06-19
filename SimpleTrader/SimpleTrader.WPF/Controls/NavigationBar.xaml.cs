@@ -11,16 +11,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleTrader.WPF.Controls
+namespace SimpleTrader.WPF.Controls;
+
+/// <summary>
+/// Interaction logic for NavigationBar.xaml
+/// </summary>
+public partial class NavigationBar : UserControl
 {
-    /// <summary>
-    /// Interaction logic for NavigationBar.xaml
-    /// </summary>
-    public partial class NavigationBar : UserControl
+    public NavigationBar()
     {
-        public NavigationBar()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
