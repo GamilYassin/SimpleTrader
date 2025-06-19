@@ -16,7 +16,8 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<AssetTransaction>().OwnsOne(a => a.Asset);
+        modelBuilder.Entity<AssetTransaction>()
+            .OwnsOne(a => a.Asset);
 
         base.OnModelCreating(modelBuilder);
     }
