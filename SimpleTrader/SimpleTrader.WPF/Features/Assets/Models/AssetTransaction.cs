@@ -6,6 +6,8 @@ namespace SimpleTrader.WPF.Features.Assets.Models;
 
 public class AssetTransaction : EntityBase
 {
+    public required string Symbol { get; set; }
+    public decimal PricePerShare { get; set; }
     public bool IsPurchase { get; set; }
     public int Shares { get; set; }
     public DateTime DateProcessed { get; set; }
@@ -13,5 +15,4 @@ public class AssetTransaction : EntityBase
     // relations
     public Guid AccountId { get; set; }
     public virtual Account? Account { get; set; }
-    public Asset Asset { get; set; }
 }

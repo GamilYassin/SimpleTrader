@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
 using Microsoft.EntityFrameworkCore.Internal;
 using SimpleTrader.WPF.AppServices.HostBuilders;
 using SimpleTrader.WPF.Data;
+using SimpleTrader.WPF.Features.Assets.DataSeed;
 
 namespace SimpleTrader.WPF;
 
@@ -38,6 +41,9 @@ public partial class App : Application
         {
             context.Database.Migrate();
         }
+        
+        // Seed Data
+        SeedData(_host.Services);
 
         Window window = _host.Services.GetRequiredService<MainWindow>();
         window.Show();
@@ -51,5 +57,10 @@ public partial class App : Application
         _host.Dispose();
 
         base.OnExit(e);
+    }
+
+    private async void SeedData(IServiceProvider service)
+    {
+        await new AssetSeeder(service).SeedAsync();
     }
 }

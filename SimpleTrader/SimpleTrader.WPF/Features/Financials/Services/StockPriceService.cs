@@ -16,6 +16,7 @@ public class StockPriceService : IStockPriceService
 
     public async Task<double> GetPrice(string symbol)
     {
+        // TODO: Refactor this method to get price from database or from API based on customized timer 
         var uri = "stock/real-time-price/" + symbol;
 
         var stockPriceResult = await _client.GetAsync<StockPriceResult>(uri);
