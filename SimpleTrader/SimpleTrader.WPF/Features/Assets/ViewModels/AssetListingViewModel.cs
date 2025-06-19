@@ -40,7 +40,7 @@ public class AssetListingViewModel : ViewModelBase
 
         DisposeAssets();
         _assets.Clear();
-        foreach (AssetViewModel viewModel in assetViewModels)
+        foreach (var viewModel in assetViewModels)
         {
             _assets.Add(viewModel);
         }
@@ -48,7 +48,7 @@ public class AssetListingViewModel : ViewModelBase
 
     private void DisposeAssets()
     {
-        foreach (AssetViewModel asset in _assets)
+        foreach (var asset in _assets)
         {
             asset.Dispose();
         }

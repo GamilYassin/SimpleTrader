@@ -17,8 +17,8 @@ public class FinancialModelingPrepHttpClient
 
     public async Task<T> GetAsync<T>(string uri)
     {
-        HttpResponseMessage response = await _client.GetAsync($"{uri}?apikey={_apiKey}");
-        string jsonResponse = await response.Content.ReadAsStringAsync();
+        var response = await _client.GetAsync($"{uri}?apikey={_apiKey}");
+        var jsonResponse = await response.Content.ReadAsStringAsync();
 
         return JsonConvert.DeserializeObject<T>(jsonResponse);
     }

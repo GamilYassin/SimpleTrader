@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using SimpleTrader.WPF.Features.Assets.Enums;
 using SimpleTrader.WPF.Features.Assets.Models;
 using SimpleTrader.WPF.Features.Assets.Services;
 using SimpleTrader.WPF.Features.Assets.ViewModels;

@@ -16,9 +16,9 @@ public class StockPriceService : IStockPriceService
 
     public async Task<double> GetPrice(string symbol)
     {
-        string uri = "stock/real-time-price/" + symbol;
+        var uri = "stock/real-time-price/" + symbol;
 
-        StockPriceResult stockPriceResult = await _client.GetAsync<StockPriceResult>(uri);
+        var stockPriceResult = await _client.GetAsync<StockPriceResult>(uri);
 
         if(stockPriceResult.Price == 0)
         {

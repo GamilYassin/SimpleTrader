@@ -34,7 +34,7 @@ public class RegisterCommand : AsyncCommandBase
 
         try
         {
-            RegistrationResult registrationResult = await _authenticator.Register(
+            var registrationResult = await _authenticator.Register(
                 _registerViewModel.Email,
                 _registerViewModel.Username,
                 _registerViewModel.Password,

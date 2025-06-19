@@ -73,7 +73,7 @@ public class MajorIndexListingViewModel : ViewModelBase
 
     public static MajorIndexListingViewModel LoadMajorIndexViewModel(IMajorIndexService majorIndexService)
     {
-        MajorIndexListingViewModel majorIndexViewModel = new MajorIndexListingViewModel(majorIndexService);
+        var majorIndexViewModel = new MajorIndexListingViewModel(majorIndexService);
 
         majorIndexViewModel.LoadMajorIndexesCommand.Execute(null);
 

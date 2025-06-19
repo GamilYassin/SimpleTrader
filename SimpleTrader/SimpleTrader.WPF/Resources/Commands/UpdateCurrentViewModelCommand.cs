@@ -27,7 +27,7 @@ public class UpdateCurrentViewModelCommand : ICommand
     {
         if(parameter is ViewType)
         {
-            ViewType viewType = (ViewType)parameter;
+            var viewType = (ViewType)parameter;
 
             _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(viewType);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SimpleTrader.WPF.Features.Assets.Enums;
 using SimpleTrader.WPF.Features.Assets.Models;
 using SimpleTrader.WPF.Features.Assets.Services;
 using SimpleTrader.WPF.Features.Financials.Models;
@@ -17,9 +18,9 @@ public class MajorIndexService : IMajorIndexService
 
     public async Task<MajorIndex> GetMajorIndex(MajorIndexType indexType)
     {
-        string uri = "majors-indexes/" + GetUriSuffix(indexType);
+        var uri = "majors-indexes/" + GetUriSuffix(indexType);
 
-        MajorIndex majorIndex = await _client.GetAsync<MajorIndex>(uri);
+        var majorIndex = await _client.GetAsync<MajorIndex>(uri);
         majorIndex.Type = indexType;
 
         return majorIndex;

@@ -36,9 +36,9 @@ public class SellStockCommand : AsyncCommandBase
 
         try
         {
-            string symbol = _viewModel.Symbol;
-            int shares = _viewModel.SharesToSell;
-            Account? account = await _sellStockService.SellStock(_accountStore.CurrentAccount, symbol, shares);
+            var symbol = _viewModel.Symbol;
+            var shares = _viewModel.SharesToSell;
+            var account = await _sellStockService.SellStock(_accountStore.CurrentAccount, symbol, shares);
 
             _accountStore.CurrentAccount = account;
 

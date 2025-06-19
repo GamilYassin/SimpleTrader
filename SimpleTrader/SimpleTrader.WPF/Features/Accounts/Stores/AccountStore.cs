@@ -8,10 +8,7 @@ public class AccountStore : IAccountStore
     private Account? _currentAccount;
     public Account? CurrentAccount
     {
-        get
-        {
-            return _currentAccount;
-        }
+        get => _currentAccount;
         set
         {
             _currentAccount = value;
@@ -19,6 +16,6 @@ public class AccountStore : IAccountStore
         }
     }
 
-    public event Action StateChanged;
+    public event Action? StateChanged;
 
 }

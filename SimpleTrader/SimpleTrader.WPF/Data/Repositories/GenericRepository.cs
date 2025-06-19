@@ -64,7 +64,7 @@ public class GenericRepository<T>(IDbContextFactory<AppDbContext> contextFactory
     {
         try
         {
-            await using AppDbContext dbContext = await contextFactory.CreateDbContextAsync();
+            await using var dbContext = await contextFactory.CreateDbContextAsync();
             var entity = await dbContext.Set<T>()
                 .FirstOrDefaultAsync(x => x.Id == id);
             
