@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTrader.EntityFramework.Services.Common;
+namespace SimpleTrader.WPF.Data;
 
 public class NonQueryDataService<T> where T : DomainObject
 {

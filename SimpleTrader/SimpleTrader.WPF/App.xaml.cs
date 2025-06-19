@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using SimpleTrader.EntityFramework;
 using SimpleTrader.WPF.HostBuilders;
 using System.Windows;
+using SimpleTrader.WPF.Data;
 
 namespace SimpleTrader.WPF;
 

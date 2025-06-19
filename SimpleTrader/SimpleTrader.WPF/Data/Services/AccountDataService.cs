@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTrader.EntityFramework.Services;
+namespace SimpleTrader.WPF.Data;
 
 public class AccountDataService : IAccountService
 {

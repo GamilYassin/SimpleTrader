@@ -5,7 +5,7 @@ using SimpleTrader.Domain.Models;
 using SimpleTrader.Domain.Services;
 using SimpleTrader.Domain.Services.AuthenticationServices;
 using SimpleTrader.Domain.Services.TransactionServices;
-using SimpleTrader.EntityFramework.Services;
+using SimpleTrader.WPF.Data;
 using SimpleTrader.FinancialModelingPrepAPI.Services;
 using System;
 using System.Collections.Generic;

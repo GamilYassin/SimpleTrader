@@ -1,11 +1,7 @@
-﻿using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SimpleTrader.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace SimpleTrader.EntityFramework;
+namespace SimpleTrader.WPF.Data;
 
 public class AppDbContext : DbContext
 {
