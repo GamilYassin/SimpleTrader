@@ -38,7 +38,7 @@ namespace SimpleTrader.Domain.Tests.Services.TransactionServices
                 () => _buyStockService.BuyStock(It.IsAny<Account>(), expectedInvalidSymbol, It.IsAny<int>()));
             string actualInvalidSymbol = excpetion.Symbol;
 
-            Assert.AreEqual(expectedInvalidSymbol, actualInvalidSymbol);
+            Assert.Equals(expectedInvalidSymbol, actualInvalidSymbol);
         }
 
         [Test]
@@ -63,8 +63,8 @@ namespace SimpleTrader.Domain.Tests.Services.TransactionServices
             double actualAccountBalance = exception.AccountBalance;
             double actualRequiredBalance = exception.RequiredBalance;
 
-            Assert.AreEqual(expectedAccountBalance, actualAccountBalance);
-            Assert.AreEqual(expectedRequiredBalance, actualRequiredBalance);
+            Assert.Equals(expectedAccountBalance, actualAccountBalance);
+            Assert.Equals(expectedRequiredBalance, actualRequiredBalance);
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace SimpleTrader.Domain.Tests.Services.TransactionServices
             buyer = await _buyStockService.BuyStock(buyer, It.IsAny<string>(), 1);
             int actualTransactionCount = buyer.AssetTransactions.Count();
 
-            Assert.AreEqual(expectedTransactionCount, actualTransactionCount);
+            Assert.Equals(expectedTransactionCount, actualTransactionCount);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace SimpleTrader.Domain.Tests.Services.TransactionServices
             buyer = await _buyStockService.BuyStock(buyer, It.IsAny<string>(), 2);
             double actualBalance = buyer.Balance;
 
-            Assert.AreEqual(expectedBalance, actualBalance);
+            Assert.Equals(expectedBalance, actualBalance);
         }
 
         private Account CreateAccount(double balance)

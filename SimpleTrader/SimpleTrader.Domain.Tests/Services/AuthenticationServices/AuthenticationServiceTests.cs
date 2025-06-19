@@ -38,7 +38,7 @@ namespace SimpleTrader.Domain.Tests.Services.AuthenticationServices
             Account account = await _authenticationService.Login(expectedUsername, password);
 
             string actualUsername = account.AccountHolder.Username;
-            Assert.AreEqual(expectedUsername, actualUsername);
+            Assert.Equals(expectedUsername, actualUsername);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace SimpleTrader.Domain.Tests.Services.AuthenticationServices
             InvalidPasswordException exception = Assert.ThrowsAsync<InvalidPasswordException>(() => _authenticationService.Login(expectedUsername, password));
 
             string actualUsername = exception.Username;
-            Assert.AreEqual(expectedUsername, actualUsername);
+            Assert.Equals(expectedUsername, actualUsername);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace SimpleTrader.Domain.Tests.Services.AuthenticationServices
             UserNotFoundException exception = Assert.ThrowsAsync<UserNotFoundException>(() => _authenticationService.Login(expectedUsername, password));
 
             string actualUsername = exception.Username;
-            Assert.AreEqual(expectedUsername, actualUsername);
+            Assert.Equals(expectedUsername, actualUsername);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace SimpleTrader.Domain.Tests.Services.AuthenticationServices
 
             RegistrationResult actual = await _authenticationService.Register(It.IsAny<string>(), It.IsAny<string>(), password, confirmPassword);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equals(expected, actual);
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace SimpleTrader.Domain.Tests.Services.AuthenticationServices
 
             RegistrationResult actual = await _authenticationService.Register(email, It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>());
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equals(expected, actual);
         }
 
         [Test]
@@ -101,7 +101,7 @@ namespace SimpleTrader.Domain.Tests.Services.AuthenticationServices
 
             RegistrationResult actual = await _authenticationService.Register(It.IsAny<string>(), username, It.IsAny<string>(), It.IsAny<string>());
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equals(expected, actual);
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace SimpleTrader.Domain.Tests.Services.AuthenticationServices
 
             RegistrationResult actual = await _authenticationService.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>());
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equals(expected, actual);
         }
     }
 }
