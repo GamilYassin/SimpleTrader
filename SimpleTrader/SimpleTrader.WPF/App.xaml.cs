@@ -1,11 +1,15 @@
-﻿using System;
+﻿#region
+
+using System;
+using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Windows;
 using SimpleTrader.WPF.AppServices.HostBuilders;
 using SimpleTrader.WPF.Data;
 using SimpleTrader.WPF.Features.Assets.DataSeed;
+
+#endregion
 
 namespace SimpleTrader.WPF;
 
@@ -35,11 +39,11 @@ public partial class App : Application
         _host.Start();
 
         var contextFactory = _host.Services.GetRequiredService<IDbContextFactory<AppDbContext>>();
-        using(var context = contextFactory.CreateDbContext())
+        using (var context = contextFactory.CreateDbContext())
         {
             context.Database.Migrate();
         }
-        
+
         // Seed Data
         SeedData(_host.Services);
 
