@@ -29,7 +29,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\FieldOps\FieldOps.Kernel\FieldOps.Kernel.csproj" />
     <ProjectReference Include="..\SimpleTrader.EntityFramework\SimpleTrader.EntityFramework.csproj" />
-    <ProjectReference Include="..\SimpleTrader.FinancialModelingPrepAPI\SimpleTrader.FinancialModelingPrepAPI.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\login-background.jpg">
