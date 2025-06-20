@@ -14,8 +14,8 @@ namespace SimpleTrader.WPF.Features.Assets.Views;
 /// </summary>
 public partial class BuyView : UserControl
 {
-    BuyViewModel _viewModel;
-    
+    private BuyViewModel _viewModel;
+
     public BuyView(IServiceProvider service)
     {
         InitializeComponent();
