@@ -7,10 +7,21 @@
     x:Class="SimpleTrader.WPF.Features.Home.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:SimpleTrader.WPF.Features.Home.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid>
-        <TextBlock Text="This is Main Window !!" />
-    </Grid>
+    <TabControl Style="{StaticResource MaterialDesignFilledTabControl}" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+        <TabItem Header="Home">
+            <TextBlock Margin="8" Text="Default Tab 1" />
+        </TabItem>
+        <TabItem Header="Portfolio">
+            <TextBlock Margin="8" Text="Default Tab 2" />
+        </TabItem>
+        <TabItem Header="Buy">
+            <TextBlock Margin="8" Text="Default Tab 1" />
+        </TabItem>
+        <TabItem Header="Sell">
+            <TextBlock Margin="8" Text="Default Tab 2" />
+        </TabItem>
+    </TabControl>
 </Window>
