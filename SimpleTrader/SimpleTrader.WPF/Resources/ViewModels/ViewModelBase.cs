@@ -10,4 +10,16 @@ public abstract partial class ViewModelBase(IServiceProvider service) : Observab
 {
     protected IMessenger  Messenger = service.GetRequiredService<IMessenger>();
     public abstract Task InitializeAsync();
+    
+    protected bool ValidateAll()
+    {
+        ValidateAllProperties();
+
+        if (HasErrors)
+        {
+            return false;
+        }
+
+        return !HasErrors;
+    }
 }

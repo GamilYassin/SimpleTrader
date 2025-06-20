@@ -9,6 +9,10 @@ public static partial class ModelBuilderExtensions
     {
         modelBuilder.Entity<Account>(entity =>
         {
+            entity.Property(c => c.Name)
+                .IsRequired()
+                .HasMaxLength(100);
+            
             entity.Property(c => c.CreatedAt)
                 .ValueGeneratedOnAdd();
             

@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 using MaterialDesignThemes.Wpf;
+using SimpleTrader.WPF.Features.Accounts.Views;
 using SimpleTrader.WPF.Features.Home.ViewModels;
 using SimpleTrader.WPF.Features.Users.Views;
 
@@ -27,6 +28,10 @@ public partial class MainWindow : Window
     {
         await _viewModel.InitializeAsync();
         await ShowLoginOverlay();
+        
+        // AccountList
+        var accountListView = new AccountListView(_service);
+        AccountListPresenter.Content = accountListView;
     }
     
     private async Task ShowLoginOverlay()

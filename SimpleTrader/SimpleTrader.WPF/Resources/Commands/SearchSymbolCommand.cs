@@ -1,10 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading.Tasks;
-using SimpleTrader.WPF.AppServices.Exceptions;
-using SimpleTrader.WPF.Features.Financials.Services;
-
-namespace SimpleTrader.WPF.Resources.Commands;
+﻿namespace SimpleTrader.WPF.Resources.Commands;
 
 public class SearchSymbolCommand // : AsyncCommandBase
 {

@@ -36,6 +36,11 @@ namespace SimpleTrader.WPF.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("TEXT");

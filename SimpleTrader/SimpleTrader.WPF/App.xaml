@@ -29,6 +29,7 @@
 
                 <ResourceDictionary Source="Resources/Styles/Common.xaml" />
                 <ResourceDictionary Source="Resources/Styles/NavigationBar.xaml" />
+                <ResourceDictionary Source="Resources/Styles/DataGridStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />

@@ -5,13 +5,10 @@ using FieldOps.Kernel.Functional;
 using FieldOps.Kernel.PasswordService;
 using Microsoft.Extensions.DependencyInjection;
 // using Microsoft.AspNet.Identity;
-using SimpleTrader.WPF.Features.Accounts.Models;
-using SimpleTrader.WPF.Features.Accounts.Services;
 using SimpleTrader.WPF.Features.Users.DTOs;
 using SimpleTrader.WPF.Features.Users.Enums;
 using SimpleTrader.WPF.Features.Users.Models;
 using SimpleTrader.WPF.Resources.Messages;
-using Throw;
 
 namespace SimpleTrader.WPF.Features.Users.Services;
 

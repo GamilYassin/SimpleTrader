@@ -1,11 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading.Tasks;
-using SimpleTrader.WPF.AppServices.Exceptions;
-using SimpleTrader.WPF.Features.Accounts.Stores;
-using SimpleTrader.WPF.Features.Assets.Services;
-
-namespace SimpleTrader.WPF.Resources.Commands;
+﻿namespace SimpleTrader.WPF.Resources.Commands;
 
 public class SellStockCommand // : AsyncCommandBase
 {

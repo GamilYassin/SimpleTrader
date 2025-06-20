@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FieldOps.Kernel.Functional;
 using SimpleTrader.WPF.Data.Repositories;
-using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Users.Models;
 
 namespace SimpleTrader.WPF.Features.Users.Services;

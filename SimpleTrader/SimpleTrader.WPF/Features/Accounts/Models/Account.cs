@@ -8,6 +8,7 @@ namespace SimpleTrader.WPF.Features.Accounts.Models;
 
 public class Account : EntityBase
 {
+    public required string Name { get; set; }
     public decimal Balance { get; set; }
     public Guid AccountHolderId { get; set; }
     public virtual User? AccountHolder { get; set; }

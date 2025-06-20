@@ -15,6 +15,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:SimpleTrader.WPF.Features.Home.ViewModels"
     xmlns:views="clr-namespace:SimpleTrader.WPF.Features.Users.Views"
+    xmlns:views1="clr-namespace:SimpleTrader.WPF.Features.Accounts.Views"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <materialDesign:DialogHost Identifier="RootDialog" x:Name="DialogHostLogIn">
@@ -58,7 +59,7 @@
                     VerticalAlignment="Center" />
 
                 <TextBlock
-                    FontSize="19"
+                    FontSize="12"
                     Grid.Column="3"
                     HorizontalAlignment="Right"
                     Margin="5"
@@ -70,7 +71,7 @@
                 Style="{StaticResource MaterialDesignFilledTabControl}"
                 materialDesign:ColorZoneAssist.Mode="PrimaryDark">
                 <TabItem Header="Account">
-                    <TextBlock Margin="8" Text="Default Tab 1" />
+                    <ContentPresenter Margin="10" x:Name="AccountListPresenter" />
                 </TabItem>
                 <TabItem Header="Summary">
                     <TextBlock Margin="8" Text="Default Tab 1" />

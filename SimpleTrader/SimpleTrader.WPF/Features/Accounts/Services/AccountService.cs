@@ -8,6 +8,7 @@ using SimpleTrader.WPF.Data;
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Assets.Models;
+using SimpleTrader.WPF.Features.Users.Models;
 
 namespace SimpleTrader.WPF.Features.Accounts.Services;
 
@@ -48,5 +49,29 @@ public class AccountService(IDbContextFactory<AppDbContext> contextFactory)
             .SumAsync(a => a.IsPurchase 
                 ? a.Shares // If purchased => add to count otherwise reduce 
                 : -a.Shares);
+    }
+
+    public async Task<IEnumerable<Account>> GetAccountsByUserAsync(User? user)
+    {
+        if (user == null)
+            return [];
+        
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        var entities =  await context.Set<Account>()
+            .Include(x => x.AccountHolder)
+            .Include(x => x.AssetTransactions)
+            .AsNoTracking()
+            .Where(e => e.AccountHolderId == user.Id)
+            .ToListAsync();
+        return entities;
+    }
+
+    public bool IsAccountNameUnique(string name)
+    {
+        using var context = _contextFactory.CreateDbContext();
+        var entity = context.Set<Account>()
+            .AsNoTracking()
+            .FirstOrDefault(e => e.Name.ToLower() == name.ToLower());
+        return entity == null;
     }
 }

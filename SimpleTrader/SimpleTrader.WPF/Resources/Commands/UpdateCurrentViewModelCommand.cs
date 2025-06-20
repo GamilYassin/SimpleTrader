@@ -1,9 +1,4 @@
-﻿using System;
-using System.Windows.Input;
-using SimpleTrader.WPF.AppServices.Navigation;
-using SimpleTrader.WPF.AppServices.ViewModelFactories;
-
-namespace SimpleTrader.WPF.Resources.Commands;
+﻿namespace SimpleTrader.WPF.Resources.Commands;
 
 // public class UpdateCurrentViewModelCommand : ICommand
 // {

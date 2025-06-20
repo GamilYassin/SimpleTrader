@@ -1,6 +1,4 @@
-﻿using SimpleTrader.WPF.AppServices.Navigation;
-
-namespace SimpleTrader.WPF.AppServices.ViewModelFactories;
+﻿namespace SimpleTrader.WPF.AppServices.ViewModelFactories;
 
 // public interface ISimpleTraderViewModelFactory
 // {

@@ -60,15 +60,5 @@ public partial class LoginViewModel(IServiceProvider service) : ViewModelBase(se
         return Task.CompletedTask;
     }
     
-    private bool ValidateAll()
-    {
-        ValidateAllProperties();
-
-        if (HasErrors)
-        {
-            return false;
-        }
-
-        return !HasErrors;
-    }
+    
 }

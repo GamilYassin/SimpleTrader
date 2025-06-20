@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using FieldOps.Kernel.Functional;
 using SimpleTrader.WPF.AppServices.Exceptions;
-using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Users.DTOs;
 using SimpleTrader.WPF.Features.Users.Enums;
 using SimpleTrader.WPF.Features.Users.Models;

@@ -1,0 +1,68 @@
+﻿<UserControl
+    Loaded="AccountCreateView_OnLoaded"
+    d:DataContext="{d:DesignInstance Type=viewModels:AccountCreateViewModel,
+                                     IsDesignTimeCreatable=False}"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d"
+    x:Class="SimpleTrader.WPF.Features.Accounts.Views.AccountCreateView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SimpleTrader.WPF.Features.Accounts.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:SimpleTrader.WPF.Features.Accounts.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Orientation="Vertical">
+        <TextBlock
+            FontSize="24"
+            FontWeight="SemiBold"
+            HorizontalAlignment="Center"
+            Margin="20"
+            Text="New Account"
+            VerticalAlignment="Center" />
+
+        <TextBox
+            Margin="10"
+            Padding="10"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            Text="{Binding AccountName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+            VerticalAlignment="Center"
+            materialDesign:HintAssist.Hint="Account Name" />
+
+        <TextBox
+            Margin="10"
+            Padding="10"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            Text="{Binding StartBalance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+            VerticalAlignment="Center"
+            materialDesign:HintAssist.Hint="Starting Balance" />
+
+        <Grid HorizontalAlignment="Stretch" Margin="0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Command="{Binding CreateAccountCommand}"
+                Content="Create Account"
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                Margin="5"
+                Style="{StaticResource MaterialDesignPaperDarkButton}"
+                ToolTip="Create Account" />
+
+            <Button
+                Click="CloseButton_OnClick"
+                Content="Cancel and Close"
+                Grid.Column="1"
+                Margin="5"
+                Style="{StaticResource MaterialDesignPaperLightButton}"
+                ToolTip="Cancel and Close"
+                materialDesign:HintAssist.HelperText="Sign up if you do not have account"
+                x:Name="CloseButton" />
+
+        </Grid>
+    </StackPanel>
+</UserControl>

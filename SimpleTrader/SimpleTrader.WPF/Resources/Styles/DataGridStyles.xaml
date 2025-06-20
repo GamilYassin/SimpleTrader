@@ -1,0 +1,23 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style
+        BasedOn="{StaticResource MaterialDesignDataGrid}"
+        TargetType="DataGrid"
+        x:Key="ListViewDataGridStyle">
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="CanUserDeleteRows" Value="False" />
+        <Setter Property="CanUserResizeColumns" Value="True" />
+        <Setter Property="CanUserReorderColumns" Value="True" />
+        <Setter Property="CanUserResizeRows" Value="True" />
+        <Setter Property="CanUserSortColumns" Value="True" />
+        <Setter Property="IsTextSearchEnabled" Value="True" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="SelectionMode" Value="Extended" />
+        <Setter Property="SelectionUnit" Value="FullRow" />
+        <Setter Property="materialDesign:DataGridAssist.CellPadding" Value="5" />
+        <Setter Property="RowDetailsVisibilityMode" Value="Collapsed" />
+    </Style>
+</ResourceDictionary>
