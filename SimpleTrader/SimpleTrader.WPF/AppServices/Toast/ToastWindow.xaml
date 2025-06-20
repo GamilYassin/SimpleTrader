@@ -1,0 +1,34 @@
+<Window
+    AllowsTransparency="True"
+    Background="Transparent"
+    Loaded="ToastWindow_Loaded"
+    MouseDown="ToastWindow_MouseDown"
+    ShowInTaskbar="False"
+    SizeToContent="WidthAndHeight"
+    Title="Toast"
+    Topmost="True"
+    WindowStyle="None"
+    mc:Ignorable="d"
+    x:Class="SimpleTrader.WPF.AppServices.Toast.ToastWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border
+        Background="#333333"
+        BorderBrush="#555555"
+        BorderThickness="1"
+        CornerRadius="8"
+        Margin="10"
+        MaxWidth="350"
+        Padding="15"
+        x:Name="ToastBorder">
+        <TextBlock
+            FontSize="14"
+            FontWeight="SemiBold"
+            Foreground="White"
+            Text="This is a toast message."
+            TextWrapping="Wrap"
+            x:Name="MessageTextBlock" />
+    </Border>
+</Window>
