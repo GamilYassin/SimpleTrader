@@ -1,5 +1,6 @@
 ﻿<Window
     Height="450"
+    Style="{StaticResource MaterialDesignWindow}"
     Title="MainWindow"
     Width="800"
     mc:Ignorable="d"
