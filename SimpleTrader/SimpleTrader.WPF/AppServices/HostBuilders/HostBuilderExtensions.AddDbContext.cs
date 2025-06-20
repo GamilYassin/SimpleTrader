@@ -6,7 +6,7 @@ using SimpleTrader.WPF.Data;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;
 
-public static class AddDbContextHostBuilderExtensions
+public static partial class HostBuilderExtensions
 {
     public static IHostBuilder AddDbContext(this IHostBuilder host)
     {

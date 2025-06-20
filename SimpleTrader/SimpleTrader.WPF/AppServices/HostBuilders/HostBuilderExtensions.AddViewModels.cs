@@ -8,7 +8,7 @@ using SimpleTrader.WPF.Features.Users.Stores;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;
 
-public static class AddViewModelsHostBuilderExtensions
+public static partial class HostBuilderExtensions
 {
     public static IHostBuilder AddViewModels(this IHostBuilder host)
     {

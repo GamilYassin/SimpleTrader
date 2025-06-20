@@ -5,7 +5,7 @@ using SimpleTrader.WPF.Features.Home.Views;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;
 
-public static class AddViewsHostBuilderExtensions
+public static partial class HostBuilderExtensions
 {
     public static IHostBuilder AddViews(this IHostBuilder host)
     {

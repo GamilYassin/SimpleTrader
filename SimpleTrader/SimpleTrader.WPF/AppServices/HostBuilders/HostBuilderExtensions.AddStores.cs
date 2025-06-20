@@ -7,7 +7,7 @@ using SimpleTrader.WPF.Features.Users.Stores;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;
 
-public static class AddStoresHostBuilderExtensions
+public static partial class HostBuilderExtensions
 {
     public static IHostBuilder AddStores(this IHostBuilder host)
     {

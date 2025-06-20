@@ -10,7 +10,7 @@ using SimpleTrader.WPF.Features.Users.Services;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;
 
-public static class AddServicesHostBuilderExtensions
+public static partial class HostBuilderExtensions
 {
     public static IHostBuilder AddServices(this IHostBuilder host)
     {

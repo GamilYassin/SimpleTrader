@@ -6,7 +6,7 @@ using SimpleTrader.WPF.Features.Financials.Models;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;
 
-public static class AddFinanceAPIHostBuilderExtensions
+public static partial class HostBuilderExtensions
 {
     public static IHostBuilder AddFinanceAPI(this IHostBuilder host)
     {

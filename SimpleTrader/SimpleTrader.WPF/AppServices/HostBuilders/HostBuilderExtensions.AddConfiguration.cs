@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;
 
-public static class AddConfigurationHostBuilderExtensions
+public static partial class HostBuilderExtensions
 {
     public static IHostBuilder AddConfiguration(this IHostBuilder host)
     {
