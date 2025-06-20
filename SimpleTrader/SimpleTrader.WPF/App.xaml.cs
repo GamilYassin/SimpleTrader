@@ -37,6 +37,7 @@ public partial class App : Application
     public static IHostBuilder CreateHostBuilder(string[] args = null)
     {
         return Host.CreateDefaultBuilder(args)
+            .AddLogger()
             .AddConfiguration()
             .AddFinanceAPI()
             .AddDbContext()
