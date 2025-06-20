@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using MaterialDesignThemes.Wpf;
 using SimpleTrader.WPF.Features.Accounts.Views;
+using SimpleTrader.WPF.Features.Assets.Views;
 using SimpleTrader.WPF.Features.Home.ViewModels;
 using SimpleTrader.WPF.Features.Users.Views;
 
@@ -32,6 +33,10 @@ public partial class MainWindow : Window
         // AccountList
         var accountListView = new AccountListView(_service);
         AccountListPresenter.Content = accountListView;
+        
+        // Portfolio
+        var portfolioView = new PortfolioView(_service);
+        PortfolioPresenter.Content = portfolioView;
     }
     
     private async Task ShowLoginOverlay()

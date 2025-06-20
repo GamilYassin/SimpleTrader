@@ -33,6 +33,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
+            <BooleanToVisibilityConverter x:Key="BoolToVis" />
             <!-- <converters:EnumDisplayNameConverter x:Key="EnumDisplayNameConverter" /> -->
 
             <!-- <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}"> -->

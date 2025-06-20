@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
@@ -40,7 +41,7 @@ public partial class MainWindowViewModel : ViewModelBase //, IRecipient<LoggedIn
 
         var accountName = _accountService.CurrentAccount == null 
             ? string.Empty 
-            : $"[{_accountService.CurrentAccount.Name}]";
+            : $"[{_accountService.CurrentAccount.Name} - {_accountService.CurrentAccount.Balance.ToString("C", CultureInfo.GetCultureInfo("en-US"))}]";
         UserName = $"Welcome {userName} {accountName}";
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using SimpleTrader.WPF.Data;
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Features.Accounts.Models;
+using SimpleTrader.WPF.Features.Assets.DTOs;
 using SimpleTrader.WPF.Features.Assets.Models;
 using SimpleTrader.WPF.Features.Users.Models;
 
@@ -74,4 +75,45 @@ public class AccountService(IDbContextFactory<AppDbContext> contextFactory)
             .FirstOrDefault(e => e.Name.ToLower() == name.ToLower());
         return entity == null;
     }
+
+    public async Task<IEnumerable<AccountAssetDto>> GetAccountAssetsAsync(Account? account)
+    {
+        if (account == null)
+            return [];
+        
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        var transactions = await context.Set<AssetTransaction>()
+            .AsNoTracking()
+            .Where(e => e.AccountId == account.Id)
+            .ToListAsync();
+
+        var assets = await context.Set<Asset>()
+            .AsNoTracking()
+            .Distinct()
+            .ToListAsync();
+
+        var result = transactions
+            .GroupBy(t => t.Symbol)
+            .Select(g =>
+            {
+                var totalPurchasedShares = g.Where(t => t.IsPurchase).Sum(t => t.Shares);
+                var totalPurchaseCost = g.Where(t => t.IsPurchase).Sum(t => t.PricePerShare * t.Shares);
+                var netShares = g.Sum(t => t.IsPurchase ? t.Shares : -t.Shares);
+
+                return new AccountAssetDto
+                {
+                    Symbol = g.Key,
+                    CompanyName = assets.FirstOrDefault(s => s.Symbol == g.Key)?.CompanyName ?? string.Empty,
+                    Shares = netShares,
+                    AveragePricePerShare = totalPurchasedShares == 0
+                        ? 0
+                        : totalPurchaseCost / totalPurchasedShares
+                };
+            })
+            .Where(dto => dto.Shares > 0) // filter out sold-out positions
+            .ToList();
+
+        return result;
+    }
+
 }
