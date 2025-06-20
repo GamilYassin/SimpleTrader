@@ -41,6 +41,10 @@ public partial class MainWindow : Window
         // Buy Asset
         var buyView = new BuyView(_service);
         BuyPresenter.Content = buyView;
+        
+        // Assets
+        var assetsView = new AssetsListView(_service);
+        AssetsPresenter.Content = assetsView;
     }
     
     private async Task ShowLoginOverlay()

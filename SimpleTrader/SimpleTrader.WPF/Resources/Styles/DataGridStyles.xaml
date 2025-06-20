@@ -17,7 +17,7 @@
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="SelectionMode" Value="Extended" />
         <Setter Property="SelectionUnit" Value="FullRow" />
-        <Setter Property="materialDesign:DataGridAssist.CellPadding" Value="5" />
+        <Setter Property="materialDesign:DataGridAssist.CellPadding" Value="10" />
         <Setter Property="RowDetailsVisibilityMode" Value="Collapsed" />
     </Style>
 </ResourceDictionary>

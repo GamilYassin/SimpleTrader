@@ -80,6 +80,9 @@
                 <TabItem Header="Sell">
                     <TextBlock Margin="8" Text="Default Tab 2" />
                 </TabItem>
+                <TabItem Header="Assets">
+                    <ContentPresenter Margin="10" x:Name="AssetsPresenter" />
+                </TabItem>
                 <TabItem Header="User">
                     <TextBlock Margin="8" Text="Default Tab 2" />
                 </TabItem>

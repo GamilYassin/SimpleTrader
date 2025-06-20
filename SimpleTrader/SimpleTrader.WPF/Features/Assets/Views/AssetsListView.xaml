@@ -1,0 +1,50 @@
+﻿<UserControl
+    Loaded="AssetsListView_OnLoaded"
+    d:DataContext="{d:DesignInstance Type=viewModels:AssetsListViewModel,
+                                     IsDesignTimeCreatable=False}"
+    d:DesignHeight="600"
+    d:DesignWidth="600"
+    mc:Ignorable="d"
+    x:Class="SimpleTrader.WPF.Features.Assets.Views.AssetsListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SimpleTrader.WPF.Features.Assets.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:SimpleTrader.WPF.Features.Assets.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                FontSize="32"
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                Margin="10"
+                Text="Assets List" />
+
+            <DataGrid
+                Grid.Row="1"
+                ItemsSource="{Binding Assets}"
+                Margin="10"
+                Style="{StaticResource ListViewDataGridStyle}">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="No Record Found" Width="400" />
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <materialDesign:DataGridTextColumn Binding="{Binding CompanyName}" Header="Company Name" />
+                    <materialDesign:DataGridTextColumn Binding="{Binding Symbol}" Header="Symbol" />
+                    <materialDesign:DataGridTextColumn Binding="{Binding PricePerShare, StringFormat={}{0:C}, TargetNullValue=$0.00}" Header="Price Per Share" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
