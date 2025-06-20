@@ -9,8 +9,8 @@ namespace SimpleTrader.WPF.Resources.ViewModels;
 
 public abstract partial class ViewModelBase(IServiceProvider service) : ObservableValidator
 {
-    protected IMessenger  Messenger = service.GetRequiredService<IMessenger>();
-    protected IToastService ToastService = service.GetRequiredService<IToastService>();
+    protected readonly IMessenger Messenger = service.GetRequiredService<IMessenger>();
+    protected readonly IToastService ToastService = service.GetRequiredService<IToastService>();
     
     public abstract Task InitializeAsync();
     
