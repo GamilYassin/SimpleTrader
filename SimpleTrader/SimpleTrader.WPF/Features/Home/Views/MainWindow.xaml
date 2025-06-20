@@ -5,12 +5,15 @@
     Title="MainWindow"
     Width="800"
     WindowStartupLocation="CenterScreen"
+    d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel,
+                                     IsDesignTimeCreatable=False}"
     mc:Ignorable="d"
     x:Class="SimpleTrader.WPF.Features.Home.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:SimpleTrader.WPF.Features.Home.ViewModels"
     xmlns:views="clr-namespace:SimpleTrader.WPF.Features.Users.Views"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -52,7 +55,6 @@
                 <TextBlock
                     Grid.Column="2"
                     HorizontalAlignment="Stretch"
-                    Text=""
                     VerticalAlignment="Center" />
 
                 <TextBlock
@@ -60,7 +62,7 @@
                     Grid.Column="3"
                     HorizontalAlignment="Right"
                     Margin="5"
-                    Text="Welcome User!"
+                    Text="{Binding UserName}"
                     VerticalAlignment="Center" />
             </Grid>
             <TabControl

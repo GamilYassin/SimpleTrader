@@ -8,9 +8,6 @@ namespace SimpleTrader.WPF.Features.Accounts.Services;
 
 public interface IAccountService : IRepository<Account>
 {
-    Task<Validation<Account>> GetByUserNameAsync(string username);
-    Task<Validation<Account>> GetByEmailAsync(string email);
-    Task<bool> IsEmailExistsAsync(string email);
-    Task<bool> IsUserNameExistsAsync(string username);
+    Account? CurrentAccount { get; set; }
     Task<int> GetSharesCountAsync(Account account, Asset asset);
 }

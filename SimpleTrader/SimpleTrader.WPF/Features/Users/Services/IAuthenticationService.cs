@@ -5,11 +5,15 @@ using SimpleTrader.WPF.AppServices.Exceptions;
 using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Users.DTOs;
 using SimpleTrader.WPF.Features.Users.Enums;
+using SimpleTrader.WPF.Features.Users.Models;
 
 namespace SimpleTrader.WPF.Features.Users.Services;
 
 public interface IAuthenticationService
 {
+    User? CurrentUser { get; }
+    bool IsAuthenticated { get; }
+    
     /// <summary>
     /// Register a new user.
     /// </summary>
@@ -27,5 +31,5 @@ public interface IAuthenticationService
     /// <exception cref="UserNotFoundException">Thrown if the user does not exist.</exception>
     /// <exception cref="InvalidPasswordException">Thrown if the password is invalid.</exception>
     /// <exception cref="Exception">Thrown if the login fails.</exception>
-    Task<Validation<Account>> LoginAsync(string username, string password);
+    Task<Validation<User>> LoginAsync(string username, string password);
 }

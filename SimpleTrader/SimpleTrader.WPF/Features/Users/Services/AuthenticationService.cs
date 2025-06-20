@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Messaging;
 using FieldOps.Kernel.Functional;
 using FieldOps.Kernel.PasswordService;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,28 +10,35 @@ using SimpleTrader.WPF.Features.Accounts.Services;
 using SimpleTrader.WPF.Features.Users.DTOs;
 using SimpleTrader.WPF.Features.Users.Enums;
 using SimpleTrader.WPF.Features.Users.Models;
+using SimpleTrader.WPF.Resources.Messages;
 using Throw;
 
 namespace SimpleTrader.WPF.Features.Users.Services;
 
 public class AuthenticationService(IServiceProvider service) : IAuthenticationService
 {
-    private readonly IAccountService _accountService = service.GetRequiredService<IAccountService>();
+    private readonly IUserService _userService = service.GetRequiredService<IUserService>();
     private readonly IPasswordHasher _passwordHasher = service.GetRequiredService<IPasswordHasher>();
-    
-    public async Task<Validation<Account>> LoginAsync(string username, string password)
+    private readonly IMessenger _messenger = service.GetRequiredService<IMessenger>();
+
+    public async Task<Validation<User>> LoginAsync(string username, string password)
     {
-        var storedAccount = await _accountService.GetByUserNameAsync(username);
-        if (storedAccount.IsFail)
-            return storedAccount;
+        var userResult = await _userService.GetByUserNameAsync(username);
+        if (userResult.IsFail)
+            return userResult;
         
-        var passwordResult = _passwordHasher.VerifyHashedPassword( storedAccount.Value!.AccountHolder!.PasswordHash, password);
-        passwordResult.Throw()
-            .IfNotEquals(PasswordVerificationResult.Success);
-        return passwordResult ==  PasswordVerificationResult.Success
-            ? storedAccount
-            : Invalid<Account>("Either Username or password is incorrect");
+        var passwordResult = _passwordHasher.VerifyHashedPassword(userResult.Value!.PasswordHash, password);
+
+        if (passwordResult != PasswordVerificationResult.Success)
+            return Invalid<User>("Either Username or password is incorrect");
+
+        CurrentUser = userResult.Value;
+        _messenger.Send(new LoggedInUserChangedMessage(CurrentUser));
+        return userResult;
     }
+
+    public User? CurrentUser { get; private set; } = null;
+    public bool IsAuthenticated => CurrentUser != null;
 
     public async Task<RegistrationResult> RegisterAsync(LoginDto loginDto)
     {
@@ -39,12 +47,12 @@ public class AuthenticationService(IServiceProvider service) : IAuthenticationSe
             return RegistrationResult.PasswordsDoNotMatch;
         }
 
-        if(await _accountService.IsEmailExistsAsync(loginDto.Email))
+        if(await _userService.IsEmailExistsAsync(loginDto.Email))
         {
             return RegistrationResult.EmailAlreadyExists;
         }
 
-        if (await _accountService.IsUserNameExistsAsync(loginDto.UserName))
+        if (await _userService.IsUserNameExistsAsync(loginDto.UserName))
         {
             return RegistrationResult.UsernameAlreadyExists;
         }
@@ -59,13 +67,7 @@ public class AuthenticationService(IServiceProvider service) : IAuthenticationSe
             DatedJoined = DateTime.Now
         };
 
-        var account = new Account()
-        {
-            AccountHolder = user,
-            Balance = 500
-        };
-
-        await _accountService.CreateAsync(account);
+        await _userService.CreateAsync(user);
         return RegistrationResult.Success;
     }
 }

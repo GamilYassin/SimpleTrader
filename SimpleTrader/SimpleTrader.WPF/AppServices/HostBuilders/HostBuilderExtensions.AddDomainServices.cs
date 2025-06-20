@@ -22,6 +22,7 @@ public static partial class HostBuilderExtensions
                 .AddSingleton<IAccountService, AccountService>()
                 .AddSingleton<IStockPriceService, StockPriceService>()
                 .AddSingleton<IBuyStockService, BuyStockService>()
+                .AddSingleton<IUserService, UserService>()
                 .AddSingleton<ISellStockService, SellStockService>();
             // .AddSingleton<IMajorIndexService, MajorIndexService>();
         });
