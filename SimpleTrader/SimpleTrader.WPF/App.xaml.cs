@@ -19,6 +19,7 @@ using Microsoft.Extensions.Hosting;
 
 using Serilog;
 using SimpleTrader.WPF.Features.Home.Views;
+using SimpleTrader.WPF.Features.Users.DataSeed;
 
 #endregion
 
@@ -76,5 +77,6 @@ public partial class App : Application
     {
         await new AssetSeeder(service).SeedAsync();
         await new MajorIndexSeeder(service).SeedAsync();
+        await new UserSeeder(service).SeedAsync();
     }
 }
