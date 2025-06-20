@@ -6,7 +6,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleTrader.WPF.Features.Accounts.Services;
 using SimpleTrader.WPF.Features.Assets.DTOs;
-using SimpleTrader.WPF.Features.Assets.Models;
 using SimpleTrader.WPF.Features.Users.Services;
 using SimpleTrader.WPF.Resources.Messages;
 using SimpleTrader.WPF.Resources.ViewModels;

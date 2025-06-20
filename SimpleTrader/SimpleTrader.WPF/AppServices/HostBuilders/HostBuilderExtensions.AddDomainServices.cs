@@ -20,8 +20,8 @@ public static partial class HostBuilderExtensions
             // Domain Services
             services.AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IAccountService, AccountService>()
+                .AddSingleton<IAssetService, AssetService>()
                 .AddSingleton<IStockPriceService, StockPriceService>()
-                .AddSingleton<IBuyStockService, BuyStockService>()
                 .AddSingleton<IUserService, UserService>()
                 .AddSingleton<ISellStockService, SellStockService>();
             // .AddSingleton<IMajorIndexService, MajorIndexService>();

@@ -37,6 +37,10 @@ public partial class MainWindow : Window
         // Portfolio
         var portfolioView = new PortfolioView(_service);
         PortfolioPresenter.Content = portfolioView;
+        
+        // Buy Asset
+        var buyView = new BuyView(_service);
+        BuyPresenter.Content = buyView;
     }
     
     private async Task ShowLoginOverlay()

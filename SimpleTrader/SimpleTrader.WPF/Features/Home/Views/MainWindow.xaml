@@ -75,7 +75,7 @@
                     <ContentPresenter Margin="10" x:Name="PortfolioPresenter" />
                 </TabItem>
                 <TabItem Header="Buy">
-                    <TextBlock Margin="8" Text="Default Tab 1" />
+                    <ContentPresenter Margin="10" x:Name="BuyPresenter" />
                 </TabItem>
                 <TabItem Header="Sell">
                     <TextBlock Margin="8" Text="Default Tab 2" />

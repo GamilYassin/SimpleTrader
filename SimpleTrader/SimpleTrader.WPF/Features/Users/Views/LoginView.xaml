@@ -73,8 +73,5 @@
                 materialDesign:HintAssist.HelperText="Sign up if you do not have account" />
 
         </Grid>
-
-
-
     </StackPanel>
 </UserControl>

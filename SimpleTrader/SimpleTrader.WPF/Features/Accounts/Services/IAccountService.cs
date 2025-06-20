@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using FieldOps.Kernel.Functional;
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Features.Accounts.Models;
 using SimpleTrader.WPF.Features.Assets.DTOs;
@@ -15,4 +16,5 @@ public interface IAccountService : IRepository<Account>
     Task<IEnumerable<Account>> GetAccountsByUserAsync(User? user);
     bool IsAccountNameUnique(string name);
     Task<IEnumerable<AccountAssetDto>> GetAccountAssetsAsync(Account? account);
+    Task<Validation<AssetTransaction>> ExecuteBuyTransactionAsync(AssetTransaction transaction);
 }

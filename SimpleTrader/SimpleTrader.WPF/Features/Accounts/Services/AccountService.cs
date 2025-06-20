@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using FieldOps.Kernel.Functional;
 using Microsoft.EntityFrameworkCore;
+using SimpleTrader.WPF.AppServices.Toast;
 using SimpleTrader.WPF.Data;
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Features.Accounts.Models;
@@ -116,4 +118,20 @@ public class AccountService(IDbContextFactory<AppDbContext> contextFactory)
         return result;
     }
 
+    public async Task<Validation<AssetTransaction>> ExecuteBuyTransactionAsync(AssetTransaction transaction)
+    {
+        var totalPrice = transaction.PricePerShare *  transaction.Shares;
+        if(CurrentAccount == null) return Invalid<AssetTransaction>("Current Account is null");
+        
+        if (CurrentAccount.Balance < totalPrice)
+            return Invalid<AssetTransaction>($"Account balance {CurrentAccount.Balance} is less than required but price {totalPrice.ToString("C", CultureInfo.GetCultureInfo("en-US"))}");
+        
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        await context.AssetTransactions.AddAsync(transaction);
+        
+        CurrentAccount.Balance -= totalPrice;
+        await UpdateAsync(CurrentAccount.Id, CurrentAccount);
+        await context.SaveChangesAsync();
+        return transaction.ToValidation();
+    }
 }
