@@ -47,7 +47,6 @@
     <Folder Include="Features\Accounts\Views\" />
     <Folder Include="Features\Assets\ViewModels\" />
     <Folder Include="Features\Financials\" />
-    <Folder Include="Features\Users\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\login-background.jpg">
@@ -86,11 +85,6 @@
       <XamlRuntime>Wpf</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Features\Users\Views\LoginView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <XamlRuntime>Wpf</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Features\Users\Views\RegisterView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <XamlRuntime>Wpf</XamlRuntime>
@@ -112,9 +106,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Features\Assets\Views\SellView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Features\Users\Views\LoginView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Features\Users\Views\RegisterView.xaml.cs">

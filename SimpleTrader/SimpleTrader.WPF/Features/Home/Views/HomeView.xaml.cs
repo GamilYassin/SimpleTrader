@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
+using SimpleTrader.WPF.Features.Home.ViewModels;
 
 namespace SimpleTrader.WPF.Features.Home.Views;
 
@@ -7,8 +9,11 @@ namespace SimpleTrader.WPF.Features.Home.Views;
 /// </summary>
 public partial class HomeView : UserControl
 {
-    public HomeView()
+    private readonly HomeViewModel _viewModel;
+    public HomeView(IServiceProvider service)
     {
         InitializeComponent();
+        _viewModel = new HomeViewModel(service);
+        DataContext = _viewModel;
     }
 }

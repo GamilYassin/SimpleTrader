@@ -1,6 +1,11 @@
 ﻿#region
 
+using System;
+using System.Threading.Tasks;
 using System.Windows;
+using MaterialDesignThemes.Wpf;
+using SimpleTrader.WPF.Features.Home.ViewModels;
+using SimpleTrader.WPF.Features.Users.Views;
 
 #endregion
 
@@ -8,8 +13,26 @@ namespace SimpleTrader.WPF.Features.Home.Views;
 
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    private readonly IServiceProvider _service;
+    private readonly MainWindowViewModel _viewModel;
+    public MainWindow(IServiceProvider service)
     {
+        _service = service;
         InitializeComponent();
+        _viewModel = new MainWindowViewModel(service);
+        DataContext = _viewModel;
+    }
+
+    private async void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        await _viewModel.InitializeAsync();
+        await ShowLoginOverlay();
+    }
+    
+    private async Task ShowLoginOverlay()
+    {
+        var loginView = new LoginView(_service);
+        Presenter.Content = loginView;
+        await DialogHostLogIn.ShowDialog(Presenter);
     }
 }
