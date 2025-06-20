@@ -1,6 +1,4 @@
-﻿using FieldOps.Kernel.PasswordService;
-using FieldOps.Kernel.Settings;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleTrader.WPF.Data.Repositories;
 using SimpleTrader.WPF.Features.Accounts.Services;

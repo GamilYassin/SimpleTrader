@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimpleTrader.WPF.Features.Home.ViewModels;
 using SimpleTrader.WPF.Features.Home.Views;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;

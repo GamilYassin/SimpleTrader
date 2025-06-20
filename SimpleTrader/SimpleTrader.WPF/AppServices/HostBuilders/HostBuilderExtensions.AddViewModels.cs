@@ -1,10 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using SimpleTrader.WPF.AppServices.Navigation;
-using SimpleTrader.WPF.AppServices.ViewModelFactories;
-using SimpleTrader.WPF.Features.Financials.Services;
-using SimpleTrader.WPF.Features.Users.Stores;
+﻿using Microsoft.Extensions.Hosting;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;
 

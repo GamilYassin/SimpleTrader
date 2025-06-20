@@ -1,13 +1,14 @@
-﻿using FieldOps.Kernel.PasswordService;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using FieldOps.Kernel.AppService;
+using FieldOps.Kernel.ClipboardWrapper;
+using FieldOps.Kernel.Configuration;
+using FieldOps.Kernel.FilesIO;
+using FieldOps.Kernel.PasswordService;
+using FieldOps.Kernel.Serializer;
 using FieldOps.Kernel.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleTrader.WPF.AppServices.Toast;
-using SimpleTrader.WPF.Data.Repositories;
-using SimpleTrader.WPF.Features.Accounts.Services;
-using SimpleTrader.WPF.Features.Assets.Services;
-using SimpleTrader.WPF.Features.Financials.Services;
-using SimpleTrader.WPF.Features.Users.Services;
 
 namespace SimpleTrader.WPF.AppServices.HostBuilders;
 
@@ -19,9 +20,17 @@ public static partial class HostBuilderExtensions
         {
             // App Services
             services.AddSingleton<IPasswordHasher, PasswordHasher>()
+                .AddSingleton<IApplicationService, ApplicationService>()
                 .AddSingleton<ISettingsService, SettingsService>()
-                .AddSingleton<IToastService, ToastService>();
-            
+                .AddSingleton<IClipboardService, ClipboardService>()
+                .AddSingleton<IFileDialogService, FileDialogService>()
+                .AddSingleton<IToastService, ToastService>()
+                .AddSingleton<IConfigurationService>(x => new ConfigurationService(x).Initialize())
+                .AddSingleton<ISerializerService, SerializerService>()
+                // Messenger
+                .AddSingleton<WeakReferenceMessenger>()
+                .AddSingleton<IMessenger, WeakReferenceMessenger>(provider =>
+                    provider.GetRequiredService<WeakReferenceMessenger>());
         });
 
         return host;
