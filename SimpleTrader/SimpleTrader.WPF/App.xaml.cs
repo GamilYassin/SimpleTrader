@@ -41,7 +41,8 @@ public partial class App : Application
             .AddConfiguration()
             .AddFinanceAPI()
             .AddDbContext()
-            .AddServices()
+            .AddAppServices()
+            .AddDomainServices()
             .AddStores()
             .AddViewModels()
             .AddViews();

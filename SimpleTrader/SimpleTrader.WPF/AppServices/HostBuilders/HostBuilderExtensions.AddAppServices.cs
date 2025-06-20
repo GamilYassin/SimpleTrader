@@ -12,7 +12,7 @@ namespace SimpleTrader.WPF.AppServices.HostBuilders;
 
 public static partial class HostBuilderExtensions
 {
-    public static IHostBuilder AddServices(this IHostBuilder host)
+    public static IHostBuilder AddAppServices(this IHostBuilder host)
     {
         host.ConfigureServices(services =>
         {
@@ -20,16 +20,6 @@ public static partial class HostBuilderExtensions
             services.AddSingleton<IPasswordHasher, PasswordHasher>()
                 .AddSingleton<ISettingsService, SettingsService>();
             
-            // Generic Services
-            services.AddSingleton(typeof(IRepository<>), typeof(GenericRepository<>));
-            
-            // Domain Services
-            services.AddSingleton<IAuthenticationService, AuthenticationService>()
-                .AddSingleton<IAccountService, AccountService>()
-                .AddSingleton<IStockPriceService, StockPriceService>()
-                .AddSingleton<IBuyStockService, BuyStockService>()
-                .AddSingleton<ISellStockService, SellStockService>();
-            // .AddSingleton<IMajorIndexService, MajorIndexService>();
         });
 
         return host;
