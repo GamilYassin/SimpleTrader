@@ -47,7 +47,6 @@
     <Folder Include="Features\Accounts\Views\" />
     <Folder Include="Features\Assets\ViewModels\" />
     <Folder Include="Features\Financials\" />
-    <Folder Include="Features\Home\ViewModels\" />
     <Folder Include="Features\Users\ViewModels\" />
   </ItemGroup>
   <ItemGroup>

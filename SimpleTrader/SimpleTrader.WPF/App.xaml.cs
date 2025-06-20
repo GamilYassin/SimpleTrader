@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Serilog;
+using SimpleTrader.WPF.Features.Home.Views;
 
 #endregion
 
@@ -57,8 +58,8 @@ public partial class App : Application
         // Seed Data
         SeedData(_host.Services);
 
-        // Window window = _host.Services.GetRequiredService<MainWindow>();
-        // window.Show();
+        var window = _host.Services.GetRequiredService<MainWindow>();
+        window.Show();
 
         base.OnStartup(e);
     }
