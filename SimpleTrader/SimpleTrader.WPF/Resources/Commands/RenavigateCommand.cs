@@ -4,24 +4,17 @@ using SimpleTrader.WPF.AppServices.Navigation;
 
 namespace SimpleTrader.WPF.Resources.Commands;
 
-public class RenavigateCommand : ICommand
+public class RenavigateCommand(IRenavigator renavigator) : ICommand
 {
-    private readonly IRenavigator _renavigator;
+    public event EventHandler? CanExecuteChanged;
 
-    public RenavigateCommand(IRenavigator renavigator)
-    {
-        _renavigator = renavigator;
-    }
-
-    public event EventHandler CanExecuteChanged;
-
-    public bool CanExecute(object parameter)
+    public bool CanExecute(object? parameter)
     {
         return true;
     }
 
-    public void Execute(object parameter)
+    public void Execute(object? parameter)
     {
-        _renavigator.Renavigate();
+        renavigator.Renavigate();
     }
 }

@@ -31,14 +31,15 @@ public partial class BuyViewModel(IServiceProvider service) : ViewModelBase(serv
     [ObservableProperty] private bool _IsCardVisible = false;
     [ObservableProperty] private bool _IsHelpTextVisible = true;
     
-    public override async Task InitializeAsync()
+    public override Task InitializeAsync()
     {
         // var assetsValues = await _assetService.GetAssetsSearchSuggestions();
-        AssetsSuggestion = new ObservableCollection<string>();
+        AssetsSuggestion = [];
+        return Task.CompletedTask;
     }
 
     [RelayCommand]
-    private async void SearchAssets()
+    private async Task SearchAssets()
     {
         var asset = await _assetService.FilterAssets(SearchText);
         SelectedAsset = asset.IsValid 
@@ -70,7 +71,7 @@ public partial class BuyViewModel(IServiceProvider service) : ViewModelBase(serv
     }
     
     [RelayCommand]
-    private async void BuyAsset()
+    private async Task BuyAsset()
     {
         if(!ValidateAll()) return;
         if(_accountService.CurrentAccount == null) return;

@@ -24,7 +24,7 @@ public partial class App : Application
         _host = CreateHostBuilder().Build();
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args = null)
+    public static IHostBuilder CreateHostBuilder(string[]? args = null)
     {
         return Host.CreateDefaultBuilder(args)
             .AddLogger()

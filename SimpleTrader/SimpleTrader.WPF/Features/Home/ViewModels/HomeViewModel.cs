@@ -11,7 +11,7 @@ public partial class HomeViewModel(IServiceProvider service) : ViewModelBase(ser
     private string? _balance;
     
     
-    public async override Task InitializeAsync()
+    public override Task InitializeAsync()
     {
         throw new NotImplementedException();
     }

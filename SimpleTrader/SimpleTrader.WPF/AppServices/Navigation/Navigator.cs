@@ -20,6 +20,6 @@ public class Navigator : INavigator
     //     }
     // }
 
-    public event Action StateChanged;
+    public event Action? StateChanged;
 
 }

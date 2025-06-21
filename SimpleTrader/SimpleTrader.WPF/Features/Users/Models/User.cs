@@ -7,10 +7,9 @@ namespace SimpleTrader.WPF.Features.Users.Models;
 
 public class User : EntityBase
 {
-    public string Email { get; set; }
-    public string Username { get; set; }
-    public string PasswordHash { get; set; }
+    public required string Email { get; set; }
+    public required string Username { get; set; }
+    public required string PasswordHash { get; set; }
     public DateTime DatedJoined { get; set; }
-
     public virtual ICollection<Account> UserAccounts { get; set; } = [];
 }

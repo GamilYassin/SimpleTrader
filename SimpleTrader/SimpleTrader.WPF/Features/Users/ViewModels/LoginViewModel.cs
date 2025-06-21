@@ -33,24 +33,24 @@ public partial class LoginViewModel(IServiceProvider service) : ViewModelBase(se
     private string? _password;
 
     [RelayCommand]
-    private async void ExecuteLogin()
+    private async Task ExecuteLogin()
     {
-        if (!ValidateAll()) return;
-        // Validate login
-        var result = await _authenticationService.LoginAsync(UserName!, Password!);
-        if (result.IsValid)
-        {
-            await _toastService.SuccessAsync("User logged in.");
-            DialogHost.CloseDialogCommand.Execute(null, null);
-        }
-        else
-        {
-            await _toastService.ErrorAsync("LogIn Failed. Either Username or password is incorrect");
-        }
+            if (!ValidateAll()) return;
+            // Validate login
+            var result = await _authenticationService.LoginAsync(UserName!, Password!);
+            if (result.IsValid)
+            {
+                await _toastService.SuccessAsync("User logged in.");
+                DialogHost.CloseDialogCommand.Execute(null, null);
+            }
+            else
+            {
+                await _toastService.ErrorAsync("LogIn Failed. Either Username or password is incorrect");
+            }
     }
     
     [RelayCommand]
-    private async void RegisterUser()
+    private async Task RegisterUser()
     {
         await _toastService.InfoAsync("New User Registration is not Implemented yet!");
     }

@@ -52,7 +52,7 @@ public partial class AccountListViewModel : ViewModelBase
     }
     
     [RelayCommand]
-    private async void SelectAccount(Account? account)
+    private async Task SelectAccount(Account? account)
     {
         if (SelectedAccount == null)
         {

@@ -13,7 +13,7 @@ public static partial class HostBuilderExtensions
         host.ConfigureServices((context, services) =>
         {
             var apiKey = context.Configuration.GetValue<string>("FINANCE_API_KEY");
-            services.AddSingleton(new FinancialModelingPrepApiKey(apiKey));
+            services.AddSingleton(new FinancialModelingPrepApiKey(apiKey!));
 
             services.AddHttpClient<FinancialModelingPrepHttpClient>(c =>
             {

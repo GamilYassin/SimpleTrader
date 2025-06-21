@@ -59,8 +59,8 @@ public static class PasswordBoxAssistant
     private static void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
     {
         var passwordBox = sender as PasswordBox;
-        SetUpdatingPassword(passwordBox, true);
-        SetBoundPassword(passwordBox, passwordBox.Password);
+        SetUpdatingPassword(passwordBox!, true);
+        SetBoundPassword(passwordBox!, passwordBox!.Password);
         SetUpdatingPassword(passwordBox, false);
     }
 }

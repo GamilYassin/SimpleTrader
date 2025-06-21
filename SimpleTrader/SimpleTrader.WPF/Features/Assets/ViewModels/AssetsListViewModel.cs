@@ -14,7 +14,7 @@ public partial class AssetsListViewModel(IServiceProvider service) : ViewModelBa
     private readonly IRepository<Asset> _assetsRepository = service.GetRequiredService<IRepository<Asset>>();
     
     [ObservableProperty]
-    private ObservableCollection<Asset> _assets;
+    private ObservableCollection<Asset> _assets=[];
     
     public override async Task InitializeAsync()
     {
